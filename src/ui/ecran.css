@@ -1,0 +1,170 @@
+/* Le gabarit commun a tous les ecrans. */
+
+.ecran {
+  display: grid;
+  grid-template-rows: 1fr;
+  height: 100%;
+  min-height: 0;
+}
+
+.ecran[data-pied='true'] {
+  grid-template-rows: 1fr auto;
+}
+
+.ecran__defile {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: calc(var(--haut-sur) + 14px) var(--gouttiere) 28px;
+}
+
+/* Sans pied colle, le contenu doit s'arreter au-dessus de la barre d'onglets. */
+.ecran:not([data-pied='true']) .ecran__defile {
+  padding-bottom: 28px;
+}
+
+.ecran__entete {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ecran__retour {
+  display: grid;
+  place-items: center;
+  width: var(--cible);
+  height: var(--cible);
+  margin: -8px 0 0 -12px;
+  border-radius: var(--r-plein);
+  color: var(--blanc);
+}
+
+.ecran__nommage {
+  flex: 1;
+  min-width: 0;
+}
+
+.ecran__titre {
+  font-size: var(--t-ecran);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.ecran__sous {
+  margin-top: 4px;
+  font-size: var(--t-menu);
+  color: var(--gris);
+}
+
+.ecran__nommage .etiquette {
+  margin-bottom: 4px;
+}
+
+.ecran__action {
+  flex: none;
+  margin-top: -2px;
+}
+
+/* Le pied colle au-dessus des onglets : un verdict ou une action qui ne doit
+   jamais sortir du champ pendant qu'on regle quelque chose. */
+.ecran__pied {
+  padding: 12px var(--gouttiere) 14px;
+  background: var(--carte);
+  border-top: 1px solid var(--trait);
+}
+
+/* --- Sections -------------------------------------------------------------- */
+
+.section {
+  margin-top: 26px;
+}
+
+/* Seule la section qui suit directement l'entete colle au titre. */
+.ecran__entete + .section {
+  margin-top: 0;
+}
+
+.section__tete {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* Une section pleine largeur deborde dans les gouttieres pour que le
+   defilement horizontal touche le bord de l'ecran. */
+.section[data-plein='true'] {
+  margin-inline: calc(var(--gouttiere) * -1);
+}
+
+.section[data-plein='true'] .section__tete {
+  margin-inline: var(--gouttiere);
+}
+
+/* --- Boutons ---------------------------------------------------------------- */
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding-inline: 20px;
+  border-radius: var(--r-s);
+  font-size: var(--t-appui);
+  font-weight: 600;
+  transition: filter var(--tres-court) linear, background var(--tres-court) linear;
+}
+
+.bouton--vert {
+  background: var(--vert);
+  color: var(--sur-vert);
+}
+
+.bouton--vert:active {
+  filter: brightness(0.92);
+}
+
+.bouton--fantome {
+  background: var(--carte-haute);
+  color: var(--blanc);
+  border: 1px solid var(--trait);
+}
+
+.bouton--fantome:active {
+  background: var(--trait);
+}
+
+.bouton--corail {
+  background: transparent;
+  color: var(--corail);
+  border: 1px solid var(--corail-trait);
+}
+
+.bouton--plein {
+  width: 100%;
+}
+
+/* Petit bouton d'entete, rond. */
+.bouton-rond {
+  display: grid;
+  place-items: center;
+  width: var(--cible);
+  height: var(--cible);
+  border-radius: var(--r-plein);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  color: var(--blanc);
+}
+
+.bouton-rond--vert {
+  background: var(--vert);
+  border-color: var(--vert);
+  color: var(--sur-vert);
+}
+
+.bouton-rond:active {
+  opacity: 0.7;
+}

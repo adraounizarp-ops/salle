@@ -1,150 +1,90 @@
 /* ============================================================================
-   Fonte & Magnésie — jetons de design
-   Le vocabulaire vient de l'objet : code couleur officiel des disques
-   olympiques (IWF), magnésie, chiffres estampés sur la fonte.
+   Noir & Fluo — jetons de design
+   Thème sombre unique, cible iPhone 17 / 17 Pro (402 × 874 pt).
+
+   Deux couleurs portent tout le sens : le vert dit « action » et « au-dessus »,
+   le corail dit « en dessous ». Tout le reste est noir, blanc et gris.
    ========================================================================== */
 
 :root {
-  /* --- Matière : sombre par défaut, la salle est sombre et l'écran reste allumé */
-  --fonte-900: #0f1114; /* fond */
-  --fonte-800: #16181c; /* surface carte + surface des graphiques */
-  --fonte-700: #1e2126; /* surface haute : pavé numérique, feuilles */
-  --fonte-600: #2a2e35; /* rails, bordures */
-  --fonte-500: #3a3f48; /* bordure appuyée */
+  /* --- Surfaces */
+  --noir: #0b0b0c; /* fond d'écran */
+  --carte: #171719; /* carte, surface de graphique */
+  --carte-haute: #202024; /* pavé, feuilles, champs */
+  --trait: #2c2c31; /* bordures, séparateurs */
+  --trait-appuye: #3a3a41;
 
-  --magnesie: #f2efe9; /* texte primaire, blanc chaud poudré */
-  --acier: #9aa0a9; /* texte secondaire */
-  --acier-sourd: #646b75; /* axes, texte tertiaire */
+  /* --- Encre */
+  --blanc: #f6f7f3; /* texte primaire, légèrement chaud */
+  --gris: #9b9c9e; /* texte secondaire */
+  /* Mesuré à 4,77:1 au pire (sur --carte-haute) : l'étiquette de 11 px reste
+     du texte, elle doit passer le seuil de lecture courante. */
+  --gris-sourd: #8a8b90; /* axes, tertiaire, onglets inactifs */
 
-  /* --- Statut = disques IWF. RÉSERVÉS : jamais une série de graphique. */
-  --disque-25: #c8312b; /* rouge 25 kg — action primaire, critique */
-  --disque-15: #e2a12a; /* jaune 15 kg — avertissement tonnage en baisse */
-  --disque-10: #1f8a5c; /* vert 10 kg — record, au-dessus de la dernière fois */
-  --disque-20: #2e64b4; /* bleu 20 kg — sélection, info neutre */
-  --disque-05: #dcd8d0; /* blanc 5 kg */
-  --disque-chrome: #8b929c; /* petits disques chromés */
+  /* --- Accent */
+  --vert: #d3fb4f;
+  --vert-voile: #d3fb4f24;
+  --vert-trait: #d3fb4f59;
+  --sur-vert: #0b0b0c; /* texte sur aplat vert — jamais du blanc */
 
-  /* Teintes de surface dérivées des disques, pour les bandeaux */
-  --disque-25-voile: #c8312b1f;
-  --disque-15-voile: #e2a12a1f;
-  --disque-10-voile: #1f8a5c1f;
-  --disque-20-voile: #2e64b41f;
+  /* Paliers de la barre chargée : un seul ton, une progression de clarté.
+     L'ordre encodé est celui des exercices, donc la rampe est honnête. */
+  --vert-1: #d3fb4f;
+  --vert-2: #b2d93f;
+  --vert-3: #92b731;
+  --vert-4: #739523;
+  --vert-5: #567417;
 
-  /* --- Palette catégorielle des graphiques (groupes musculaires).
-     Ordre FIXE, jamais recyclé. Validée : bande de clarté, chroma, séparation
-     protan/deutan, plancher vision normale, contraste — 5/5 PASS. */
-  --serie-1: #4c8df6;
-  --serie-2: #d4791e;
-  --serie-3: #2fa278;
-  --serie-4: #9166d8;
-  --serie-5: #d95778;
-  --serie-6: #17a3b0;
+  /* --- Alerte */
+  --corail: #ff5a36;
+  --corail-voile: #ff5a3624;
+  --corail-trait: #ff5a3659;
 
   /* --- Typographie */
-  --police-donnees: 'Martian Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-  --police-ui: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --police: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --police-donnees: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  --taille-etiquette: 0.6875rem; /* 11 — capitales estampées */
-  --taille-menu: 0.8125rem; /* 13 */
-  --taille-corps: 0.9375rem; /* 15 */
-  --taille-appui: 1.0625rem; /* 17 */
-  --taille-titre: 1.375rem; /* 22 */
-  --taille-nombre: 2.125rem; /* 34 */
-  --taille-hero: 3.5rem; /* 56 — le tonnage du jour */
+  --t-etiquette: 0.6875rem; /* 11 — capitales */
+  --t-menu: 0.8125rem; /* 13 */
+  --t-corps: 0.9375rem; /* 15 */
+  --t-appui: 1.0625rem; /* 17 */
+  --t-titre: 1.375rem; /* 22 */
+  --t-ecran: 1.75rem; /* 28 — titre d'écran */
+  --t-grand: 3rem; /* 48 */
+  --t-hero: 3.5rem; /* 56 — tonnage héros */
 
-  --interlettrage-etiquette: 0.09em;
+  --interlettrage: 0.08em;
 
-  /* --- Espace, rayon, ombre */
-  --pas: 4px;
-  --marge-ecran: 16px;
-  --rayon-s: 6px;
-  --rayon-m: 10px;
-  --rayon-l: 16px;
-  --rayon-plein: 999px;
+  /* --- Gabarit iPhone 17 */
+  --gouttiere: 20px;
+  --h-onglets: 58px;
+  --cible: 44px; /* rien de cliquable en dessous */
 
-  --cible-tactile: 48px; /* rien de cliquable en dessous */
-
-  --ombre-feuille: 0 -8px 32px #00000066;
+  --r-s: 12px;
+  --r-m: 18px; /* carte */
+  --r-l: 28px; /* feuille */
+  --r-plein: 999px;
 
   /* --- Mouvement */
-  --duree-instant: 90ms;
-  --duree-courte: 180ms;
-  --duree-moyenne: 320ms;
+  --tres-court: 90ms;
+  --court: 180ms;
+  --moyen: 320ms;
   --courbe: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Marges de sécurité, avec repli sur les valeurs de l'iPhone 17 pour que la
+     mise en page reste juste dans le navigateur de bureau. */
+  --haut-sur: env(safe-area-inset-top, 0px);
+  --bas-sur: env(safe-area-inset-bottom, 0px);
 }
 
-/* --- Mode clair : salle très éclairée, plein jour.
-   Les pas de couleur sont choisis pour ce fond, pas inversés automatiquement. */
-:root[data-theme='clair'] {
-  --fonte-900: #f3f2ef;
-  --fonte-800: #ffffff;
-  --fonte-700: #f7f6f3;
-  --fonte-600: #e2e0da;
-  --fonte-500: #cbc8c0;
-
-  --magnesie: #14161a;
-  --acier: #5b6068;
-  --acier-sourd: #83888f;
-
-  --disque-25: #b02720;
-  --disque-15: #9a6b05;
-  --disque-10: #16714a;
-  --disque-20: #2557a0;
-  --disque-05: #6f7580;
-  --disque-chrome: #6f7580;
-
-  --disque-25-voile: #b0272014;
-  --disque-15-voile: #9a6b0514;
-  --disque-10-voile: #16714a14;
-  --disque-20-voile: #2557a014;
-
-  --serie-1: #2e6fd4;
-  --serie-2: #b35a0e;
-  --serie-3: #17805b;
-  --serie-4: #7a4fc0;
-  --serie-5: #c13f62;
-  --serie-6: #0b8c9e;
-
-  --ombre-feuille: 0 -8px 32px #14161a1a;
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme='sombre']) {
-    --fonte-900: #f3f2ef;
-    --fonte-800: #ffffff;
-    --fonte-700: #f7f6f3;
-    --fonte-600: #e2e0da;
-    --fonte-500: #cbc8c0;
-
-    --magnesie: #14161a;
-    --acier: #5b6068;
-    --acier-sourd: #83888f;
-
-    --disque-25: #b02720;
-    --disque-15: #9a6b05;
-    --disque-10: #16714a;
-    --disque-20: #2557a0;
-    --disque-05: #6f7580;
-    --disque-chrome: #6f7580;
-
-    --disque-25-voile: #b0272014;
-    --disque-15-voile: #9a6b0514;
-    --disque-10-voile: #16714a14;
-    --disque-20-voile: #2557a014;
-
-    --serie-1: #2e6fd4;
-    --serie-2: #b35a0e;
-    --serie-3: #17805b;
-    --serie-4: #7a4fc0;
-    --serie-5: #c13f62;
-    --serie-6: #0b8c9e;
-
-    --ombre-feuille: 0 -8px 32px #14161a1a;
+@media (max-width: 389px) {
+  :root {
+    --gouttiere: 16px;
   }
 }
 
 /* ============================================================================
-   Réinitialisation courte
+   Réinitialisation
    ========================================================================== */
 
 *,
@@ -157,18 +97,34 @@ html {
   /* Le pouce ne doit jamais zoomer par accident pendant une série. */
   -webkit-text-size-adjust: 100%;
   touch-action: manipulation;
+  background: var(--noir);
 }
 
 body {
   margin: 0;
-  background: var(--fonte-900);
-  color: var(--magnesie);
-  font-family: var(--police-ui);
-  font-size: var(--taille-corps);
+  background: var(--noir);
+  color: var(--blanc);
+  font-family: var(--police);
+  font-size: var(--t-corps);
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
-  /* Pas de rebond élastique qui déplace la grille sous le pouce. */
   overscroll-behavior-y: none;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
 }
 
 button {
@@ -181,10 +137,17 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-:where(a, button, input, select, [tabindex]):focus-visible {
-  outline: 2px solid var(--disque-20);
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--vert);
   outline-offset: 2px;
-  border-radius: var(--rayon-s);
+  border-radius: var(--r-s);
 }
 
 /* ============================================================================
@@ -192,33 +155,57 @@ button {
    ========================================================================== */
 
 .etiquette {
-  font-family: var(--police-ui);
-  font-size: var(--taille-etiquette);
+  font-size: var(--t-etiquette);
   font-weight: 600;
-  letter-spacing: var(--interlettrage-etiquette);
+  letter-spacing: var(--interlettrage);
   text-transform: uppercase;
-  color: var(--acier);
+  color: var(--gris-sourd);
 }
 
+/* Chiffres alignés en colonne : Geist porte des chiffres tabulaires. */
 .donnee {
-  font-family: var(--police-donnees);
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum' 1;
+}
+
+.mono {
+  font-family: var(--police-donnees);
+  font-variant-numeric: tabular-nums;
   line-height: 1;
 }
 
-.hero-nombre {
-  font-family: var(--police-donnees);
-  font-variant-numeric: tabular-nums;
-  font-size: var(--taille-hero);
+.hero {
+  font-size: var(--t-hero);
   font-weight: 600;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
 }
 
 /* ============================================================================
-   Mouvement : respecté partout, y compris la boucle d'illustration
+   Utilitaires partagés
    ========================================================================== */
+
+/* Retour au doigt : opacité et fond, jamais de transformation qui déplace
+   les éléments voisins. */
+.pressable {
+  transition: background var(--tres-court) linear, opacity var(--tres-court) linear;
+}
+
+.pressable:active {
+  opacity: 0.68;
+}
+
+.rang {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pousse {
+  margin-left: auto;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,

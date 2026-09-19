@@ -1,0 +1,112 @@
+/* La feuille « Demarrer ». */
+
+.depart__titre {
+  margin: 16px 0 8px;
+}
+
+.depart__titre:first-child {
+  margin-top: 0;
+}
+
+.depart__liste {
+  display: grid;
+  gap: 2px;
+}
+
+.depart__ligne {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 58px;
+  padding: 8px;
+  border-radius: var(--r-s);
+  text-align: left;
+  color: var(--gris);
+}
+
+.depart__nommage {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+
+.depart__nom {
+  font-size: var(--t-corps);
+  font-weight: 600;
+  color: var(--blanc);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.depart__meta {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.depart__chevron {
+  flex: none;
+  color: var(--gris-sourd);
+}
+
+/* Reprendre passe devant tout le reste. */
+.depart__reprendre {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  margin-bottom: 4px;
+  padding: 10px 12px;
+  border-radius: var(--r-s);
+  background: var(--vert);
+  color: var(--sur-vert);
+  text-align: left;
+}
+
+.depart__reprendre .depart__nom {
+  color: var(--sur-vert);
+}
+
+.depart__reprendre .depart__meta {
+  color: #0b0b0ca8;
+}
+
+.depart__reprendre-icone {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-plein);
+  background: #0b0b0c1f;
+}
+
+.depart__chrono {
+  font-size: var(--t-corps);
+  font-weight: 600;
+}
+
+.depart__libre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 16px;
+  padding-inline: 14px;
+  border-radius: var(--r-s);
+  border: 1px dashed var(--trait-appuye);
+  color: var(--gris);
+  font-size: var(--t-corps);
+  font-weight: 500;
+}
+
+.depart__libre-note {
+  margin-left: auto;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}

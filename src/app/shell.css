@@ -1,0 +1,33 @@
+/* La coquille : ecran courant + barre d'onglets. */
+
+.shell {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.shell[data-plein='true'] {
+  grid-template-rows: 1fr;
+}
+
+.shell__ecran {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.shell__voile {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background: #0b0b0ccc;
+  backdrop-filter: blur(10px);
+  color: var(--gris);
+}
+
+.chantier {
+  padding: 40px 0;
+  color: var(--gris-sourd);
+}

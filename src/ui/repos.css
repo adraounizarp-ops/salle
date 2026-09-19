@@ -6,10 +6,9 @@
   z-index: 40;
   display: grid;
   place-items: center;
-  background: var(--fonte-900);
-  padding: calc(env(safe-area-inset-top) + 24px) var(--marge-ecran)
-    calc(env(safe-area-inset-bottom) + 24px);
-  animation: repos-entree var(--duree-moyenne) var(--courbe);
+  background: var(--noir);
+  padding: calc(var(--haut-sur) + 24px) var(--gouttiere) calc(var(--bas-sur) + 24px);
+  animation: repos-entree var(--moyen) var(--courbe);
 }
 
 @keyframes repos-entree {
@@ -30,7 +29,7 @@
 
 .repos__anneau {
   position: relative;
-  width: min(72vw, 260px);
+  width: min(72vw, 262px);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -46,53 +45,51 @@
 
 .repos__piste {
   fill: none;
-  stroke: var(--fonte-700);
+  stroke: var(--carte);
   stroke-width: 10;
 }
 
 .repos__arc {
   fill: none;
-  stroke: var(--disque-25);
+  stroke: var(--vert);
   stroke-width: 10;
   stroke-linecap: round;
   transition: stroke-dashoffset 250ms linear;
 }
 
 .repos__arc[data-fini='true'] {
-  stroke: var(--disque-10);
+  stroke: var(--blanc);
 }
 
 .repos__temps {
   position: relative;
-  font-size: 3.25rem;
+  font-size: 3.4rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
 .repos__temps[data-fini='true'] {
-  color: var(--disque-10);
+  color: var(--vert);
 }
 
 .repos__ecart {
-  font-size: var(--taille-appui);
+  font-size: var(--t-appui);
   font-weight: 600;
-  margin: 0;
 }
 
 .repos__ecart-ref {
-  font-family: var(--police-ui);
+  font-family: var(--police);
   font-weight: 500;
-  color: var(--acier);
+  color: var(--gris);
 }
 
 .repos__prochaine {
-  margin: 0;
-  color: var(--acier);
-  font-size: var(--taille-corps);
+  color: var(--gris);
+  font-size: var(--t-corps);
 }
 
 .repos__prochaine strong {
-  color: var(--magnesie);
+  color: var(--blanc);
   font-weight: 600;
 }
 
@@ -105,20 +102,20 @@
 }
 
 .repos__bouton {
-  min-height: var(--cible-tactile);
+  min-height: var(--cible);
   padding-inline: 20px;
-  border-radius: var(--rayon-m);
-  background: var(--fonte-700);
-  border: 1px solid var(--fonte-600);
-  font-size: var(--taille-corps);
+  border-radius: var(--r-s);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  font-size: var(--t-corps);
   font-weight: 600;
 }
 
 .repos__bouton--principal {
-  background: var(--fonte-800);
-  border-color: var(--fonte-500);
+  background: var(--carte-haute);
+  border-color: var(--trait-appuye);
 }
 
 .repos__bouton:active {
-  background: var(--fonte-600);
+  background: var(--trait);
 }

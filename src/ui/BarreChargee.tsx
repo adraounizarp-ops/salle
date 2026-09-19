@@ -1,4 +1,4 @@
-import { formatNombre as formatKg } from '../data/metriques';
+import { formatNombre } from '../data/metriques';
 import './barre-chargee.css';
 
 /** Un tronçon de la barre : un exercice de la séance. */
@@ -6,82 +6,58 @@ export interface Troncon {
   id: string;
   libelle: string;
   tonnage: number;
-  /** Identifiant de groupe musculaire → --serie-1 … --serie-6, ou 'mobilite'. */
-  groupe: string;
 }
 
 interface Props {
   troncons: Troncon[];
-  /** Tonnage de la séance de référence. 0 ou absent = pas de comparaison. */
+  /** Tonnage de référence. 0 ou absent = pas de comparaison. */
   reference?: number;
   taille?: 'hero' | 'rail';
-  /** Étiquette du repère fantôme. Défaut : « dernière fois ». */
+  /** Ce que marque le repère, dit en toutes lettres sous la barre. */
   libelleReference?: string;
 }
 
-const ORDRE_GROUPES = ['pectoraux', 'dos', 'jambes', 'epaules', 'bras', 'tronc'];
-
-function couleurDe(groupe: string): string {
-  const i = ORDRE_GROUPES.indexOf(groupe);
-  return i === -1 ? 'var(--acier-sourd)' : `var(--serie-${i + 1})`;
-}
+/** Cinq paliers, puis on recommence. L'ordre encodé est celui des exercices. */
+const PALIERS = 5;
 
 /**
- * La barre chargée — signature de l'app.
+ * La barre chargée.
  *
- * Le tonnage ne se lit pas comme une barre de progression : il se charge comme
- * une barre. Chaque tronçon est un exercice, sa largeur son tonnage, sa couleur
- * son groupe musculaire. Le repère fantôme marque la séance précédente : le
- * dépasser est la victoire du jour, visible sans lire un chiffre.
+ * Le tonnage ne se lit pas comme une jauge : chaque tronçon est un exercice, sa
+ * largeur son tonnage. Un seul ton, décliné en paliers de clarté — l'identité
+ * d'un exercice ne vient jamais d'une couleur mais de son étiquette. Le repère
+ * blanc marque la référence : le dépasser se voit sans lire un chiffre.
  */
-export function BarreChargee({ troncons, reference = 0, taille = 'hero', libelleReference = 'dernière fois' }: Props) {
+export function BarreChargee({ troncons, reference = 0, taille = 'hero', libelleReference }: Props) {
   const total = troncons.reduce((s, t) => s + t.tonnage, 0);
   // Toujours de la marge à droite : on doit voir qu'il reste à charger.
-  const echelle = Math.max(total, reference) * 1.12 || 1;
-  const devant = reference > 0 && total >= reference;
-  const ecart = total - reference;
-
-  const couleurRepere = devant ? 'var(--disque-10)' : 'var(--disque-15)';
+  const echelle = Math.max(total, reference) * 1.1 || 1;
 
   return (
     <div class={`barre barre--${taille}`}>
       <div class="barre__piste">
-        <span class="barre__collier" aria-hidden="true" />
-        <div class="barre__manchon">
-          {troncons.map((t) => (
-            <div
-              key={t.id}
-              class="barre__troncon"
-              style={{
-                width: `${(t.tonnage / echelle) * 100}%`,
-                background: couleurDe(t.groupe),
-              }}
-              title={`${t.libelle} — ${formatKg(t.tonnage)} kg`}
-            />
-          ))}
-          {reference > 0 && (
-            <span
-              class="barre__repere"
-              style={{ left: `${(reference / echelle) * 100}%`, '--teinte': couleurRepere }}
-              aria-hidden="true"
-            />
-          )}
-        </div>
-        <span class="barre__embout" aria-hidden="true" />
+        {troncons.map((t, i) => (
+          <div
+            key={t.id}
+            class="barre__troncon"
+            style={{
+              width: `${(t.tonnage / echelle) * 100}%`,
+              background: `var(--vert-${(i % PALIERS) + 1})`,
+            }}
+            title={`${t.libelle} — ${formatNombre(t.tonnage)} kg`}
+          />
+        ))}
+
+        {reference > 0 && (
+          <span class="barre__repere" style={{ left: `${(reference / echelle) * 100}%` }} aria-hidden="true" />
+        )}
       </div>
 
-      {taille === 'hero' && (
-        <div class="barre__legende">
-          <span class="donnee barre__total">
-            {formatKg(total)} <span class="barre__unite">kg</span>
-          </span>
-          {reference > 0 && (
-            <span class="barre__ecart donnee" style={{ color: couleurRepere }}>
-              {ecart >= 0 ? '+' : '−'}
-              {formatKg(Math.abs(ecart))} <span class="barre__ref">/ {libelleReference}</span>
-            </span>
-          )}
-        </div>
+      {reference > 0 && libelleReference && (
+        <p class="barre__legende">
+          <span class="barre__marque" aria-hidden="true" />
+          {libelleReference} · <span class="donnee">{formatNombre(reference)} kg</span>
+        </p>
       )}
     </div>
   );

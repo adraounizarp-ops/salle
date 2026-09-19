@@ -1,0 +1,115 @@
+/* Le detail d'une seance passee. */
+
+.stats--detail {
+  margin-top: 12px;
+}
+
+.note {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.note__texte {
+  margin-top: 6px;
+  font-size: var(--t-corps);
+  color: var(--blanc);
+}
+
+.detail-exos {
+  display: grid;
+  gap: 10px;
+}
+
+.detail-exo {
+  padding: 12px 14px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.detail-exo__tete {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--trait);
+  color: var(--gris);
+}
+
+.detail-exo__nommage {
+  min-width: 0;
+}
+
+.detail-exo__nom {
+  font-size: var(--t-corps);
+  font-weight: 600;
+  color: var(--blanc);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-exo__meta {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+.detail-series {
+  display: grid;
+  gap: 1px;
+  margin-top: 6px;
+}
+
+.detail-serie {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 30px;
+  font-size: var(--t-menu);
+  color: var(--gris);
+}
+
+.detail-serie[data-echauffement='true'] {
+  color: var(--gris-sourd);
+}
+
+.detail-serie__rang {
+  width: 14px;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  text-align: center;
+}
+
+.detail-serie__valeurs {
+  flex: 1;
+  color: var(--blanc);
+}
+
+.detail-serie[data-echauffement='true'] .detail-serie__valeurs {
+  color: var(--gris-sourd);
+}
+
+.detail-serie__unite {
+  font-family: var(--police);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: var(--interlettrage);
+  text-transform: uppercase;
+  color: var(--gris-sourd);
+  margin-left: 4px;
+}
+
+.detail-serie__rpe {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+.detail-serie__tonnage {
+  min-width: 46px;
+  text-align: right;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}

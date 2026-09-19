@@ -22,15 +22,15 @@ présente attribution.
 
 ## Polices
 
-- [**Martian Mono**](https://fonts.google.com/specimen/Martian+Mono) — Roboto Mono
-  Project Authors / Mikhail Sharanda — [SIL Open Font License 1.1](https://openfontlicense.org/)
-- [**Instrument Sans**](https://fonts.google.com/specimen/Instrument+Sans) — Rodrigo Fuenzalida,
-  Jordan Egstad — [SIL Open Font License 1.1](https://openfontlicense.org/)
+- [**Geist**](https://fonts.google.com/specimen/Geist) — Vercel / Basement Studio —
+  [SIL Open Font License 1.1](https://openfontlicense.org/)
+- [**Geist Mono**](https://fonts.google.com/specimen/Geist+Mono) — Vercel / Basement Studio —
+  [SIL Open Font License 1.1](https://openfontlicense.org/)
 
 Les deux sont auto-hébergées dans `src/ui/fonts/` pour que l'application
 fonctionne hors-ligne.
 
-## Code couleur des disques
+## Icônes
 
-Le code couleur employé pour les statuts (rouge 25 kg, bleu 20 kg, jaune 15 kg,
-vert 10 kg) reprend celui des disques olympiques normalisés par l'IWF.
+Les tracés du jeu d'icônes (`src/ui/Icone.tsx`) sont repris de
+[**Lucide**](https://lucide.dev/), sous licence ISC.

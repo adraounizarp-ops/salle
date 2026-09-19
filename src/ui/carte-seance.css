@@ -1,0 +1,152 @@
+/* Cartes de seance : compacte a l'accueil, en ligne dans la liste. */
+
+/* --- Carte compacte, defilement horizontal --------------------------------- */
+
+.favorites {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-inline: var(--gouttiere);
+  scroll-snap-type: x proximity;
+}
+
+.favorites::-webkit-scrollbar {
+  display: none;
+}
+
+.favorite {
+  flex: none;
+  width: 152px;
+  display: grid;
+  justify-items: start;
+  gap: 2px;
+  padding: 12px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  text-align: left;
+  scroll-snap-align: start;
+}
+
+.favorite__illu {
+  color: var(--gris);
+  margin-bottom: 4px;
+}
+
+.favorite__nom {
+  font-size: var(--t-corps);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.favorite__tonnage {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--vert);
+  white-space: nowrap;
+}
+
+.favorite__tonnage--vide {
+  font-size: var(--t-menu);
+  font-weight: 500;
+  color: var(--gris-sourd);
+}
+
+.favorite__unite {
+  font-size: var(--t-etiquette);
+  font-weight: 500;
+  color: var(--gris);
+}
+
+.favorite__quand {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+/* --- Ligne de liste --------------------------------------------------------- */
+
+.liste-modeles {
+  display: grid;
+  gap: 8px;
+}
+
+.ligne-modele {
+  display: flex;
+  align-items: stretch;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.ligne-modele__zone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 76px;
+  padding: 12px 4px 12px 14px;
+  text-align: left;
+  border-radius: var(--r-m);
+  color: var(--gris);
+}
+
+.ligne-modele__nommage {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.ligne-modele__nom {
+  font-size: var(--t-appui);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--blanc);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ligne-modele__meta,
+.ligne-modele__chiffres {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ligne-modele__chiffres {
+  color: var(--gris);
+}
+
+.ligne-modele__chevron {
+  flex: none;
+  color: var(--gris-sourd);
+}
+
+/* Cible separee de la zone principale : un tap sur l'etoile n'ouvre pas la
+   seance, et inversement. */
+.ligne-modele__etoile {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--cible);
+  color: var(--gris-sourd);
+  border-start-end-radius: var(--r-m);
+  border-end-end-radius: var(--r-m);
+}
+
+.ligne-modele__etoile[data-active='true'] {
+  color: var(--vert);
+}
+
+.ligne-modele__etoile:active {
+  opacity: 0.6;
+}

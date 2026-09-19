@@ -60,12 +60,12 @@ export function Repos({ total, ecart, prochaine, onFini }: Props) {
               data-fini={fini}
             />
           </svg>
-          <span class="repos__temps donnee" data-fini={fini}>
+          <span class="repos__temps mono" data-fini={fini}>
             {formatDuree(restant)}
           </span>
         </div>
 
-        <p class="repos__ecart donnee" style={{ color: devant ? 'var(--disque-10)' : 'var(--disque-15)' }}>
+        <p class="repos__ecart mono" style={{ color: devant ? 'var(--vert)' : 'var(--corail)' }}>
           {devant ? '+' : '−'}
           {formatNombre(Math.abs(ecart))} kg <span class="repos__ecart-ref">prévu sur cet exercice</span>
         </p>
@@ -73,7 +73,7 @@ export function Repos({ total, ecart, prochaine, onFini }: Props) {
         {prochaine && (
           <p class="repos__prochaine">
             Prochaine série{' '}
-            <strong class="donnee">
+            <strong class="mono">
               {prochaine.reps} × {formatCharge(prochaine.charge)} {prochaine.leste ? 'de lest' : 'kg'}
             </strong>
           </p>

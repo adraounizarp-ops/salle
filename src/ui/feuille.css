@@ -1,0 +1,88 @@
+/* La feuille basse. */
+
+.feuille {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: grid;
+  align-items: end;
+}
+
+.feuille__voile {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  background: #05050699;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: voile-entree var(--court) linear;
+}
+
+@keyframes voile-entree {
+  from {
+    opacity: 0;
+  }
+}
+
+.feuille__panneau {
+  position: relative;
+  max-height: 84dvh;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  padding: 8px var(--gouttiere) calc(var(--bas-sur) + 18px);
+  border-radius: var(--r-l) var(--r-l) 0 0;
+  background: var(--carte);
+  border-top: 1px solid var(--trait);
+  animation: feuille-entree var(--moyen) var(--courbe);
+}
+
+@keyframes feuille-entree {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+
+.feuille__poignee {
+  justify-self: center;
+  width: 38px;
+  height: 4px;
+  margin-bottom: 12px;
+  border-radius: var(--r-plein);
+  background: var(--trait-appuye);
+}
+
+.feuille__entete {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.feuille__titre {
+  font-size: var(--t-titre);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.feuille__sous {
+  margin-top: 2px;
+  font-size: var(--t-menu);
+  color: var(--gris);
+}
+
+.feuille__croix {
+  display: grid;
+  place-items: center;
+  width: var(--cible);
+  height: var(--cible);
+  margin: -8px -10px 0 0;
+  border-radius: var(--r-plein);
+  color: var(--gris);
+}
+
+.feuille__corps {
+  overflow-y: auto;
+  min-height: 0;
+}

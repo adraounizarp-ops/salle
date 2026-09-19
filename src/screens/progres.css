@@ -1,0 +1,174 @@
+/* L'ecran Progres. */
+
+.puces {
+  display: flex;
+  gap: 6px;
+  margin-top: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.puces::-webkit-scrollbar {
+  display: none;
+}
+
+.puces .filtre {
+  flex: none;
+}
+
+.carte__note {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--trait);
+  font-size: var(--t-etiquette);
+  color: var(--gris);
+  line-height: 1.5;
+}
+
+/* --- Bilan ------------------------------------------------------------------ */
+
+.bilan {
+  font-size: var(--t-grand);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.bilan[data-sens='haut'] {
+  color: var(--vert);
+}
+
+.bilan[data-sens='bas'] {
+  color: var(--corail);
+}
+
+.bilan__note {
+  margin-top: 10px;
+  font-size: var(--t-menu);
+  color: var(--gris);
+}
+
+/* --- Records ---------------------------------------------------------------- */
+
+.recs {
+  display: grid;
+}
+
+.rec {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  font-size: var(--t-menu);
+}
+
+.rec + .rec {
+  border-top: 1px solid var(--trait);
+}
+
+.rec__nom {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rec__perf {
+  font-weight: 600;
+}
+
+.rec__rm {
+  min-width: 58px;
+  text-align: right;
+  color: var(--vert);
+  font-weight: 600;
+}
+
+.rec__quand {
+  min-width: 56px;
+  text-align: right;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+.legende-colonne {
+  margin-top: 10px;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+/* --- Zones de volume -------------------------------------------------------- */
+
+.zones {
+  display: grid;
+  gap: 14px;
+}
+
+.zone {
+  display: grid;
+  grid-template-columns: 78px 1fr 28px;
+  align-items: center;
+  gap: 10px;
+}
+
+.zone__nom {
+  font-size: var(--t-menu);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zone__piste {
+  position: relative;
+  height: 10px;
+  border-radius: var(--r-plein);
+  background: var(--carte-haute);
+}
+
+/* Les bornes de la fourchette, par-dessus la barre. */
+.zone__borne {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 1px;
+  margin-left: -0.5px;
+  background: var(--gris-sourd);
+}
+
+.zone__barre {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  border-radius: var(--r-plein);
+  background: var(--vert);
+}
+
+.zone__valeur {
+  font-size: var(--t-menu);
+  font-weight: 600;
+  text-align: right;
+  color: var(--gris);
+}
+
+.zone__valeur[data-dedans='true'] {
+  color: var(--vert);
+}
+
+/* L'echelle, alignee sur les memes pourcentages que les bornes. */
+.zones__echelle {
+  position: relative;
+  height: 14px;
+  margin-top: 8px;
+  margin-left: 88px;
+  margin-right: 38px;
+}
+
+.zones__borne-nom {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: var(--gris-sourd);
+}

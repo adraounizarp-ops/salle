@@ -1,0 +1,124 @@
+/* Detail d'un modele de seance. */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.stats__case {
+  display: grid;
+  gap: 4px;
+  padding: 14px 12px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.stats__valeur {
+  font-size: var(--t-titre);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.stats__nom {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  line-height: 1.25;
+}
+
+.detail__quand {
+  margin-top: 10px;
+  font-size: var(--t-menu);
+  color: var(--gris);
+}
+
+.detail__actions {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+}
+
+.bouton-rond[data-actif='true'] {
+  background: var(--vert);
+  border-color: var(--vert);
+  color: var(--sur-vert);
+}
+
+/* --- Liste d'exercices ------------------------------------------------------ */
+
+.exos {
+  display: grid;
+  gap: 2px;
+}
+
+.exo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 62px;
+  padding: 8px 4px;
+  color: var(--gris);
+}
+
+.exo + .exo {
+  border-top: 1px solid var(--trait);
+}
+
+.exo__rang {
+  width: 14px;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  text-align: center;
+}
+
+.exo__nommage {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+
+.exo__nom {
+  font-size: var(--t-corps);
+  font-weight: 600;
+  color: var(--blanc);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exo__sous {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exo__cible {
+  flex: none;
+  display: grid;
+  justify-items: end;
+  gap: 1px;
+}
+
+.exo__series {
+  font-size: var(--t-menu);
+  font-weight: 600;
+  color: var(--blanc);
+  white-space: nowrap;
+}
+
+.exo__charge {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+.exo__tonnage {
+  flex: none;
+  width: 44px;
+  text-align: right;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}

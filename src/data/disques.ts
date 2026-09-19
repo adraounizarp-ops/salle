@@ -42,7 +42,11 @@ export function calculerDisques(
 const fmt = (n: number) => n.toString().replace('.', ',');
 
 /** « barre 20 + 20 · 5 · 2,5 » — la phrase qu'on lit en chargeant. */
-export function resumerChargement(charge: number, barre = BARRE_PAR_DEFAUT, disponibles = DISQUES_PAR_DEFAUT): string {
+export function resumerChargement(
+  charge: number,
+  barre = BARRE_PAR_DEFAUT,
+  disponibles: readonly number[] = DISQUES_PAR_DEFAUT,
+): string {
   const { parCote, reste, possible } = calculerDisques(charge, barre, disponibles);
   if (!possible) return `moins que la barre (${fmt(barre)} kg)`;
   if (parCote.length === 0) return `barre ${fmt(barre)} à vide`;

@@ -1,0 +1,58 @@
+/* La barre du bas. Hauteur fixe + marge de securite iPhone. */
+
+.onglets {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  height: calc(var(--h-onglets) + var(--bas-sur));
+  padding-bottom: var(--bas-sur);
+  background: color-mix(in srgb, var(--noir) 88%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-top: 1px solid var(--trait);
+}
+
+.onglet {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 3px;
+  height: 100%;
+  min-height: var(--cible);
+  color: var(--gris-sourd);
+  transition: color var(--tres-court) linear;
+}
+
+.onglet[data-actif='true'] {
+  color: var(--vert);
+}
+
+.onglet:active {
+  opacity: 0.6;
+}
+
+.onglet__nom {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* Le bouton central deborde vers le haut : c'est le seul aplat vert de l'ecran. */
+.onglets__demarrer {
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-top: -18px;
+  border-radius: var(--r-plein);
+  background: var(--vert);
+  color: var(--sur-vert);
+  box-shadow: 0 6px 20px #d3fb4f33;
+  transition: transform var(--tres-court) var(--courbe), filter var(--tres-court) linear;
+}
+
+.onglets__demarrer:active {
+  transform: scale(0.94);
+  filter: brightness(0.94);
+}

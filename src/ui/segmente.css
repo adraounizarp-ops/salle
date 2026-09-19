@@ -1,0 +1,27 @@
+/* Selecteur segmente. */
+
+.segmente {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--r-s);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.segmente__option {
+  min-height: 38px;
+  border-radius: 9px;
+  font-size: var(--t-menu);
+  font-weight: 500;
+  color: var(--gris);
+  transition: background var(--tres-court) linear, color var(--tres-court) linear;
+}
+
+.segmente__option[data-actif='true'] {
+  background: var(--vert);
+  color: var(--sur-vert);
+  font-weight: 600;
+}

@@ -1,0 +1,132 @@
+/* L'historique : bandeau de regularite, puis les seances par mois. */
+
+.bandeau-mois {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-inline: var(--gouttiere);
+}
+
+.bandeau-mois::-webkit-scrollbar {
+  display: none;
+}
+
+.bandeau-mois__case {
+  flex: none;
+  width: 146px;
+  padding: 12px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.bandeau-mois__case .etiquette {
+  margin-bottom: 8px;
+}
+
+.bandeau-mois__compte {
+  margin-top: 8px;
+  font-size: var(--t-menu);
+  font-weight: 600;
+  color: var(--vert);
+}
+
+.bandeau-mois__compte::after {
+  content: ' séances';
+  font-size: var(--t-etiquette);
+  font-weight: 500;
+  color: var(--gris-sourd);
+}
+
+/* --- Liste des seances ------------------------------------------------------ */
+
+.hist-liste {
+  display: grid;
+  gap: 6px;
+}
+
+.hist-ligne {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 68px;
+  padding: 10px 14px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  text-align: left;
+}
+
+.hist-ligne__date {
+  flex: none;
+  display: grid;
+  justify-items: center;
+  width: 34px;
+}
+
+.hist-ligne__jour {
+  font-size: var(--t-appui);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.hist-ligne__sem {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--interlettrage);
+  color: var(--gris-sourd);
+}
+
+.hist-ligne__nommage {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+
+.hist-ligne__nom {
+  font-size: var(--t-corps);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hist-ligne__meta {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+.hist-ligne__chiffres {
+  flex: none;
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+}
+
+.hist-ligne__tonnage {
+  font-size: var(--t-corps);
+  font-weight: 600;
+}
+
+.hist-ligne__ecart {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--t-etiquette);
+  font-weight: 600;
+}
+
+.hist-ligne__ecart[data-sens='haut'] {
+  color: var(--vert);
+}
+
+.hist-ligne__ecart[data-sens='bas'] {
+  color: var(--corail);
+}
+
+.hist-ligne__fleche {
+  display: grid;
+  place-items: center;
+}

@@ -1,0 +1,67 @@
+/* Un reglage par increments. Deux grosses cibles, aucun clavier. */
+
+.reglette {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 60px;
+  border-bottom: 1px solid var(--trait);
+}
+
+.reglette__nommage {
+  display: grid;
+  min-width: 0;
+}
+
+.reglette__nom {
+  font-size: var(--t-corps);
+  font-weight: 500;
+}
+
+.reglette__suffixe {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+.reglette__commandes {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.reglette__pas {
+  display: grid;
+  place-items: center;
+  width: var(--cible);
+  height: var(--cible);
+  border-radius: var(--r-plein);
+  background: var(--carte-haute);
+  border: 1px solid var(--trait);
+  color: var(--blanc);
+  transition: background var(--tres-court) linear;
+}
+
+.reglette__pas:active:not(:disabled) {
+  background: var(--trait);
+}
+
+.reglette__pas:disabled {
+  opacity: 0.3;
+}
+
+.reglette__valeur {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 3px;
+  min-width: 76px;
+  font-size: var(--t-appui);
+  font-weight: 600;
+}
+
+.reglette__unite {
+  font-size: var(--t-etiquette);
+  font-weight: 500;
+  color: var(--gris);
+}

@@ -1,0 +1,59 @@
+/* Le chiffre heros et son ecart. */
+
+.chiffre__valeur {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 0.94;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.chiffre__valeur--hero {
+  font-size: var(--t-hero);
+}
+
+.chiffre__valeur--grand {
+  font-size: var(--t-grand);
+}
+
+.chiffre__valeur--moyen {
+  font-size: var(--t-titre);
+  letter-spacing: -0.02em;
+}
+
+.chiffre__unite {
+  font-size: var(--t-corps);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--gris);
+}
+
+.chiffre__ecart {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: var(--t-menu);
+  font-weight: 600;
+}
+
+.chiffre__ecart[data-sens='haut'] {
+  color: var(--vert);
+}
+
+.chiffre__ecart[data-sens='bas'] {
+  color: var(--corail);
+}
+
+.chiffre__fleche {
+  display: grid;
+  place-items: center;
+}
+
+.chiffre__reference {
+  font-weight: 500;
+  color: var(--gris);
+}

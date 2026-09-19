@@ -1,10 +1,9 @@
 /* Le pave integre. Le clavier iOS n'ouvre jamais pendant une seance. */
 
 .pave {
-  background: var(--fonte-700);
-  border-top: 1px solid var(--fonte-600);
-  padding: 10px var(--marge-ecran) calc(10px + env(safe-area-inset-bottom));
-  box-shadow: var(--ombre-feuille);
+  background: var(--carte);
+  border-top: 1px solid var(--trait);
+  padding: 10px var(--gouttiere) calc(10px + var(--bas-sur));
 }
 
 .pave__grille {
@@ -16,49 +15,47 @@
 .pave__chiffres {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(var(--cible-tactile), 1fr);
+  grid-auto-rows: minmax(var(--cible), 1fr);
   gap: 6px;
 }
 
 .pave__actions {
   display: grid;
-  grid-template-rows: repeat(4, minmax(var(--cible-tactile), 1fr));
+  grid-template-rows: repeat(4, minmax(var(--cible), 1fr));
   gap: 6px;
 }
 
 .pave__touche {
   display: grid;
   place-items: center;
-  border-radius: var(--rayon-m);
-  background: var(--fonte-800);
-  border: 1px solid var(--fonte-600);
-  font-size: var(--taille-titre);
+  border-radius: var(--r-s);
+  background: var(--carte-haute);
+  border: 1px solid var(--trait);
+  font-size: var(--t-titre);
   font-weight: 500;
-  color: var(--magnesie);
-  transition: background var(--duree-instant) linear, transform var(--duree-instant) linear;
+  color: var(--blanc);
+  transition: background var(--tres-court) linear;
 }
 
 .pave__touche:active:not(:disabled) {
-  background: var(--fonte-600);
-  transform: scale(0.97);
+  background: var(--trait);
 }
 
 .pave__touche:disabled {
-  opacity: 0.35;
+  opacity: 0.3;
 }
 
 .pave__touche--effacer {
-  font-size: var(--taille-appui);
-  color: var(--acier);
+  font-size: var(--t-appui);
+  color: var(--gris);
 }
 
 /* Les pas : la saisie exacte en un geste, sans passer par les chiffres. */
 .pave__touche--pas {
-  font-size: var(--taille-appui);
+  font-size: var(--t-appui);
   font-weight: 600;
-  background: var(--fonte-700);
-  border-color: var(--fonte-500);
-  color: var(--magnesie);
+  background: transparent;
+  border-color: var(--trait-appuye);
 }
 
 .pave__touche--idem {
@@ -66,20 +63,20 @@
   grid-auto-flow: row;
   align-content: center;
   gap: 2px;
-  background: var(--disque-20-voile);
-  border-color: color-mix(in oklab, var(--disque-20) 45%, transparent);
-  color: var(--disque-20);
+  background: var(--vert-voile);
+  border-color: var(--vert-trait);
+  color: var(--vert);
 }
 
 .pave__idem-signe {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 1;
 }
 
 .pave__idem-texte {
-  font-size: var(--taille-etiquette);
+  font-size: var(--t-etiquette);
   font-weight: 600;
-  letter-spacing: var(--interlettrage-etiquette);
+  letter-spacing: var(--interlettrage);
   text-transform: uppercase;
 }
 
@@ -87,16 +84,14 @@
   width: 100%;
   margin-top: 8px;
   min-height: 54px;
-  border-radius: var(--rayon-m);
-  background: var(--disque-25);
-  color: #fff;
-  font-size: var(--taille-appui);
+  border-radius: var(--r-s);
+  background: var(--vert);
+  color: var(--sur-vert);
+  font-size: var(--t-appui);
   font-weight: 600;
-  letter-spacing: 0.01em;
-  transition: transform var(--duree-instant) linear, filter var(--duree-instant) linear;
+  transition: filter var(--tres-court) linear;
 }
 
 .pave__valider:active {
-  transform: scale(0.99);
   filter: brightness(0.92);
 }

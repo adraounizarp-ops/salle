@@ -1,0 +1,82 @@
+/* Le mois en points. */
+
+.grille__entetes,
+.grille__jours {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.grille__entetes {
+  margin-bottom: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: var(--interlettrage);
+  color: var(--gris-sourd);
+  text-align: center;
+}
+
+.grille__jours {
+  gap: 2px;
+}
+
+.grille__jour {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 4px;
+  height: 38px;
+  border-radius: var(--r-s);
+}
+
+.grille__point {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--trait-appuye);
+  transition: transform var(--court) var(--courbe);
+}
+
+/* Le jour d'entrainement : un point plein, et le seul vert de la grille. */
+.grille__jour[data-fait='true'] .grille__point {
+  width: 11px;
+  height: 11px;
+  background: var(--vert);
+}
+
+.grille__numero {
+  font-size: 10px;
+  color: var(--gris-sourd);
+}
+
+.grille__jour[data-fait='true'] .grille__numero {
+  color: var(--gris);
+}
+
+.grille__jour[data-hors='true'] {
+  opacity: 0.32;
+}
+
+/* Aujourd'hui garde son anneau meme sans seance. */
+.grille__jour[data-aujourdhui='true'] .grille__point {
+  box-shadow: 0 0 0 2px var(--noir), 0 0 0 3.5px var(--blanc);
+}
+
+.grille__jour:not(:disabled):active .grille__point {
+  transform: scale(1.35);
+}
+
+/* Mode compact : plusieurs mois cote a cote, sans numeros. */
+.grille[data-compact='true'] .grille__jour {
+  height: 18px;
+  border-radius: 4px;
+}
+
+.grille[data-compact='true'] .grille__point {
+  width: 6px;
+  height: 6px;
+}
+
+.grille[data-compact='true'] .grille__jour[data-fait='true'] .grille__point {
+  width: 8px;
+  height: 8px;
+}

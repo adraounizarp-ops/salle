@@ -1,0 +1,357 @@
+/* L'écran de séance : quatre zones fixes — entête, rail, exercice, pavé.
+   Rien ne bouge sous le pouce entre deux séries. */
+
+.exec {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  height: 100%;
+  min-height: 0;
+  background: var(--noir);
+}
+
+/* --- Entête ---------------------------------------------------------------- */
+
+.exec__entete {
+  padding: calc(var(--haut-sur) + 10px) var(--gouttiere) 12px;
+}
+
+.exec__barre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.exec__quitter {
+  display: grid;
+  place-items: center;
+  width: var(--cible);
+  height: var(--cible);
+  margin-left: -12px;
+  border-radius: var(--r-plein);
+  color: var(--blanc);
+}
+
+.exec__nom {
+  flex: 1;
+  font-size: var(--t-appui);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Le chrono est une information, pas un enjeu : il reste discret. */
+.exec__chrono {
+  font-size: var(--t-menu);
+  color: var(--gris);
+}
+
+.exec__compte {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.exec__tonnage {
+  font-size: var(--t-ecran);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.exec__unite {
+  font-size: var(--t-menu);
+  font-weight: 500;
+  color: var(--gris);
+}
+
+.exec__reference {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+/* --- Rail d'exercices ------------------------------------------------------- */
+
+.rail {
+  display: flex;
+  gap: 6px;
+  padding: 0 var(--gouttiere) 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--trait);
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.rail__pastille {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-s);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  color: var(--gris-sourd);
+  transition: border-color var(--tres-court) linear, color var(--tres-court) linear;
+}
+
+.rail__pastille[data-fini='true'] {
+  color: var(--gris);
+}
+
+/* L'exercice en cours : le seul de la rangée à être vert. */
+.rail__pastille[data-actif='true'] {
+  border-color: var(--vert);
+  color: var(--vert);
+}
+
+.rail__coche {
+  position: absolute;
+  right: -3px;
+  bottom: -3px;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--r-plein);
+  background: var(--vert);
+  color: var(--sur-vert);
+  box-shadow: 0 0 0 2px var(--noir);
+}
+
+/* --- Corps ------------------------------------------------------------------ */
+
+.exec__corps {
+  overflow-y: auto;
+  padding: 14px var(--gouttiere) 18px;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.bloc-exo {
+  padding: 14px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.bloc-exo__tete {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* L'exercice actif est le seul dessin teinté de l'écran. */
+.bloc-exo__illu {
+  color: var(--vert);
+}
+
+.bloc-exo__nommage {
+  flex: 1;
+  min-width: 0;
+}
+
+.bloc-exo__nom {
+  font-size: var(--t-appui);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.bloc-exo__sous {
+  margin-top: 2px;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+.bloc-exo__rang {
+  align-self: flex-start;
+}
+
+/* --- Les séries ------------------------------------------------------------- */
+
+.series {
+  display: grid;
+  gap: 2px;
+}
+
+.serie {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 2px 8px;
+  border-radius: var(--r-s);
+  font-size: var(--t-corps);
+  color: var(--gris);
+}
+
+.serie[data-etat='a-venir'] {
+  color: var(--gris-sourd);
+}
+
+/* La ligne active est la seule chose éclairée du bloc. */
+.serie[data-etat='active'] {
+  min-height: 58px;
+  background: var(--carte-haute);
+  outline: 1px solid var(--trait-appuye);
+  color: var(--blanc);
+}
+
+.serie__rang {
+  width: 16px;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  text-align: center;
+}
+
+.serie[data-etat='active'] .serie__rang {
+  color: var(--blanc);
+}
+
+.serie__valeurs {
+  flex: 1;
+  font-size: var(--t-corps);
+}
+
+.serie__croix {
+  color: var(--gris-sourd);
+  padding-inline: 2px;
+}
+
+.serie__unite {
+  font-family: var(--police);
+  font-size: var(--t-etiquette);
+  font-weight: 600;
+  letter-spacing: var(--interlettrage);
+  text-transform: uppercase;
+  color: var(--gris-sourd);
+  margin-left: 4px;
+}
+
+/* Champ actif : on tape dessus pour choisir ce que le pavé modifie. */
+.serie__champ {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  min-height: 44px;
+  padding: 4px 10px;
+  border-radius: var(--r-s);
+  border: 1px solid transparent;
+  font-size: var(--t-titre);
+  font-weight: 600;
+  color: var(--blanc);
+}
+
+.serie__champ[data-choisi='true'] {
+  border-color: var(--vert);
+  background: var(--vert-voile);
+}
+
+.serie__champ[data-choisi='true'] .serie__unite {
+  color: var(--vert);
+}
+
+.serie__tonnage {
+  margin-left: auto;
+  font-size: var(--t-menu);
+  color: var(--gris-sourd);
+}
+
+.serie__rpe {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+.serie__coche {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  color: var(--vert);
+}
+
+.chargement {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--trait);
+  font-size: var(--t-etiquette);
+  color: var(--gris);
+}
+
+/* --- Bandeaux --------------------------------------------------------------- */
+
+.bandeau {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--r-s);
+  border: 1px solid;
+}
+
+.bandeau__pastille {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 50%;
+}
+
+.bandeau--baisse {
+  background: var(--corail-voile);
+  border-color: var(--corail-trait);
+}
+
+.bandeau--baisse .bandeau__pastille {
+  background: var(--corail);
+}
+
+.bandeau--devant {
+  background: var(--vert-voile);
+  border-color: var(--vert-trait);
+}
+
+.bandeau--devant .bandeau__pastille {
+  background: var(--vert);
+}
+
+.bandeau__titre {
+  font-size: var(--t-corps);
+  font-weight: 600;
+}
+
+.bandeau__detail {
+  margin-top: 3px;
+  font-size: var(--t-menu);
+  color: var(--gris);
+}
+
+/* --- Passage à l'exercice suivant ------------------------------------------- */
+
+.suivant {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2px 12px;
+  text-align: left;
+  padding: 14px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.suivant__nom {
+  font-size: var(--t-appui);
+  font-weight: 600;
+}
+
+.suivant__chevron {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  color: var(--gris-sourd);
+}

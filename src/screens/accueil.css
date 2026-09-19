@@ -1,0 +1,186 @@
+/* L'accueil : savoir ou on en est, et partir. */
+
+/* --- Surface commune ------------------------------------------------------- */
+
+.carte {
+  padding: 16px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.carte--hero {
+  padding: 18px 16px 16px;
+}
+
+.carte__barre {
+  margin-top: 18px;
+}
+
+.lien {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--t-menu);
+  font-weight: 500;
+  color: var(--gris);
+  padding: 6px 0 6px 8px;
+}
+
+.lien:active {
+  opacity: 0.6;
+}
+
+.section__compte {
+  font-size: var(--t-etiquette);
+  font-weight: 600;
+  letter-spacing: var(--interlettrage);
+  text-transform: uppercase;
+  color: var(--gris-sourd);
+}
+
+/* --- Reprendre : la seule carte verte de l'ecran, et seulement si besoin --- */
+
+.reprendre {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 12px 16px;
+  margin-bottom: 22px;
+  border-radius: var(--r-m);
+  background: var(--vert);
+  color: var(--sur-vert);
+  text-align: left;
+  transition: filter var(--tres-court) linear;
+}
+
+.reprendre:active {
+  filter: brightness(0.93);
+}
+
+.reprendre__icone {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-plein);
+  background: #0b0b0c1f;
+}
+
+.reprendre__texte {
+  flex: 1;
+  display: grid;
+}
+
+.reprendre__nom {
+  font-size: var(--t-corps);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.reprendre__meta {
+  font-size: var(--t-etiquette);
+  opacity: 0.66;
+}
+
+.reprendre__chrono {
+  font-size: var(--t-appui);
+  font-weight: 500;
+}
+
+/* --- Volume par groupe ------------------------------------------------------ */
+
+/* Des barres etiquetees plutot qu'un code couleur : l'identite vient du
+   libelle, jamais de la teinte. */
+.volume {
+  display: grid;
+  gap: 12px;
+}
+
+.volume__ligne {
+  display: grid;
+  grid-template-columns: 82px 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.volume__nom {
+  font-size: var(--t-menu);
+  color: var(--blanc);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.volume__piste {
+  height: 6px;
+  border-radius: var(--r-plein);
+  background: var(--carte-haute);
+  overflow: hidden;
+}
+
+.volume__barre {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-plein);
+  background: var(--vert);
+}
+
+.volume__valeur {
+  font-size: var(--t-etiquette);
+  color: var(--gris);
+  min-width: 60px;
+  text-align: right;
+}
+
+/* --- Records ---------------------------------------------------------------- */
+
+.records {
+  display: grid;
+  gap: 2px;
+}
+
+.records__ligne {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 4px;
+  font-size: var(--t-corps);
+}
+
+.records__ligne + .records__ligne {
+  border-top: 1px solid var(--trait);
+}
+
+.records__fleche {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--r-plein);
+  background: var(--vert-voile);
+  color: var(--vert);
+}
+
+.records__nom {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.records__valeur {
+  font-size: var(--t-menu);
+  font-weight: 600;
+}
+
+.records__quand {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  min-width: 56px;
+  text-align: right;
+}

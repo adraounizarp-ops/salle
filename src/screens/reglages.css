@@ -1,0 +1,96 @@
+/* Reglages. */
+
+.disques {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--trait);
+}
+
+.disques__titre {
+  margin-bottom: 10px;
+}
+
+.disques__jetons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.disques__jetons .filtre {
+  min-width: 56px;
+}
+
+.exemples {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.exemples__ligne {
+  display: flex;
+  gap: 10px;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+.exemples__charge {
+  min-width: 52px;
+  font-weight: 600;
+  color: var(--blanc);
+}
+
+.exemples__plan {
+  min-width: 0;
+}
+
+.prose {
+  font-size: var(--t-menu);
+  color: var(--gris);
+  line-height: 1.55;
+}
+
+.prose + .prose {
+  margin-top: 10px;
+}
+
+.prose strong {
+  color: var(--blanc);
+  font-weight: 600;
+}
+
+.prose--note {
+  margin-top: 10px;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+}
+
+.regles {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.regles li {
+  position: relative;
+  padding-left: 16px;
+  font-size: var(--t-menu);
+  color: var(--gris);
+  line-height: 1.5;
+}
+
+.regles li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--vert);
+}
+
+.reglages__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}

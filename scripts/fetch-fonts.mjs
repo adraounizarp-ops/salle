@@ -22,15 +22,17 @@ const UA =
 
 const FAMILLES = [
   {
-    nom: 'Martian Mono',
-    fichier: 'martian-mono',
-    // Chasse condensée (wdth 87.5) : les colonnes reps/kg tiennent sur un iPhone.
-    requete: 'Martian+Mono:wdth,wght@87.5,300..700',
+    nom: 'Geist',
+    fichier: 'geist',
+    // Titres, interface, gros chiffres. Chiffres tabulaires via font-feature-settings.
+    requete: 'Geist:wght@400..700',
   },
   {
-    nom: 'Instrument Sans',
-    fichier: 'instrument-sans',
-    requete: 'Instrument+Sans:wght@400..700',
+    nom: 'Geist Mono',
+    fichier: 'geist-mono',
+    // Uniquement les colonnes de saisie et les minuteurs, là où la largeur de
+    // chiffre constante est fonctionnelle.
+    requete: 'Geist+Mono:wght@400..600',
   },
 ];
 

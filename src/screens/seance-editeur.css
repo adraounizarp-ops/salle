@@ -1,0 +1,149 @@
+/* Composer une seance. */
+
+.champ {
+  display: grid;
+  gap: 6px;
+}
+
+.champ__saisie {
+  min-height: var(--cible);
+  padding: 0 14px;
+  border-radius: var(--r-s);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  color: var(--blanc);
+  font-size: var(--t-appui);
+  font-weight: 500;
+}
+
+.champ__saisie::placeholder {
+  color: var(--gris-sourd);
+}
+
+.edit-liste {
+  display: grid;
+  gap: 6px;
+}
+
+.edit-ligne {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 66px;
+  padding: 8px 10px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  text-align: left;
+  color: var(--gris);
+}
+
+.edit-ligne__rang {
+  width: 14px;
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  text-align: center;
+}
+
+.edit-ligne__nommage {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+
+.edit-ligne__nom {
+  font-size: var(--t-corps);
+  font-weight: 600;
+  color: var(--blanc);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.edit-ligne__sous {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.edit-ligne__chevron {
+  flex: none;
+  color: var(--gris-sourd);
+}
+
+/* --- Pied : le verdict reste sous les yeux pendant qu'on regle -------------- */
+
+.editeur__pied {
+  display: grid;
+  gap: 10px;
+}
+
+.editeur__verdict {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  border-radius: var(--r-s);
+  background: var(--carte-haute);
+  border: 1px solid var(--trait);
+}
+
+.editeur__verdict[data-etat='derriere'] {
+  background: var(--corail-voile);
+  border-color: var(--corail-trait);
+}
+
+.editeur__verdict[data-etat='devant'] {
+  background: var(--vert-voile);
+  border-color: var(--vert-trait);
+}
+
+.editeur__prevu {
+  margin-top: 2px;
+  font-size: var(--t-titre);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.editeur__unite {
+  font-size: var(--t-menu);
+  font-weight: 500;
+  color: var(--gris);
+}
+
+.editeur__phrase {
+  font-size: var(--t-etiquette);
+  color: var(--gris);
+  line-height: 1.35;
+}
+
+.editeur__verdict[data-etat='derriere'] .editeur__phrase {
+  color: var(--blanc);
+}
+
+.bouton:disabled {
+  opacity: 0.4;
+}
+
+/* --- Feuille de reglage ------------------------------------------------------ */
+
+.reglage {
+  display: grid;
+  gap: 0;
+}
+
+.reglage__ordre {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.reglage .bouton--corail {
+  margin-top: 8px;
+}

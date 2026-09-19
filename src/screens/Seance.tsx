@@ -286,7 +286,7 @@ export function Seance() {
       {repos && (
         <Repos
           total={repos.total}
-          ecart={faitExo - ligne.reference}
+          ecart={projeteExo - ligne.reference}
           prochaine={
             iSerie === -1
               ? null

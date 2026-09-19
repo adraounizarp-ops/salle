@@ -4,7 +4,11 @@ import './repos.css';
 
 interface Props {
   total: number;
-  /** Écart de tonnage sur l'exercice, pour situer sans avoir à chercher. */
+  /**
+   * Écart PROJETÉ sur l'exercice : séries validées plus séries restantes aux
+   * valeurs saisies. Comparer le seul réalisé afficherait un gros négatif à
+   * chaque repos, ce qui ne veut rien dire tant que l'exercice n'est pas fini.
+   */
   ecart: number;
   prochaine: { reps: number; charge: number; leste: boolean } | null;
   onFini: () => void;
@@ -63,7 +67,7 @@ export function Repos({ total, ecart, prochaine, onFini }: Props) {
 
         <p class="repos__ecart donnee" style={{ color: devant ? 'var(--disque-10)' : 'var(--disque-15)' }}>
           {devant ? '+' : '−'}
-          {formatNombre(Math.abs(ecart))} kg <span class="repos__ecart-ref">sur cet exercice</span>
+          {formatNombre(Math.abs(ecart))} kg <span class="repos__ecart-ref">prévu sur cet exercice</span>
         </p>
 
         {prochaine && (

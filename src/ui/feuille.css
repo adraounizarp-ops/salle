@@ -84,5 +84,6 @@
 
 .feuille__corps {
   overflow-y: auto;
+  overflow-x: hidden;
   min-height: 0;
 }

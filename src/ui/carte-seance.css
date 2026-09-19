@@ -5,14 +5,8 @@
 .favorites {
   display: flex;
   gap: 10px;
-  overflow-x: auto;
-  scrollbar-width: none;
   padding-inline: var(--gouttiere);
   scroll-snap-type: x proximity;
-}
-
-.favorites::-webkit-scrollbar {
-  display: none;
 }
 
 .favorite {

@@ -4,12 +4,6 @@
   display: flex;
   gap: 6px;
   margin-top: 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.puces::-webkit-scrollbar {
-  display: none;
 }
 
 .puces .filtre {

@@ -76,13 +76,7 @@
   display: flex;
   gap: 6px;
   padding: 0 var(--gouttiere) 12px;
-  overflow-x: auto;
-  scrollbar-width: none;
   border-bottom: 1px solid var(--trait);
-}
-
-.rail::-webkit-scrollbar {
-  display: none;
 }
 
 .rail__pastille {
@@ -127,6 +121,7 @@
 
 .exec__corps {
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 14px var(--gouttiere) 18px;
   display: grid;
   align-content: start;

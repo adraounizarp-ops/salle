@@ -3,13 +3,7 @@
 .bandeau-mois {
   display: flex;
   gap: 10px;
-  overflow-x: auto;
-  scrollbar-width: none;
   padding-inline: var(--gouttiere);
-}
-
-.bandeau-mois::-webkit-scrollbar {
-  display: none;
 }
 
 .bandeau-mois__case {

@@ -53,7 +53,7 @@ export function Historique({ historique, onOuvrir }: Props) {
       sous={`${historique.length} séances · ${formatNombre(total)} kg au total`}
     >
       <Section plein>
-        <div class="bandeau-mois">
+        <div class="bandeau-mois bande-h">
           {bandeau.map((g) => (
             <div key={`${g.annee}-${g.mois}`} class="bandeau-mois__case">
               <p class="etiquette">{nomMois(g.mois).slice(0, 4)}</p>

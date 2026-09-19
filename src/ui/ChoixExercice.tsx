@@ -58,7 +58,7 @@ export function ChoixExercice({ dejaLa = [], onChoisir, onFermer }: Props) {
           </button>
         </div>
 
-        <div class="choix__filtres">
+        <div class="choix__filtres bande-h">
           {MATERIELS.map((m) => (
             <button
               key={m}

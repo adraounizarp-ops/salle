@@ -128,7 +128,7 @@ export function Accueil({
           </button>
         }
       >
-        <div class="favorites">
+        <div class="favorites bande-h">
           {favorites.map((m) => {
             const derniere = derniereDe(historique, m.id);
             return (

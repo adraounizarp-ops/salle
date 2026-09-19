@@ -70,7 +70,7 @@ function ParSeance({ modeles, historique }: Props) {
 
   return (
     <>
-      <div class="puces">
+      <div class="puces bande-h">
         {faits.map((m) => (
           <button
             key={m.id}
@@ -145,7 +145,7 @@ function ParExercice({ historique }: { historique: SeanceFaite[] }) {
 
   return (
     <>
-      <div class="puces">
+      <div class="puces bande-h">
         {meilleurs.slice(0, 8).map((r) => (
           <button
             key={r.slug}

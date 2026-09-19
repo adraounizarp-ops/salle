@@ -13,6 +13,7 @@
 
 .ecran__defile {
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding: calc(var(--haut-sur) + 14px) var(--gouttiere) 28px;
 }

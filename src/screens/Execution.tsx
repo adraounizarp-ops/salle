@@ -159,7 +159,7 @@ export function Execution({ seance, onChangement, onQuitter, onTerminer }: Props
       </header>
 
       {/* Le rail d'exercices : on saute d'un exercice à l'autre sans revenir en arrière. */}
-      <nav class="rail" aria-label="Exercices de la séance">
+      <nav class="rail bande-h" aria-label="Exercices de la séance">
         {seance.exercices.map((e, i) => {
           const fini = e.series.every((s) => s.faite);
           return (

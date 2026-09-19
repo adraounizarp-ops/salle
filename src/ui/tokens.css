@@ -187,6 +187,32 @@ select {
    Utilitaires partagés
    ========================================================================== */
 
+/* Bande à défilement horizontal.
+   Sans `overflow-y: hidden`, le navigateur promeut l'axe vertical en `auto`
+   dès que l'horizontal l'est : la bande devient un conteneur de défilement
+   vertical, et le doigt posé sur une carte ne fait plus bouger la page.
+   `overscroll-behavior-x: contain` empêche le balayage en bout de course de
+   déclencher le retour arrière d'iOS. */
+.bande-h {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bande-h::-webkit-scrollbar {
+  display: none;
+}
+
+/* Symétrique : une colonne qui défile verticalement ne doit pas capter le
+   geste latéral. */
+.bande-v {
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Retour au doigt : opacité et fond, jamais de transformation qui déplace
    les éléments voisins. */
 .pressable {

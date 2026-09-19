@@ -72,12 +72,6 @@
   display: flex;
   gap: 6px;
   margin-top: 10px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.choix__filtres::-webkit-scrollbar {
-  display: none;
 }
 
 .choix__filtres .filtre {
@@ -88,6 +82,7 @@
 
 .choix__liste {
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 6px var(--gouttiere) calc(var(--bas-sur) + 24px);
   display: grid;
   gap: 2px;

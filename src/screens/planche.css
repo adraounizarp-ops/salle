@@ -1,0 +1,187 @@
+/* Planche de style — lot 0. */
+
+.planche {
+  height: 100%;
+  overflow-y: auto;
+  padding: calc(env(safe-area-inset-top) + 18px) var(--marge-ecran) 40px;
+  background: var(--fonte-900);
+}
+
+.planche__titre {
+  margin: 4px 0 0;
+  font-size: var(--taille-nombre);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+
+.planche__intro {
+  margin: 10px 0 0;
+  max-width: 34ch;
+  color: var(--acier);
+  font-size: var(--taille-corps);
+}
+
+.planche__bloc {
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid var(--fonte-600);
+}
+
+.planche__h2 {
+  margin: 0 0 10px;
+  font-size: var(--taille-appui);
+  font-weight: 600;
+}
+
+.planche__note {
+  margin: 12px 0 0;
+  max-width: 40ch;
+  font-size: var(--taille-menu);
+  color: var(--acier);
+}
+
+.planche__note code {
+  font-family: var(--police-donnees);
+  font-size: 0.85em;
+  color: var(--magnesie);
+}
+
+.planche__cadre {
+  padding: 16px 14px;
+  border-radius: var(--rayon-l);
+  background: var(--fonte-800);
+  border: 1px solid var(--fonte-600);
+}
+
+.planche__cadre--serre {
+  margin-top: 8px;
+  display: grid;
+  gap: 10px;
+}
+
+/* --- Disques --------------------------------------------------------------- */
+
+.disques {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.disque {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--taille-corps);
+}
+
+.disque__pastille {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: var(--taille-menu);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 4px #ffffff1a, inset 0 0 0 13px #00000026;
+}
+
+.disque__nom {
+  width: 58px;
+  font-weight: 600;
+}
+
+.disque__role {
+  color: var(--acier);
+  font-size: var(--taille-menu);
+}
+
+/* --- Séries ---------------------------------------------------------------- */
+
+.series-demo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 14px;
+  font-size: var(--taille-menu);
+  color: var(--acier);
+}
+
+.series-demo li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.series-demo__trait {
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* --- Typographie ----------------------------------------------------------- */
+
+.type {
+  margin-bottom: 18px;
+}
+
+.type__exemple {
+  margin: 0 0 4px;
+}
+
+.type__exemple--ui {
+  font-size: var(--taille-titre);
+  font-weight: 600;
+}
+
+.type__echelle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: var(--taille-appui);
+  color: var(--acier);
+  padding-top: 12px;
+  border-top: 1px dashed var(--fonte-600);
+}
+
+/* --- Illustrations --------------------------------------------------------- */
+
+.illus {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.illus figure {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 10px;
+  border-radius: var(--rayon-m);
+  background: var(--fonte-800);
+  border: 1px solid var(--fonte-600);
+}
+
+/* --- Chargements ----------------------------------------------------------- */
+
+.chargements {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  font-size: var(--taille-menu);
+  color: var(--acier);
+}
+
+.chargements strong {
+  color: var(--magnesie);
+  font-weight: 600;
+}

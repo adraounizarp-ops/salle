@@ -1,0 +1,102 @@
+/* Le pave integre. Le clavier iOS n'ouvre jamais pendant une seance. */
+
+.pave {
+  background: var(--fonte-700);
+  border-top: 1px solid var(--fonte-600);
+  padding: 10px var(--marge-ecran) calc(10px + env(safe-area-inset-bottom));
+  box-shadow: var(--ombre-feuille);
+}
+
+.pave__grille {
+  display: grid;
+  grid-template-columns: 3fr 1.12fr;
+  gap: 6px;
+}
+
+.pave__chiffres {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(var(--cible-tactile), 1fr);
+  gap: 6px;
+}
+
+.pave__actions {
+  display: grid;
+  grid-template-rows: repeat(4, minmax(var(--cible-tactile), 1fr));
+  gap: 6px;
+}
+
+.pave__touche {
+  display: grid;
+  place-items: center;
+  border-radius: var(--rayon-m);
+  background: var(--fonte-800);
+  border: 1px solid var(--fonte-600);
+  font-size: var(--taille-titre);
+  font-weight: 500;
+  color: var(--magnesie);
+  transition: background var(--duree-instant) linear, transform var(--duree-instant) linear;
+}
+
+.pave__touche:active:not(:disabled) {
+  background: var(--fonte-600);
+  transform: scale(0.97);
+}
+
+.pave__touche:disabled {
+  opacity: 0.35;
+}
+
+.pave__touche--effacer {
+  font-size: var(--taille-appui);
+  color: var(--acier);
+}
+
+/* Les pas : la saisie exacte en un geste, sans passer par les chiffres. */
+.pave__touche--pas {
+  font-size: var(--taille-appui);
+  font-weight: 600;
+  background: var(--fonte-700);
+  border-color: var(--fonte-500);
+  color: var(--magnesie);
+}
+
+.pave__touche--idem {
+  grid-row: span 2;
+  grid-auto-flow: row;
+  align-content: center;
+  gap: 2px;
+  background: var(--disque-20-voile);
+  border-color: color-mix(in oklab, var(--disque-20) 45%, transparent);
+  color: var(--disque-20);
+}
+
+.pave__idem-signe {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.pave__idem-texte {
+  font-size: var(--taille-etiquette);
+  font-weight: 600;
+  letter-spacing: var(--interlettrage-etiquette);
+  text-transform: uppercase;
+}
+
+.pave__valider {
+  width: 100%;
+  margin-top: 8px;
+  min-height: 54px;
+  border-radius: var(--rayon-m);
+  background: var(--disque-25);
+  color: #fff;
+  font-size: var(--taille-appui);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform var(--duree-instant) linear, filter var(--duree-instant) linear;
+}
+
+.pave__valider:active {
+  transform: scale(0.99);
+  filter: brightness(0.92);
+}

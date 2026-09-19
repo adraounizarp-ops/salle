@@ -1,0 +1,124 @@
+/* Le repos : plein ecran, lu a bout de bras. */
+
+.repos {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  background: var(--fonte-900);
+  padding: calc(env(safe-area-inset-top) + 24px) var(--marge-ecran)
+    calc(env(safe-area-inset-bottom) + 24px);
+  animation: repos-entree var(--duree-moyenne) var(--courbe);
+}
+
+@keyframes repos-entree {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.repos__contenu {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+}
+
+.repos__anneau {
+  position: relative;
+  width: min(72vw, 260px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.repos__anneau svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.repos__piste {
+  fill: none;
+  stroke: var(--fonte-700);
+  stroke-width: 10;
+}
+
+.repos__arc {
+  fill: none;
+  stroke: var(--disque-25);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 250ms linear;
+}
+
+.repos__arc[data-fini='true'] {
+  stroke: var(--disque-10);
+}
+
+.repos__temps {
+  position: relative;
+  font-size: 3.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.repos__temps[data-fini='true'] {
+  color: var(--disque-10);
+}
+
+.repos__ecart {
+  font-size: var(--taille-appui);
+  font-weight: 600;
+  margin: 0;
+}
+
+.repos__ecart-ref {
+  font-family: var(--police-ui);
+  font-weight: 500;
+  color: var(--acier);
+}
+
+.repos__prochaine {
+  margin: 0;
+  color: var(--acier);
+  font-size: var(--taille-corps);
+}
+
+.repos__prochaine strong {
+  color: var(--magnesie);
+  font-weight: 600;
+}
+
+.repos__boutons {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.repos__bouton {
+  min-height: var(--cible-tactile);
+  padding-inline: 20px;
+  border-radius: var(--rayon-m);
+  background: var(--fonte-700);
+  border: 1px solid var(--fonte-600);
+  font-size: var(--taille-corps);
+  font-weight: 600;
+}
+
+.repos__bouton--principal {
+  background: var(--fonte-800);
+  border-color: var(--fonte-500);
+}
+
+.repos__bouton:active {
+  background: var(--fonte-600);
+}

@@ -1,0 +1,137 @@
+/* La barre chargée — signature. En grand à un seul endroit, réduite au rail
+   partout ailleurs. */
+
+.barre {
+  --hauteur: 26px;
+  --rayon-manchon: 5px;
+}
+
+.barre--rail {
+  --hauteur: 4px;
+  --rayon-manchon: 2px;
+}
+
+.barre__piste {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Collier et embout : ce qui fait lire « barre » et pas « jauge ». */
+.barre__collier,
+.barre__embout {
+  flex: none;
+  background: var(--disque-chrome);
+  border-radius: 1px;
+}
+
+.barre__collier {
+  width: 3px;
+  height: calc(var(--hauteur) + 8px);
+}
+
+.barre__embout {
+  width: 2px;
+  height: calc(var(--hauteur) - 6px);
+}
+
+.barre--rail .barre__collier {
+  height: calc(var(--hauteur) + 4px);
+}
+
+.barre--rail .barre__embout {
+  height: var(--hauteur);
+}
+
+.barre__manchon {
+  position: relative;
+  flex: 1;
+  display: flex;
+  gap: 2px; /* l'écart de surface qui sépare deux tronçons */
+  height: var(--hauteur);
+  background: var(--fonte-700);
+  border-radius: var(--rayon-manchon);
+  overflow: visible;
+}
+
+.barre__troncon {
+  height: 100%;
+  border-radius: 1px;
+  transition: width var(--duree-moyenne) var(--courbe);
+}
+
+.barre__troncon:first-child {
+  border-start-start-radius: var(--rayon-manchon);
+  border-end-start-radius: var(--rayon-manchon);
+}
+
+.barre__troncon:last-child {
+  border-start-end-radius: 4px;
+  border-end-end-radius: 4px;
+}
+
+/* Le repère fantôme : la séance précédente, posée sur la barre. */
+.barre__repere {
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  width: 2px;
+  margin-left: -1px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--teinte) 0 3px,
+    transparent 3px 6px
+  );
+  transition: left var(--duree-moyenne) var(--courbe);
+}
+
+.barre__repere::after {
+  content: '';
+  position: absolute;
+  inset-block-start: -3px;
+  inset-inline-start: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teinte);
+}
+
+.barre--rail .barre__repere {
+  top: -3px;
+  bottom: -3px;
+}
+
+.barre--rail .barre__repere::after {
+  display: none;
+}
+
+.barre__legende {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.barre__total {
+  font-size: var(--taille-nombre);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.barre__unite {
+  font-size: var(--taille-corps);
+  font-weight: 400;
+  color: var(--acier);
+}
+
+.barre__ecart {
+  font-size: var(--taille-menu);
+  font-weight: 600;
+}
+
+.barre__ref {
+  font-family: var(--police-ui);
+  font-weight: 500;
+  color: var(--acier);
+}

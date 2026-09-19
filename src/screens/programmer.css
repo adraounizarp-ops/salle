@@ -1,0 +1,297 @@
+/* Programmer une séance, et le sélecteur d'exercices. */
+
+.prog {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  min-height: 0;
+  background: var(--fonte-900);
+}
+
+.prog__entete {
+  padding: calc(env(safe-area-inset-top) + 14px) var(--marge-ecran) 12px;
+  border-bottom: 1px solid var(--fonte-600);
+}
+
+.prog__nom {
+  margin: 4px 0 0;
+  font-size: var(--taille-titre);
+  font-weight: 600;
+}
+
+.prog__meta {
+  margin: 2px 0 0;
+  font-size: var(--taille-menu);
+  color: var(--acier);
+}
+
+.prog__corps {
+  overflow-y: auto;
+  padding: 10px var(--marge-ecran) 16px;
+}
+
+.prog__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.prog__ligne {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0; /* sinon l'élément de grille refuse de rétrécir et la ligne déborde */
+  padding: 8px 10px;
+  border-radius: var(--rayon-m);
+  background: var(--fonte-800);
+  border: 1px solid var(--fonte-600);
+}
+
+.prog__poignee {
+  width: 16px;
+  font-size: var(--taille-menu);
+  color: var(--acier-sourd);
+  text-align: center;
+}
+
+.prog__nommage {
+  flex: 1;
+  min-width: 0;
+}
+
+.prog__exo {
+  margin: 0;
+  font-size: var(--taille-corps);
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prog__sous {
+  margin: 1px 0 0;
+  font-size: var(--taille-etiquette);
+  color: var(--acier);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.prog__cible {
+  flex: none;
+  display: grid;
+  justify-items: end;
+  gap: 1px;
+}
+
+.prog__cible-valeur {
+  font-size: var(--taille-corps);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.prog__cible-tonnage {
+  font-size: var(--taille-etiquette);
+  color: var(--acier-sourd);
+}
+
+.prog__ajouter {
+  width: 100%;
+  margin-top: 10px;
+  min-height: var(--cible-tactile);
+  border-radius: var(--rayon-m);
+  border: 1px dashed var(--fonte-500);
+  color: var(--acier);
+  font-size: var(--taille-corps);
+  font-weight: 600;
+}
+
+/* Le pied colle : le verdict reste sous les yeux pendant qu'on ajuste. */
+.prog__pied {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 4px 14px;
+  padding: 12px var(--marge-ecran) calc(12px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--fonte-600);
+  background: var(--fonte-800);
+}
+
+.prog__pied[data-etat='derriere'] {
+  background: var(--disque-15-voile);
+  border-top-color: color-mix(in oklab, var(--disque-15) 45%, transparent);
+}
+
+.prog__pied[data-etat='devant'] {
+  background: var(--disque-10-voile);
+  border-top-color: color-mix(in oklab, var(--disque-10) 45%, transparent);
+}
+
+.prog__prevu {
+  margin: 2px 0 0;
+  font-size: var(--taille-nombre);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.prog__unite {
+  font-size: var(--taille-corps);
+  font-weight: 400;
+  color: var(--acier);
+}
+
+.prog__verdict {
+  margin: 0;
+  font-size: var(--taille-menu);
+  color: var(--acier);
+}
+
+.prog__pied[data-etat='derriere'] .prog__verdict {
+  color: var(--magnesie);
+}
+
+.prog__lancer {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  min-height: 52px;
+  border-radius: var(--rayon-m);
+  background: var(--disque-25);
+  color: #fff;
+  font-size: var(--taille-appui);
+  font-weight: 600;
+}
+
+/* --- Sélecteur -------------------------------------------------------------- */
+
+.choix {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  min-height: 0;
+  background: var(--fonte-900);
+}
+
+.choix__entete {
+  padding: calc(env(safe-area-inset-top) + 12px) var(--marge-ecran) 10px;
+  border-bottom: 1px solid var(--fonte-600);
+}
+
+.choix__barre {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.choix__recherche {
+  flex: 1;
+  min-height: var(--cible-tactile);
+  padding: 0 14px;
+  border-radius: var(--rayon-m);
+  background: var(--fonte-800);
+  border: 1px solid var(--fonte-600);
+  color: var(--magnesie);
+  font: inherit;
+}
+
+.choix__recherche::placeholder {
+  color: var(--acier-sourd);
+}
+
+.choix__fermer {
+  font-size: var(--taille-corps);
+  font-weight: 600;
+  color: var(--acier);
+  padding: 8px;
+}
+
+.choix__filtres {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.choix__filtres::-webkit-scrollbar {
+  display: none;
+}
+
+.choix__filtre {
+  flex: none;
+  min-height: 34px;
+  padding-inline: 12px;
+  border-radius: var(--rayon-plein);
+  border: 1px solid var(--fonte-600);
+  font-size: var(--taille-menu);
+  color: var(--acier);
+  white-space: nowrap;
+}
+
+.choix__filtre[data-actif='true'] {
+  background: var(--disque-20-voile);
+  border-color: var(--disque-20);
+  color: var(--disque-20);
+  font-weight: 600;
+}
+
+.choix__liste {
+  list-style: none;
+  margin: 0;
+  padding: 6px var(--marge-ecran) 20px;
+  overflow-y: auto;
+  display: grid;
+  gap: 2px;
+}
+
+.choix__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 6px 8px;
+  border-radius: var(--rayon-m);
+  text-align: left;
+}
+
+.choix__item:active {
+  background: var(--fonte-800);
+}
+
+.choix__nommage {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+
+.choix__nom {
+  font-size: var(--taille-corps);
+  font-weight: 600;
+}
+
+.choix__sous {
+  font-size: var(--taille-etiquette);
+  color: var(--acier);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.choix__materiel {
+  flex: none;
+  color: var(--acier-sourd);
+}
+
+.choix__vide {
+  padding: 32px 8px;
+  color: var(--acier);
+  text-align: center;
+}
+
+.prog__barre {
+  grid-column: 1 / -1;
+  margin-bottom: 10px;
+}

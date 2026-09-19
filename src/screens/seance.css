@@ -1,0 +1,302 @@
+/* L'écran de séance : trois zones fixes — entête, exercice, pavé. Rien ne
+   bouge sous le pouce entre deux séries. */
+
+.seance {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+  min-height: 0;
+  background: var(--fonte-900);
+}
+
+/* --- Entête ---------------------------------------------------------------- */
+
+.seance__entete {
+  padding: calc(env(safe-area-inset-top) + 12px) var(--marge-ecran) 12px;
+  border-bottom: 1px solid var(--fonte-600);
+  background: var(--fonte-900);
+}
+
+.seance__titre-ligne {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.seance__nom {
+  flex: 1;
+  margin: 0;
+  font-size: var(--taille-appui);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Le chrono est une information, pas un enjeu : il reste discret. */
+.seance__chrono {
+  font-size: var(--taille-menu);
+  color: var(--acier);
+  font-variant-numeric: tabular-nums;
+}
+
+.seance__action {
+  font-size: var(--taille-corps);
+  color: var(--acier);
+  padding: 4px;
+}
+
+/* --- Corps ----------------------------------------------------------------- */
+
+.seance__corps {
+  overflow-y: auto;
+  padding: 14px var(--marge-ecran) 18px;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.carte-exo {
+  background: var(--fonte-800);
+  border: 1px solid var(--fonte-600);
+  border-radius: var(--rayon-l);
+  padding: 14px;
+}
+
+.carte-exo__tete {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.carte-exo__nommage {
+  flex: 1;
+  min-width: 0;
+}
+
+.carte-exo__nom {
+  margin: 0;
+  font-size: var(--taille-appui);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.carte-exo__sous {
+  margin: 2px 0 0;
+  font-size: var(--taille-menu);
+  color: var(--acier);
+}
+
+.carte-exo__rang {
+  align-self: flex-start;
+  color: var(--acier-sourd);
+}
+
+/* --- Les séries ------------------------------------------------------------ */
+
+.series {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.serie {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 2px 8px;
+  border-radius: var(--rayon-s);
+  font-size: var(--taille-corps);
+}
+
+.serie[data-etat='faite'] {
+  color: var(--acier);
+}
+
+.serie[data-etat='a-venir'] {
+  color: var(--acier-sourd);
+}
+
+/* La ligne active est la seule chose éclairée de la carte. */
+.serie[data-etat='active'] {
+  min-height: 56px;
+  background: var(--fonte-700);
+  outline: 1px solid var(--fonte-500);
+  color: var(--magnesie);
+}
+
+.serie__rang {
+  width: 18px;
+  font-size: var(--taille-menu);
+  color: var(--acier-sourd);
+  text-align: center;
+}
+
+.serie[data-etat='active'] .serie__rang {
+  color: var(--magnesie);
+}
+
+.serie__valeurs {
+  flex: 1;
+  font-size: var(--taille-corps);
+}
+
+.serie__croix {
+  color: var(--acier-sourd);
+  padding-inline: 2px;
+}
+
+.serie__unite {
+  font-family: var(--police-ui);
+  font-size: var(--taille-etiquette);
+  font-weight: 600;
+  letter-spacing: var(--interlettrage-etiquette);
+  text-transform: uppercase;
+  color: var(--acier-sourd);
+  margin-left: 4px;
+}
+
+/* Champ actif : on tape dessus pour choisir ce que le pavé modifie. */
+.serie__champ {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  min-height: 44px;
+  padding: 4px 10px;
+  border-radius: var(--rayon-s);
+  border: 1px solid transparent;
+  font-size: var(--taille-titre);
+  font-weight: 600;
+}
+
+.serie__champ[data-choisi='true'] {
+  border-color: var(--disque-20);
+  background: var(--disque-20-voile);
+}
+
+.serie__champ[data-choisi='true'] .serie__unite {
+  color: var(--disque-20);
+}
+
+.serie__tonnage {
+  margin-left: auto;
+  font-size: var(--taille-menu);
+  color: var(--acier-sourd);
+  font-variant-numeric: tabular-nums;
+}
+
+.serie__rpe {
+  font-size: var(--taille-etiquette);
+  color: var(--acier-sourd);
+}
+
+.serie__coche {
+  width: 16px;
+  text-align: center;
+  color: var(--disque-10);
+  font-size: var(--taille-menu);
+}
+
+/* --- Chargement de la barre ------------------------------------------------ */
+
+.chargement {
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px dashed var(--fonte-600);
+  font-size: var(--taille-menu);
+  color: var(--acier);
+}
+
+/* --- Bandeaux -------------------------------------------------------------- */
+
+.alerte {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--rayon-m);
+  border: 1px solid;
+}
+
+.alerte__pastille {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  border-radius: 50%;
+}
+
+.alerte--baisse {
+  background: var(--disque-15-voile);
+  border-color: color-mix(in oklab, var(--disque-15) 40%, transparent);
+}
+
+.alerte--baisse .alerte__pastille {
+  background: var(--disque-15);
+}
+
+.alerte--devant {
+  background: var(--disque-10-voile);
+  border-color: color-mix(in oklab, var(--disque-10) 40%, transparent);
+}
+
+.alerte--devant .alerte__pastille {
+  background: var(--disque-10);
+}
+
+.alerte__titre {
+  margin: 0;
+  font-size: var(--taille-corps);
+  font-weight: 600;
+}
+
+.alerte__detail {
+  margin: 3px 0 0;
+  font-size: var(--taille-menu);
+  color: var(--acier);
+}
+
+/* --- Passage à l'exercice suivant ------------------------------------------ */
+
+.suivant {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+  padding: 14px;
+  border-radius: var(--rayon-m);
+  background: var(--fonte-800);
+  border: 1px solid var(--fonte-600);
+}
+
+.suivant__nom {
+  font-size: var(--taille-appui);
+  font-weight: 600;
+}
+
+/* --- Compteur de seance ---------------------------------------------------- */
+
+.seance__compte {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.seance__tonnage {
+  font-size: var(--taille-titre);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.seance__unite {
+  font-size: var(--taille-menu);
+  font-weight: 400;
+  color: var(--acier);
+}
+
+.seance__cible {
+  font-size: var(--taille-etiquette);
+  color: var(--acier-sourd);
+}

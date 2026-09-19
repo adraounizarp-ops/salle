@@ -1,0 +1,4486 @@
+{
+ "_source": "bryllim/workout-guide (CC BY-SA 4.0) — généré par scripts/build-catalog.mjs",
+ "groupes": [
+  {
+   "id": "pectoraux",
+   "nom": "Pectoraux"
+  },
+  {
+   "id": "dos",
+   "nom": "Dos"
+  },
+  {
+   "id": "jambes",
+   "nom": "Jambes"
+  },
+  {
+   "id": "epaules",
+   "nom": "Épaules"
+  },
+  {
+   "id": "bras",
+   "nom": "Bras"
+  },
+  {
+   "id": "tronc",
+   "nom": "Tronc"
+  },
+  {
+   "id": "mobilite",
+   "nom": "Mobilité & cardio"
+  }
+ ],
+ "exercices": [
+  {
+   "slug": "hip-abduction-machine",
+   "nomFr": "Abducteurs à la machine",
+   "nomEn": "Hip Abduction Machine",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cable-standing-hip-abduction",
+   "nomFr": "Abduction hanche à la poulie",
+   "nomEn": "Cable Standing Hip Abduction",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "side-lying-hip-abduction",
+   "nomFr": "Abduction hanche allongé",
+   "nomEn": "Side-Lying Hip Abduction",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-standing-hip-abduction",
+   "nomFr": "Abduction hanche debout élastique",
+   "nomEn": "Banded Standing Hip Abduction",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-seated-hip-abduction",
+   "nomFr": "Abduction hanches assis élastique",
+   "nomEn": "Banded Seated Hip Abduction",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "hip-adduction-machine",
+   "nomFr": "Adducteurs à la machine",
+   "nomEn": "Hip Adduction Machine",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Adducteurs",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cable-standing-hip-adduction",
+   "nomFr": "Adduction hanche à la poulie",
+   "nomEn": "Cable Standing Hip Adduction",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Adducteurs",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale",
+    "Fessiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "reverse-snow-angel",
+   "nomFr": "Ange inversé",
+   "nomEn": "Reverse Snow Angel",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Haut du dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Deltoïdes postérieurs",
+    "Lombaires",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "assault-bike",
+   "nomFr": "Assault bike",
+   "nomEn": "Assault Bike",
+   "type": "distance_duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Cardio",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "leg-swings-stretch",
+   "nomFr": "Balancers de jambe",
+   "nomEn": "Leg Swings",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Mobilité",
+   "groupe": "mobilite",
+   "secondaires": [
+    "Hanches",
+    "Ischio-jambiers",
+    "Quadriceps"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "skull-crusher",
+   "nomFr": "Barre au front",
+   "nomEn": "Skull Crusher",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-skull-crusher",
+   "nomFr": "Barre au front deux haltères",
+   "nomEn": "Two Dumbbell Skullcrusher",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "single-dumbbell-skullcrusher",
+   "nomFr": "Barre au front haltère",
+   "nomEn": "Single Dumbbell Skullcrusher",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "hollow-rock",
+   "nomFr": "Bascule hollow body",
+   "nomEn": "Hollow Rock",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Quadriceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "flutter-kick",
+   "nomFr": "Battements de jambes",
+   "nomEn": "Flutter Kick",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Quadriceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "battle-ropes",
+   "nomFr": "Battle ropes",
+   "nomEn": "Battle Ropes",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Sangle abdominale",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "bird-dog",
+   "nomFr": "Bird dog",
+   "nomEn": "Bird Dog",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Fessiers",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cable-woodchop",
+   "nomFr": "Bûcheron à la poulie",
+   "nomEn": "Cable Woodchop",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-woodchop",
+   "nomFr": "Bûcheron élastique",
+   "nomEn": "Banded Woodchop",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules",
+    "Fessiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "burpee",
+   "nomFr": "Burpee",
+   "nomEn": "Burpee",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Pectoraux",
+    "Épaules",
+    "Sangle abdominale",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "pec-deck",
+   "nomFr": "Butterfly (pec deck)",
+   "nomEn": "Pec Deck",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "reverse-pec-deck",
+   "nomFr": "Butterfly inversé",
+   "nomEn": "Reverse Pec Deck",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Deltoïdes postérieurs",
+   "groupe": "epaules",
+   "secondaires": [
+    "Haut du dos"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "arm-circles",
+   "nomFr": "Cercles de bras",
+   "nomEn": "Arm Circles",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Pectoraux",
+    "Haut du dos",
+    "Mobilité"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "wall-sit",
+   "nomFr": "Chaise au mur",
+   "nomEn": "Wall Sit",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cat-cow-stretch",
+   "nomFr": "Chat-vache",
+   "nomEn": "Cat-Cow Stretch",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Mobilité",
+   "groupe": "mobilite",
+   "secondaires": [
+    "Dos",
+    "Sangle abdominale"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "inchworm",
+   "nomFr": "Chenille",
+   "nomEn": "Inchworm",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules",
+    "Ischio-jambiers",
+    "Pectoraux"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "clamshell",
+   "nomFr": "Coquillage",
+   "nomEn": "Clamshell",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-clamshell",
+   "nomFr": "Coquillage élastique",
+   "nomEn": "Banded Clamshell",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "jump-rope",
+   "nomFr": "Corde à sauter",
+   "nomEn": "Jump Rope",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Mollets",
+   "groupe": "jambes",
+   "secondaires": [
+    "Cardio",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "running",
+   "nomFr": "Course",
+   "nomEn": "Running",
+   "type": "distance_duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "crunch",
+   "nomFr": "Crunch",
+   "nomEn": "Crunch",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "cable-crunch",
+   "nomFr": "Crunch à la poulie",
+   "nomEn": "Cable Crunch",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "bicycle-crunch",
+   "nomFr": "Crunch bicyclette",
+   "nomEn": "Bicycle Crunch",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Jambes"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "reverse-crunch",
+   "nomFr": "Crunch inversé",
+   "nomEn": "Reverse Crunch",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "weighted-crunch",
+   "nomFr": "Crunch lesté",
+   "nomEn": "Weighted Crunch",
+   "type": "charge_reps",
+   "leste": true,
+   "materiel": "Disque",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "cable-curl",
+   "nomFr": "Curl à la poulie",
+   "nomEn": "Cable Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "spider-curl",
+   "nomFr": "Curl araignée",
+   "nomEn": "Spider Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "preacher-curl",
+   "nomFr": "Curl au pupitre",
+   "nomEn": "Preacher Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "ez-bar-curl",
+   "nomFr": "Curl barre EZ",
+   "nomEn": "EZ-Bar Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "bicep-curl",
+   "nomFr": "Curl biceps",
+   "nomEn": "Bicep Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "concentration-curl",
+   "nomFr": "Curl concentré",
+   "nomEn": "Concentration Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "incline-dumbbell-curl",
+   "nomFr": "Curl incliné haltères",
+   "nomEn": "Incline Dumbbell Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "reverse-curl",
+   "nomFr": "Curl inversé",
+   "nomEn": "Reverse Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Avant-bras",
+   "groupe": "bras",
+   "secondaires": [
+    "Biceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "hammer-curl",
+   "nomFr": "Curl marteau",
+   "nomEn": "Hammer Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "rope-hammer-curl",
+   "nomFr": "Curl marteau à la corde",
+   "nomEn": "Rope Hammer Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "wrist-curl",
+   "nomFr": "Curl poignets",
+   "nomEn": "Wrist Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Avant-bras",
+   "groupe": "bras",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "dead-bug",
+   "nomFr": "Dead bug",
+   "nomEn": "Dead Bug",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Jambes"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-dead-bug",
+   "nomFr": "Dead bug élastique",
+   "nomEn": "Banded Dead Bug",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Fessiers",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "half-burpee",
+   "nomFr": "Demi-burpee",
+   "nomEn": "Half Burpee",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Jambes",
+    "Épaules",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "step-down",
+   "nomFr": "Descente de marche",
+   "nomEn": "Step-Down",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Box",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Mollets"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "arnold-press",
+   "nomFr": "Développé Arnold",
+   "nomEn": "Arnold Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Triceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "push-press",
+   "nomFr": "Développé avec impulsion",
+   "nomEn": "Push Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Triceps",
+    "Quadriceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "bench-press",
+   "nomFr": "Développé couché",
+   "nomEn": "Bench Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "smith-machine-bench-press",
+   "nomFr": "Développé couché à la Smith",
+   "nomEn": "Smith Machine Bench Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-bench-press",
+   "nomFr": "Développé couché haltères",
+   "nomEn": "Dumbbell Bench Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "close-grip-bench-press",
+   "nomFr": "Développé couché prise serrée",
+   "nomEn": "Close-Grip Bench Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Pectoraux",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "decline-bench-press",
+   "nomFr": "Développé décliné",
+   "nomEn": "Decline Bench Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "decline-dumbbell-press",
+   "nomFr": "Développé décliné haltères",
+   "nomEn": "Decline Dumbbell Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "machine-shoulder-press",
+   "nomFr": "Développé épaules à la machine",
+   "nomEn": "Machine Shoulder Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Triceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "seated-dumbbell-press",
+   "nomFr": "Développé épaules haltères assis",
+   "nomEn": "Dumbbell Seated Shoulder Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Triceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "standing-dumbbell-press",
+   "nomFr": "Développé épaules haltères debout",
+   "nomEn": "Standing Dumbbell Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Triceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "incline-bench-press",
+   "nomFr": "Développé incliné",
+   "nomEn": "Incline Bench Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules",
+    "Triceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "incline-dumbbell-press",
+   "nomFr": "Développé incliné haltères",
+   "nomEn": "Incline Dumbbell Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules",
+    "Triceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "landmine-press",
+   "nomFr": "Développé landmine",
+   "nomEn": "Landmine Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Pectoraux",
+    "Triceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "overhead-press",
+   "nomFr": "Développé militaire",
+   "nomEn": "Overhead Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Triceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "machine-chest-press",
+   "nomFr": "Développé pectoraux à la machine",
+   "nomEn": "Machine Chest Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dip",
+   "nomFr": "Dips",
+   "nomEn": "Dip",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Pectoraux",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "assisted-dip",
+   "nomFr": "Dips assistés",
+   "nomEn": "Assisted Dip",
+   "type": "assiste",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Pectoraux"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "weighted-dip",
+   "nomFr": "Dips lestés",
+   "nomEn": "Weighted Dip",
+   "type": "charge_reps",
+   "leste": true,
+   "materiel": "Poids du corps",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Pectoraux",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "chest-dip",
+   "nomFr": "Dips pectoraux",
+   "nomEn": "Chest Dip",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "bench-dip",
+   "nomFr": "Dips sur banc",
+   "nomEn": "Bench Dip",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Pectoraux",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "chair-dip",
+   "nomFr": "Dips sur chaise",
+   "nomEn": "Chair Dip",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Chaise",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Pectoraux",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "donkey-kick",
+   "nomFr": "Donkey kick",
+   "nomEn": "Donkey Kick",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-donkey-kick",
+   "nomFr": "Donkey kick élastique",
+   "nomEn": "Banded Donkey Kick",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "drag-curl",
+   "nomFr": "Drag curl",
+   "nomEn": "Drag Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dragon-flag",
+   "nomFr": "Drapeau du dragon",
+   "nomEn": "Dragon Flag",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Grand dorsal",
+    "Quadriceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cable-fly",
+   "nomFr": "Écarté à la poulie",
+   "nomEn": "Cable Fly",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "band-pull-apart",
+   "nomFr": "Écarté élastique",
+   "nomEn": "Band Pull-Apart",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Haut du dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Deltoïdes postérieurs",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-fly",
+   "nomFr": "Écarté haltères",
+   "nomEn": "Dumbbell Fly",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "incline-cable-fly",
+   "nomFr": "Écarté incliné à la poulie",
+   "nomEn": "Incline Cable Fly",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "side-lying-leg-raise",
+   "nomFr": "Élévation de jambe allongé",
+   "nomEn": "Side-Lying Leg Raise",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "prone-t-raise",
+   "nomFr": "Élévation en T à plat ventre",
+   "nomEn": "Prone T Raise",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Haut du dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Deltoïdes postérieurs",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "prone-y-raise",
+   "nomFr": "Élévation en Y à plat ventre",
+   "nomEn": "Prone Y Raise",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Haut du dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Deltoïdes postérieurs",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "front-raise",
+   "nomFr": "Élévation frontale",
+   "nomEn": "Front Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Pectoraux"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cable-front-raise",
+   "nomFr": "Élévation frontale à la poulie",
+   "nomEn": "Cable Front Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Pectoraux"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "plate-front-raise",
+   "nomFr": "Élévation frontale au disque",
+   "nomEn": "Plate Front Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Disque",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Pectoraux"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "lateral-raise",
+   "nomFr": "Élévation latérale",
+   "nomEn": "Lateral Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Haut du dos"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "machine-lateral-raise",
+   "nomFr": "Élévation latérale à la machine",
+   "nomEn": "Machine Lateral Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Haut du dos"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cable-lateral-raise",
+   "nomFr": "Élévation latérale à la poulie",
+   "nomEn": "Cable Lateral Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Haut du dos"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "elliptical",
+   "nomFr": "Elliptique",
+   "nomEn": "Elliptical",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "worlds-greatest-stretch",
+   "nomFr": "Étirement complet",
+   "nomEn": "World's Greatest Stretch",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Mobilité",
+   "groupe": "mobilite",
+   "secondaires": [
+    "Hanches",
+    "Ischio-jambiers",
+    "Haut du dos"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "cross-body-shoulder-stretch",
+   "nomFr": "Étirement épaule bras croisé",
+   "nomEn": "Cross-Body Shoulder Stretch",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Haut du dos",
+    "Mobilité"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "hamstring-stretch",
+   "nomFr": "Étirement ischio-jambiers",
+   "nomEn": "Hamstring Stretch",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Mollets",
+    "Mobilité"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "wall-calf-stretch",
+   "nomFr": "Étirement mollet au mur",
+   "nomEn": "Wall Calf Stretch",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Mollets",
+   "groupe": "jambes",
+   "secondaires": [
+    "Mobilité"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "butterfly-stretch",
+   "nomFr": "Étirement papillon",
+   "nomEn": "Butterfly Stretch",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Hanches",
+   "groupe": "jambes",
+   "secondaires": [
+    "Adducteurs",
+    "Mobilité"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "doorway-chest-stretch",
+   "nomFr": "Étirement pectoraux à l'embrasure",
+   "nomEn": "Doorway Chest Stretch",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Embrasure",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules",
+    "Mobilité"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "kneeling-hip-flexor-stretch",
+   "nomFr": "Étirement psoas à genou",
+   "nomEn": "Kneeling Hip Flexor Stretch",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Hanches",
+   "groupe": "jambes",
+   "secondaires": [
+    "Quadriceps",
+    "Mobilité"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "standing-quad-stretch",
+   "nomFr": "Étirement quadriceps debout",
+   "nomEn": "Standing Quad Stretch",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Hanches",
+    "Mobilité"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "lying-hamstring-walkout",
+   "nomFr": "Extension ischios allongé",
+   "nomEn": "Lying Hamstring Walkout",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "back-extension",
+   "nomFr": "Extension lombaire",
+   "nomEn": "Back Extension",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Lombaires",
+   "groupe": "dos",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "glute-focused-back-extension",
+   "nomFr": "Extension lombaire axée fessiers",
+   "nomEn": "Glute-Focused Back Extension",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Lombaires"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "calf-raise",
+   "nomFr": "Extension mollets",
+   "nomEn": "Calf Raise",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Mollets",
+   "groupe": "jambes",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "wrist-extension",
+   "nomFr": "Extension poignets",
+   "nomEn": "Wrist Extension",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Avant-bras",
+   "groupe": "bras",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "rope-tricep-pushdown",
+   "nomFr": "Extension triceps à la corde",
+   "nomEn": "Rope Tricep Pushdown",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "tricep-pushdown",
+   "nomFr": "Extension triceps à la poulie",
+   "nomEn": "Tricep Pushdown",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "single-arm-dumbbell-tricep-extension",
+   "nomFr": "Extension triceps haltère un bras",
+   "nomEn": "Single Arm Dumbbell Tricep Extension",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "overhead-tricep-extension",
+   "nomFr": "Extension triceps nuque",
+   "nomEn": "Overhead Tricep Extension",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-overhead-tricep-extension",
+   "nomFr": "Extension triceps nuque haltère",
+   "nomEn": "Dumbbell Overhead Tricep Extension",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "face-pull",
+   "nomFr": "Face pull",
+   "nomEn": "Face Pull",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Haut du dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Deltoïdes postérieurs",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-face-pull",
+   "nomFr": "Face pull élastique",
+   "nomEn": "Banded Face Pull",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Haut du dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Deltoïdes postérieurs",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "reverse-lunge",
+   "nomFr": "Fente arrière",
+   "nomEn": "Reverse Lunge",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "smith-machine-reverse-lunge",
+   "nomFr": "Fente arrière à la Smith",
+   "nomEn": "Smith Machine Reverse Lunge",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "deficit-reverse-lunge",
+   "nomFr": "Fente arrière en déficit",
+   "nomEn": "Deficit Reverse Lunge",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Quadriceps",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "forward-lunge",
+   "nomFr": "Fente avant",
+   "nomEn": "Forward Lunge",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "bulgarian-split-squat",
+   "nomFr": "Fente bulgare",
+   "nomEn": "Bulgarian Split Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "smith-machine-bulgarian-split-squat",
+   "nomFr": "Fente bulgare à la Smith",
+   "nomEn": "Smith Machine Bulgarian Split Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "curtsy-lunge",
+   "nomFr": "Fente croisée",
+   "nomEn": "Curtsy Lunge",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Quadriceps",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-curtsy-lunge",
+   "nomFr": "Fente croisée haltères",
+   "nomEn": "Dumbbell Curtsy Lunge",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Quadriceps",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "lateral-lunge",
+   "nomFr": "Fente latérale",
+   "nomEn": "Lateral Lunge",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-lateral-lunge",
+   "nomFr": "Fente latérale haltères",
+   "nomEn": "Dumbbell Lateral Lunge",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Adducteurs",
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "walking-lunge",
+   "nomFr": "Fente marchée",
+   "nomEn": "Walking Lunge",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "split-squat",
+   "nomFr": "Fente statique",
+   "nomEn": "Split Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "smith-machine-split-squat",
+   "nomFr": "Fente statique à la Smith",
+   "nomEn": "Smith Machine Split Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "front-foot-elevated-split-squat",
+   "nomFr": "Fente statique pied avant surélevé",
+   "nomEn": "Front-Foot Elevated Split Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "fire-hydrant",
+   "nomFr": "Fire hydrant",
+   "nomEn": "Fire Hydrant",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-fire-hydrant",
+   "nomFr": "Fire hydrant élastique",
+   "nomEn": "Banded Fire Hydrant",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "seated-forward-fold-stretch",
+   "nomFr": "Flexion avant assis",
+   "nomEn": "Seated Forward Fold",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Dos",
+    "Mollets",
+    "Mobilité"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "dumbbell-side-bend",
+   "nomFr": "Flexion latérale haltère",
+   "nomEn": "Dumbbell Side Bend",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Grip"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "frog-pump",
+   "nomFr": "Frog pump",
+   "nomEn": "Frog Pump",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-frog-pump",
+   "nomFr": "Frog pump élastique",
+   "nomEn": "Banded Frog Pump",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "copenhagen-plank",
+   "nomFr": "Gainage de Copenhague",
+   "nomEn": "Copenhagen Plank",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Quadriceps",
+    "Fessiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "bear-plank",
+   "nomFr": "Gainage de l'ours",
+   "nomEn": "Bear Plank",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Quadriceps",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "plank-jack",
+   "nomFr": "Gainage jumping jack",
+   "nomEn": "Plank Jack",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "side-plank",
+   "nomFr": "Gainage latéral",
+   "nomEn": "Side Plank",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "side-plank-hip-dip",
+   "nomFr": "Gainage latéral avec descente",
+   "nomEn": "Side Plank Hip Dip",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules",
+    "Fessiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "plank-shoulder-tap",
+   "nomFr": "Gainage touche-épaules",
+   "nomEn": "Plank Shoulder Tap",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules",
+    "Pectoraux"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "plank",
+   "nomFr": "Gainage ventral",
+   "nomEn": "Plank",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "goblet-squat",
+   "nomFr": "Goblet squat",
+   "nomEn": "Goblet Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "heel-elevated-goblet-squat",
+   "nomFr": "Goblet squat talons surélevés",
+   "nomEn": "Heel-Elevated Goblet Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "good-morning",
+   "nomFr": "Good morning",
+   "nomEn": "Good Morning",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Lombaires"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "mountain-climber",
+   "nomFr": "Grimpeur",
+   "nomEn": "Mountain Climber",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules",
+    "Jambes"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "hack-squat",
+   "nomFr": "Hack squat",
+   "nomEn": "Hack Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "shrug",
+   "nomFr": "Haussement d'épaules barre",
+   "nomEn": "Barbell Shrug",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Haut du dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-shrug",
+   "nomFr": "Haussement d'épaules haltères",
+   "nomEn": "Dumbbell Shrug",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Haut du dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "hip-airplane",
+   "nomFr": "Hip airplane",
+   "nomEn": "Hip Airplane",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "hip-thrust",
+   "nomFr": "Hip thrust",
+   "nomEn": "Hip Thrust",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "smith-machine-hip-thrust",
+   "nomFr": "Hip thrust à la Smith",
+   "nomEn": "Smith Machine Hip Thrust",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-hip-thrust",
+   "nomFr": "Hip thrust élastique",
+   "nomEn": "Banded Hip Thrust",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-hip-thrust",
+   "nomFr": "Hip thrust haltère",
+   "nomEn": "Dumbbell Hip Thrust",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "reverse-hyperextension",
+   "nomFr": "Hyperextension inversée",
+   "nomEn": "Reverse Hyperextension",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Lombaires"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "jumping-jack",
+   "nomFr": "Jumping jack",
+   "nomEn": "Jumping Jack",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Épaules",
+    "Mollets",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "machine-glute-kickback",
+   "nomFr": "Kickback fessier à la machine",
+   "nomEn": "Machine Glute Kickback",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-kickback",
+   "nomFr": "Kickback fessier élastique",
+   "nomEn": "Banded Kickback",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "tricep-kickback",
+   "nomFr": "Kickback triceps",
+   "nomEn": "Tricep Kickback",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cable-kickback",
+   "nomFr": "Kickback triceps à la poulie",
+   "nomEn": "Cable Kickback",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "leg-curl",
+   "nomFr": "Leg curl",
+   "nomEn": "Leg Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Mollets"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "towel-hamstring-curl",
+   "nomFr": "Leg curl à la serviette",
+   "nomEn": "Towel Hamstring Curl",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Serviette",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "lying-leg-curl",
+   "nomFr": "Leg curl allongé",
+   "nomEn": "Lying Leg Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Mollets"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "seated-leg-curl",
+   "nomFr": "Leg curl assis",
+   "nomEn": "Seated Leg Curl",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Mollets"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "stability-ball-hamstring-curl",
+   "nomFr": "Leg curl au ballon",
+   "nomEn": "Stability Ball Hamstring Curl",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Swiss ball",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "leg-extension",
+   "nomFr": "Leg extension",
+   "nomEn": "Leg Extension",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "hollow-body-hold",
+   "nomFr": "Maintien hollow body",
+   "nomEn": "Hollow Body Hold",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Quadriceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "l-sit-hold",
+   "nomFr": "Maintien L-sit",
+   "nomEn": "L-Sit Hold",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Triceps",
+    "Quadriceps",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cable-pallof-hold",
+   "nomFr": "Maintien Pallof à la poulie",
+   "nomEn": "Cable Pallof Hold",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Fessiers",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "superman-hold",
+   "nomFr": "Maintien superman",
+   "nomEn": "Superman Hold",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Lombaires",
+   "groupe": "dos",
+   "secondaires": [
+    "Fessiers",
+    "Haut du dos",
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "walking",
+   "nomFr": "Marche",
+   "nomEn": "Walking",
+   "type": "distance_duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "bear-crawl",
+   "nomFr": "Marche de l'ours",
+   "nomEn": "Bear Crawl",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules",
+    "Quadriceps",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "crab-walk",
+   "nomFr": "Marche du crabe",
+   "nomEn": "Crab Walk",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "farmer-carry",
+   "nomFr": "Marche du fermier",
+   "nomEn": "Farmer Carry",
+   "type": "distance_duree",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Avant-bras",
+   "groupe": "bras",
+   "secondaires": [
+    "Haut du dos",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "treadmill-incline-walk",
+   "nomFr": "Marche inclinée sur tapis",
+   "nomEn": "Treadmill Incline Walk",
+   "type": "distance_duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-lateral-walk",
+   "nomFr": "Marche latérale élastique",
+   "nomEn": "Banded Lateral Walk",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Quadriceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "leg-press-calf-raise",
+   "nomFr": "Mollets à la presse",
+   "nomEn": "Leg Press Calf Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Mollets",
+   "groupe": "jambes",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "seated-calf-raise",
+   "nomFr": "Mollets assis",
+   "nomEn": "Seated Calf Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Mollets",
+   "groupe": "jambes",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "donkey-calf-raise",
+   "nomFr": "Mollets buste penché",
+   "nomEn": "Donkey Calf Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Mollets",
+   "groupe": "jambes",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "standing-calf-raise",
+   "nomFr": "Mollets debout",
+   "nomEn": "Standing Calf Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Mollets",
+   "groupe": "jambes",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "single-leg-calf-raise",
+   "nomFr": "Mollets une jambe",
+   "nomEn": "Single-Leg Calf Raise",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Mollets",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-monster-walk",
+   "nomFr": "Monster walk élastique",
+   "nomEn": "Banded Monster Walk",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Quadriceps",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "wall-walk",
+   "nomFr": "Montée au mur",
+   "nomEn": "Wall Walk",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Mur",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Sangle abdominale",
+    "Pectoraux",
+    "Triceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "step-up",
+   "nomFr": "Montée sur banc",
+   "nomEn": "Step-Up",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "high-knees",
+   "nomFr": "Montées de genoux",
+   "nomEn": "High Knees",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "swimming",
+   "nomFr": "Natation",
+   "nomEn": "Swimming",
+   "type": "distance_duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Épaules",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "nordic-hamstring-curl",
+   "nomFr": "Nordic curl",
+   "nomEn": "Nordic Hamstring Curl",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Mollets"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "rear-delt-fly",
+   "nomFr": "Oiseau",
+   "nomEn": "Rear Delt Fly",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Deltoïdes postérieurs",
+   "groupe": "epaules",
+   "secondaires": [
+    "Haut du dos"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cable-rear-delt-fly",
+   "nomFr": "Oiseau à la poulie",
+   "nomEn": "Cable Rear Delt Fly",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Deltoïdes postérieurs",
+   "groupe": "epaules",
+   "secondaires": [
+    "Haut du dos"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "bent-over-rear-delt-raise",
+   "nomFr": "Oiseau buste penché",
+   "nomEn": "Bent-Over Rear Delt Raise",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Deltoïdes postérieurs",
+   "groupe": "epaules",
+   "secondaires": [
+    "Haut du dos"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "pallof-press",
+   "nomFr": "Pallof press",
+   "nomEn": "Pallof Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "half-kneeling-pallof-press",
+   "nomFr": "Pallof press à genou",
+   "nomEn": "Half-Kneeling Pallof Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Fessiers",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-pallof-press",
+   "nomFr": "Pallof press élastique",
+   "nomEn": "Banded Pallof Press",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Fessiers",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "lateral-shuffle",
+   "nomFr": "Pas chassés",
+   "nomEn": "Lateral Shuffle",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Mollets",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "fast-feet",
+   "nomFr": "Pieds rapides",
+   "nomEn": "Fast Feet",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Mollets",
+   "groupe": "jambes",
+   "secondaires": [
+    "Jambes",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "push-up",
+   "nomFr": "Pompe",
+   "nomEn": "Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "archer-push-up",
+   "nomFr": "Pompe archer",
+   "nomEn": "Archer Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "wall-push-up",
+   "nomFr": "Pompe au mur",
+   "nomEn": "Wall Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Mur",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "decline-push-up",
+   "nomFr": "Pompe déclinée",
+   "nomEn": "Decline Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules",
+    "Triceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "diamond-push-up",
+   "nomFr": "Pompe diamant",
+   "nomEn": "Diamond Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Triceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Pectoraux",
+    "Épaules",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "handstand-push-up",
+   "nomFr": "Pompe en équilibre",
+   "nomEn": "Handstand Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Triceps",
+    "Sangle abdominale",
+    "Pectoraux"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "wall-handstand-push-up",
+   "nomFr": "Pompe en équilibre au mur",
+   "nomEn": "Wall Handstand Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Mur",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Triceps",
+    "Sangle abdominale",
+    "Pectoraux"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "explosive-push-up",
+   "nomFr": "Pompe explosive",
+   "nomEn": "Explosive Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "hindu-push-up",
+   "nomFr": "Pompe hindoue",
+   "nomEn": "Hindu Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules",
+    "Triceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "incline-push-up",
+   "nomFr": "Pompe inclinée",
+   "nomEn": "Incline Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "weighted-push-up",
+   "nomFr": "Pompe lestée",
+   "nomEn": "Weighted Push-up",
+   "type": "charge_reps",
+   "leste": true,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "typewriter-push-up",
+   "nomFr": "Pompe machine à écrire",
+   "nomEn": "Typewriter Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "pike-push-up",
+   "nomFr": "Pompe piquée",
+   "nomEn": "Pike Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Triceps",
+    "Pectoraux",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "feet-elevated-pike-push-up",
+   "nomFr": "Pompe piquée pieds surélevés",
+   "nomEn": "Feet-Elevated Pike Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Triceps",
+    "Pectoraux",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "wide-push-up",
+   "nomFr": "Pompe prise large",
+   "nomEn": "Wide Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules",
+    "Triceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "scapular-push-up",
+   "nomFr": "Pompe scapulaire",
+   "nomEn": "Scapular Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Haut du dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Pectoraux",
+    "Épaules",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "knee-push-up",
+   "nomFr": "Pompe sur les genoux",
+   "nomEn": "Knee Push-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Triceps",
+    "Épaules",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "push-up-shoulder-tap",
+   "nomFr": "Pompe touche-épaules",
+   "nomEn": "Push-up Shoulder Tap",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Pectoraux",
+    "Épaules",
+    "Triceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "glute-bridge",
+   "nomFr": "Pont fessier",
+   "nomEn": "Glute Bridge",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "barbell-glute-bridge",
+   "nomFr": "Pont fessier barre",
+   "nomEn": "Barbell Glute Bridge",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-glute-bridge",
+   "nomFr": "Pont fessier élastique",
+   "nomEn": "Banded Glute Bridge",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-glute-bridge",
+   "nomFr": "Pont fessier haltère",
+   "nomEn": "Dumbbell Glute Bridge",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "glute-bridge-march",
+   "nomFr": "Pont fessier marché",
+   "nomEn": "Glute Bridge March",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "single-leg-glute-bridge",
+   "nomFr": "Pont fessier une jambe",
+   "nomEn": "Single-Leg Glute Bridge",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "childs-pose",
+   "nomFr": "Posture de l'enfant",
+   "nomEn": "Child's Pose",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Épaules",
+    "Hanches",
+    "Mobilité"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "leg-press",
+   "nomFr": "Presse à cuisses",
+   "nomEn": "Leg Press",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "straight-arm-pulldown",
+   "nomFr": "Pull-over à la poulie",
+   "nomEn": "Straight-Arm Pulldown",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cable-pull-through",
+   "nomFr": "Pull-through à la poulie",
+   "nomEn": "Cable Pull-Through",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Lombaires"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "rack-pull",
+   "nomFr": "Rack pull",
+   "nomEn": "Rack Pull",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "rowing",
+   "nomFr": "Rameur",
+   "nomEn": "Rowing",
+   "type": "distance_duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Jambes",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "hiking",
+   "nomFr": "Randonnée",
+   "nomEn": "Hiking",
+   "type": "distance_duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "decline-sit-up",
+   "nomFr": "Relevé de buste décliné",
+   "nomEn": "Decline Sit-Up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Banc",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Quadriceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "seated-knee-tuck",
+   "nomFr": "Relevé de genoux assis",
+   "nomEn": "Seated Knee Tuck",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Quadriceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "captains-chair-knee-raise",
+   "nomFr": "Relevé de genoux aux parallèles",
+   "nomEn": "Captain's Chair Knee Raise",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "hanging-knee-raise",
+   "nomFr": "Relevé de genoux suspendu",
+   "nomEn": "Hanging Knee Raise",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Barre de traction",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Grip"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "lying-leg-raise",
+   "nomFr": "Relevé de jambes au sol",
+   "nomEn": "Lying Leg Raise",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Quadriceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "hanging-leg-raise",
+   "nomFr": "Relevé de jambes suspendu",
+   "nomEn": "Hanging Leg Raise",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Grip"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "torso-twist-stretch",
+   "nomFr": "Rotations du buste",
+   "nomEn": "Torso Twists",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Mobilité",
+   "groupe": "mobilite",
+   "secondaires": [
+    "Sangle abdominale",
+    "Dos"
+   ],
+   "etirement": true
+  },
+  {
+   "slug": "ab-wheel",
+   "nomFr": "Roue abdominale",
+   "nomEn": "Ab Wheel Rollout",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "doorway-row",
+   "nomFr": "Rowing à l'embrasure",
+   "nomEn": "Doorway Row",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Embrasure",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Haut du dos",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "machine-row",
+   "nomFr": "Rowing à la machine",
+   "nomEn": "Machine Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "towel-row",
+   "nomFr": "Rowing à la serviette",
+   "nomEn": "Towel Row",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Serviette",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Haut du dos",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "inverted-row",
+   "nomFr": "Rowing australien",
+   "nomEn": "Inverted Row",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "barbell-row",
+   "nomFr": "Rowing barre",
+   "nomEn": "Barbell Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Deltoïdes postérieurs"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "chest-supported-row",
+   "nomFr": "Rowing buste appuyé",
+   "nomEn": "Chest Supported Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Deltoïdes postérieurs"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-row",
+   "nomFr": "Rowing élastique",
+   "nomEn": "Banded Row",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Haut du dos"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "one-arm-dumbbell-row",
+   "nomFr": "Rowing haltère un bras",
+   "nomEn": "One-Arm Dumbbell Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-bent-over-row",
+   "nomFr": "Rowing haltères buste penché",
+   "nomEn": "Dumbbell Bent Over Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Deltoïdes postérieurs"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "meadows-row",
+   "nomFr": "Rowing Meadows",
+   "nomEn": "Meadows Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Deltoïdes postérieurs"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "upright-row",
+   "nomFr": "Rowing menton",
+   "nomEn": "Upright Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Épaules",
+   "groupe": "epaules",
+   "secondaires": [
+    "Haut du dos",
+    "Biceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "pendlay-row",
+   "nomFr": "Rowing Pendlay",
+   "nomEn": "Pendlay Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Deltoïdes postérieurs"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "t-bar-row",
+   "nomFr": "Rowing T-bar",
+   "nomEn": "T-Bar Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Deltoïdes postérieurs"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "russian-twist",
+   "nomFr": "Russian twist",
+   "nomEn": "Russian Twist",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "weighted-russian-twist",
+   "nomFr": "Russian twist lesté",
+   "nomEn": "Weighted Russian Twist",
+   "type": "charge_reps",
+   "leste": true,
+   "materiel": "Haltères",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Épaules"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "skater-hop",
+   "nomFr": "Saut du patineur",
+   "nomEn": "Skater Hop",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Mollets",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "seal-jack",
+   "nomFr": "Seal jack",
+   "nomEn": "Seal Jack",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Pectoraux",
+   "groupe": "pectoraux",
+   "secondaires": [
+    "Épaules",
+    "Jambes",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "sissy-squat",
+   "nomFr": "Sissy squat",
+   "nomEn": "Sissy Squat",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale",
+    "Mollets"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "skierg",
+   "nomFr": "SkiErg",
+   "nomEn": "SkiErg",
+   "type": "distance_duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Triceps",
+    "Sangle abdominale",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "deadlift",
+   "nomFr": "Soulevé de terre",
+   "nomEn": "Deadlift",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Chaîne postérieure",
+   "groupe": "dos",
+   "secondaires": [
+    "Dos",
+    "Grip"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "romanian-deadlift",
+   "nomFr": "Soulevé de terre roumain",
+   "nomEn": "Romanian Deadlift",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Lombaires"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "smith-machine-romanian-deadlift",
+   "nomFr": "Soulevé de terre roumain à la Smith",
+   "nomEn": "Smith Machine Romanian Deadlift",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Lombaires"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-romanian-deadlift",
+   "nomFr": "Soulevé de terre roumain haltères",
+   "nomEn": "Dumbbell Romanian Deadlift",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Lombaires"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "kettlebell-romanian-deadlift",
+   "nomFr": "Soulevé de terre roumain kettlebell",
+   "nomEn": "Kettlebell Romanian Deadlift",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Kettlebell",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Lombaires"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "landmine-romanian-deadlift",
+   "nomFr": "Soulevé de terre roumain landmine",
+   "nomEn": "Landmine Romanian Deadlift",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Lombaires"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "single-leg-romanian-deadlift",
+   "nomFr": "Soulevé de terre roumain une jambe",
+   "nomEn": "Single-Leg Romanian Deadlift",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Ischio-jambiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "sumo-deadlift",
+   "nomFr": "Soulevé de terre sumo",
+   "nomEn": "Sumo Deadlift",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Chaîne postérieure",
+   "groupe": "dos",
+   "secondaires": [
+    "Fessiers",
+    "Quadriceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-sumo-deadlift",
+   "nomFr": "Soulevé de terre sumo haltère",
+   "nomEn": "Dumbbell Sumo Deadlift",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Chaîne postérieure",
+   "groupe": "dos",
+   "secondaires": [
+    "Fessiers",
+    "Quadriceps",
+    "Adducteurs"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "trap-bar-deadlift",
+   "nomFr": "Soulevé de terre trap bar",
+   "nomEn": "Trap Bar Deadlift",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Chaîne postérieure",
+   "groupe": "dos",
+   "secondaires": [
+    "Quadriceps",
+    "Grip"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "sprawl",
+   "nomFr": "Sprawl",
+   "nomEn": "Sprawl",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale",
+    "Épaules",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "squat",
+   "nomFr": "Squat",
+   "nomEn": "Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "belt-squat",
+   "nomFr": "Squat à la ceinture",
+   "nomEn": "Belt Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "smith-machine-squat",
+   "nomFr": "Squat à la Smith",
+   "nomEn": "Smith Machine Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "bodyweight-squat",
+   "nomFr": "Squat au poids du corps",
+   "nomEn": "Bodyweight Squat",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "front-squat",
+   "nomFr": "Squat avant",
+   "nomEn": "Front Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Sangle abdominale",
+    "Fessiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cossack-squat",
+   "nomFr": "Squat cosaque",
+   "nomEn": "Cossack Squat",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "shrimp-squat",
+   "nomFr": "Squat crevette",
+   "nomEn": "Shrimp Squat",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "skater-squat",
+   "nomFr": "Squat du patineur",
+   "nomEn": "Skater Squat",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-squat",
+   "nomFr": "Squat élastique",
+   "nomEn": "Banded Squat",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "landmine-squat",
+   "nomFr": "Squat landmine",
+   "nomEn": "Landmine Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Barre",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "pistol-squat",
+   "nomFr": "Squat pistol",
+   "nomEn": "Pistol Squat",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "assisted-pistol-squat",
+   "nomFr": "Squat pistol assisté",
+   "nomEn": "Assisted Pistol Squat",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "jump-squat",
+   "nomFr": "Squat sauté",
+   "nomEn": "Jump Squat",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Mollets"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dumbbell-sumo-squat",
+   "nomFr": "Squat sumo haltère",
+   "nomEn": "Dumbbell Sumo Squat",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Haltères",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Quadriceps",
+    "Adducteurs",
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "single-leg-box-squat",
+   "nomFr": "Squat sur box une jambe",
+   "nomEn": "Single-Leg Box Squat",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Box",
+   "muscle": "Quadriceps",
+   "groupe": "jambes",
+   "secondaires": [
+    "Fessiers",
+    "Ischio-jambiers",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "squat-thrust",
+   "nomFr": "Squat thrust",
+   "nomEn": "Squat Thrust",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Jambes",
+    "Épaules",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "stair-climber",
+   "nomFr": "Stepper",
+   "nomEn": "Stair Climber",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "superman",
+   "nomFr": "Superman",
+   "nomEn": "Superman",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Lombaires",
+   "groupe": "dos",
+   "secondaires": [
+    "Fessiers",
+    "Haut du dos",
+    "Ischio-jambiers"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "active-hang",
+   "nomFr": "Suspension active",
+   "nomEn": "Active Hang",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Barre de traction",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Haut du dos",
+    "Avant-bras",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "dead-hang",
+   "nomFr": "Suspension passive",
+   "nomEn": "Dead Hang",
+   "type": "duree",
+   "leste": false,
+   "materiel": "Barre de traction",
+   "muscle": "Avant-bras",
+   "groupe": "bras",
+   "secondaires": [
+    "Grand dorsal",
+    "Épaules",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "kettlebell-swing",
+   "nomFr": "Swing kettlebell",
+   "nomEn": "Kettlebell Swing",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Kettlebell",
+   "muscle": "Fessiers",
+   "groupe": "jambes",
+   "secondaires": [
+    "Ischio-jambiers",
+    "Sangle abdominale",
+    "Cardio"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "seated-row",
+   "nomFr": "Tirage horizontal",
+   "nomEn": "Seated Cable Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Deltoïdes postérieurs"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "single-arm-cable-row",
+   "nomFr": "Tirage horizontal un bras",
+   "nomEn": "Single-Arm Cable Row",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Dos",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Deltoïdes postérieurs"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "lat-pulldown",
+   "nomFr": "Tirage vertical",
+   "nomEn": "Lat Pulldown",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "banded-lat-pulldown",
+   "nomFr": "Tirage vertical élastique",
+   "nomEn": "Banded Lat Pulldown",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Élastique",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "wide-grip-lat-pulldown",
+   "nomFr": "Tirage vertical prise large",
+   "nomEn": "Wide-Grip Lat Pulldown",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "close-grip-lat-pulldown",
+   "nomFr": "Tirage vertical prise serrée",
+   "nomEn": "Close-Grip Lat Pulldown",
+   "type": "charge_reps",
+   "leste": false,
+   "materiel": "Poulie",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "toe-touch",
+   "nomFr": "Touche-orteils",
+   "nomEn": "Toe Touch",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "heel-tap",
+   "nomFr": "Touche-talons",
+   "nomEn": "Heel Tap",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [],
+   "etirement": false
+  },
+  {
+   "slug": "towel-pull-up",
+   "nomFr": "Traction à la serviette",
+   "nomEn": "Towel Pull-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Serviette",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Avant-bras",
+    "Haut du dos"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "assisted-pull-up",
+   "nomFr": "Traction assistée",
+   "nomEn": "Assisted Pull-up",
+   "type": "assiste",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "commando-pull-up",
+   "nomFr": "Traction commando",
+   "nomEn": "Commando Pull-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Barre de traction",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Haut du dos",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "l-sit-pull-up",
+   "nomFr": "Traction L-sit",
+   "nomEn": "L-Sit Pull-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Barre de traction",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Sangle abdominale",
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "weighted-pull-up",
+   "nomFr": "Traction lestée",
+   "nomEn": "Weighted Pull-up",
+   "type": "charge_reps",
+   "leste": true,
+   "materiel": "Poids du corps",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "negative-pull-up",
+   "nomFr": "Traction négative",
+   "nomEn": "Negative Pull-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Barre de traction",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Haut du dos",
+    "Avant-bras"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "neutral-grip-pull-up",
+   "nomFr": "Traction prise neutre",
+   "nomEn": "Neutral-Grip Pull-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "pull-up",
+   "nomFr": "Traction pronation",
+   "nomEn": "Pull-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Biceps",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "scapular-pull-up",
+   "nomFr": "Traction scapulaire",
+   "nomEn": "Scapular Pull-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Barre de traction",
+   "muscle": "Grand dorsal",
+   "groupe": "dos",
+   "secondaires": [
+    "Haut du dos",
+    "Avant-bras",
+    "Sangle abdominale"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "chin-up",
+   "nomFr": "Traction supination",
+   "nomEn": "Chin-up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Grand dorsal"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "assisted-chin-up",
+   "nomFr": "Traction supination assistée",
+   "nomEn": "Assisted Chin-up",
+   "type": "assiste",
+   "leste": false,
+   "materiel": "Machine",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Grand dorsal"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "weighted-chin-up",
+   "nomFr": "Traction supination lestée",
+   "nomEn": "Weighted Chin-up",
+   "type": "charge_reps",
+   "leste": true,
+   "materiel": "Poids du corps",
+   "muscle": "Biceps",
+   "groupe": "bras",
+   "secondaires": [
+    "Grand dorsal"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "v-up",
+   "nomFr": "V-up",
+   "nomEn": "V-Up",
+   "type": "poids_corps",
+   "leste": false,
+   "materiel": "Poids du corps",
+   "muscle": "Sangle abdominale",
+   "groupe": "tronc",
+   "secondaires": [
+    "Quadriceps"
+   ],
+   "etirement": false
+  },
+  {
+   "slug": "cycling",
+   "nomFr": "Vélo",
+   "nomEn": "Cycling",
+   "type": "distance_duree",
+   "leste": false,
+   "materiel": "Cardio",
+   "muscle": "Jambes",
+   "groupe": "jambes",
+   "secondaires": [
+    "Cardio"
+   ],
+   "etirement": false
+  }
+ ]
+}

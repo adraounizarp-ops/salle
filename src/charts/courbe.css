@@ -1,0 +1,102 @@
+/* Courbe d'evolution. Grille et axes en retrait : la donnee devant. */
+
+.courbe {
+  margin: 0;
+}
+
+.courbe__tete {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.courbe__titre {
+  margin: 0;
+  font-size: var(--taille-corps);
+  font-weight: 600;
+}
+
+.courbe__legende {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--taille-etiquette);
+  color: var(--acier);
+}
+
+.courbe__legende li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.courbe__puce {
+  width: 10px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.courbe__puce--tendance {
+  background: repeating-linear-gradient(
+    to right,
+    var(--acier-sourd) 0 3px,
+    transparent 3px 5px
+  );
+}
+
+.courbe__toile {
+  width: 100%;
+  height: auto;
+  display: block;
+  touch-action: none;
+}
+
+.courbe__base {
+  stroke: var(--fonte-600);
+  stroke-width: 1;
+}
+
+.courbe__trace {
+  fill: none;
+  stroke: var(--serie-1);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.courbe__tendance {
+  fill: none;
+  stroke: var(--acier-sourd);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 4;
+  stroke-linecap: round;
+}
+
+.courbe__reticule {
+  stroke: var(--fonte-500);
+  stroke-width: 1;
+}
+
+.courbe__point {
+  fill: var(--serie-1);
+  stroke: var(--fonte-800);
+  stroke-width: 2;
+}
+
+.courbe__valeur {
+  fill: var(--magnesie);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.courbe__abscisse {
+  fill: var(--acier-sourd);
+  font-family: var(--police-ui);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}

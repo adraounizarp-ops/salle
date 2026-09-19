@@ -1,0 +1,34 @@
+/* Le petit visuel demonstratif. */
+
+.illu {
+  position: relative;
+  width: var(--cote);
+  height: var(--cote);
+  flex: none;
+  color: var(--magnesie);
+}
+
+.illu__image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--duree-courte) linear;
+}
+
+.illu__image[data-visible='true'] {
+  opacity: 1;
+}
+
+.illu__image svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Reserve la place pendant le chargement, sans faire sauter la mise en page. */
+.illu__attente {
+  position: absolute;
+  inset: 12%;
+  border-radius: var(--rayon-s);
+  background: var(--fonte-700);
+}

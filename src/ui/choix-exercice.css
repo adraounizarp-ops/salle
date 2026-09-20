@@ -76,8 +76,7 @@
 
 .choix__filtres .filtre {
   flex: none;
-  min-height: 34px;
-  padding-inline: 13px;
+  padding-inline: 14px;
 }
 
 .choix__liste {
@@ -107,13 +106,14 @@
   display: grid;
 }
 
+/* Le nom passe à la ligne : c'est exactement ce qu'on est en train de
+   chercher, le couper à quatre pixels près le rendrait illisible. Le
+   sous-titre, lui, peut s'élider — il n'est là que pour lever un doute. */
 .choix__nom {
   font-size: var(--t-corps);
   font-weight: 600;
+  line-height: 1.25;
   color: var(--blanc);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .choix__sous {

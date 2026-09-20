@@ -1,4 +1,10 @@
-import { formatCharge, formatNombre, produitTonnage, seriesDures } from '../data/metriques';
+import {
+  formatCharge,
+  formatNombre,
+  pluriel,
+  produitTonnage,
+  seriesDures,
+} from '../data/metriques';
 import { fiche, type SeanceFaite } from '../data/modele';
 import {
   dateLongue,
@@ -35,6 +41,9 @@ export function HistoriqueDetail({ seance, historique, onRetour, onRefaire, onSu
     .map((e) => ({ id: e.slug, libelle: fiche(e.slug).nomFr, tonnage: tonnageExerciceFait(e) }))
     .filter((t) => t.tonnage > 0);
 
+  const minutes = Math.round(seance.dureeSec / 60);
+  const series = seriesSeance(seance);
+
   return (
     <Ecran
       surtitre={dateLongue(new Date(seance.date))}
@@ -64,12 +73,12 @@ export function HistoriqueDetail({ seance, historique, onRetour, onRefaire, onSu
 
       <ul class="stats stats--detail">
         <li class="stats__case">
-          <span class="stats__valeur donnee">{Math.round(seance.dureeSec / 60)}</span>
-          <span class="stats__nom">minutes</span>
+          <span class="stats__valeur donnee">{minutes}</span>
+          <span class="stats__nom">{pluriel(minutes, 'minute')}</span>
         </li>
         <li class="stats__case">
-          <span class="stats__valeur donnee">{seriesSeance(seance)}</span>
-          <span class="stats__nom">séries dures</span>
+          <span class="stats__valeur donnee">{series}</span>
+          <span class="stats__nom">{pluriel(series, 'série')} dures</span>
         </li>
         <li class="stats__case">
           <span class="stats__valeur donnee">{formatNombre(densite(seance))}</span>
@@ -84,7 +93,7 @@ export function HistoriqueDetail({ seance, historique, onRetour, onRefaire, onSu
         </aside>
       )}
 
-      <Section titre={`${seance.exercices.length} exercices`}>
+      <Section titre={`${seance.exercices.length} ${pluriel(seance.exercices.length, 'exercice')}`}>
         <ul class="detail-exos">
           {seance.exercices.map((e) => {
             const f = fiche(e.slug);
@@ -96,7 +105,7 @@ export function HistoriqueDetail({ seance, historique, onRetour, onRefaire, onSu
                   <div class="detail-exo__nommage">
                     <p class="detail-exo__nom">{f.nomFr}</p>
                     <p class="detail-exo__meta">
-                      {seriesDures(e.series)} séries
+                      {seriesDures(e.series)} {pluriel(seriesDures(e.series), 'série')}
                       {produitTonnage(f.type) ? ` · ${formatNombre(t)} kg` : ''}
                     </p>
                   </div>

@@ -42,7 +42,13 @@ export function Shell() {
 
   // Pendant une séance, la barre d'onglets disparaît : l'écran est en mode
   // concentré, et ces 58 px reviennent au pavé de saisie.
-  const pleinEcran = Boolean(apparier('/execution'));
+  //
+  // L'éditeur la perd pour une autre raison : il tient des modifications non
+  // enregistrées, et un doigt qui touchait un onglet les jetait sans un mot.
+  // On sort par « ‹ » ou par « Enregistrer », pas par accident.
+  const pleinEcran = Boolean(
+    apparier('/execution') || apparier('/seances/nouvelle') || apparier('/seances/:id/modifier'),
+  );
 
   const demarrer = (m: Modele) => {
     setDepart(false);

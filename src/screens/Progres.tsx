@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 import { Courbe } from '../charts/Courbe';
-import { formatNombre, unRmEpley } from '../data/metriques';
+import { formatNombre, pluriel, unRmEpley } from '../data/metriques';
 import { fiche, nomGroupe, type Modele, type SeanceFaite } from '../data/modele';
 import { ilYA, nombreDe, records, serieTonnage, volumeParGroupe } from '../data/selection';
 import { Ecran, Section } from '../ui/Ecran';
@@ -103,7 +103,7 @@ function ParSeance({ modeles, historique }: Props) {
           </p>
           <p class="bilan__note">
             {formatNombre(premier)} kg la première fois, {formatNombre(dernier)} kg la dernière —
-            sur {tonnages.length} exécutions.
+            sur {tonnages.length} {pluriel(tonnages.length, 'exécution')}.
           </p>
         </div>
       </Section>

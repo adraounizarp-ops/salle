@@ -1,4 +1,4 @@
-import { formatDuree, formatNombre } from '../data/metriques';
+import { formatDuree, formatNombre, pluriel } from '../data/metriques';
 import { fiche, nomGroupe, type Modele, type SeanceEnCours, type SeanceFaite } from '../data/modele';
 import {
   dateLongue,
@@ -180,7 +180,9 @@ export function Accueil({
                   <span class="volume__piste">
                     <span class="volume__barre" style={{ width: `${(v.series / maxSeries) * 100}%` }} />
                   </span>
-                  <span class="volume__valeur donnee">{v.series} séries</span>
+                  <span class="volume__valeur donnee">
+                    {v.series} {pluriel(v.series, 'série')}
+                  </span>
                 </li>
               ))}
             </ul>

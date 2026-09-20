@@ -69,6 +69,16 @@ séances fictives à la demande.
 [`magasin.ts`](src/data/magasin.ts) est le seul module qui parle à la base ; les
 écrans lisent des signaux.
 
+Le bundle pèse **262 ko de JavaScript, 71 ko compressés**, dont 94 ko pour le
+seul catalogue d'exercices. Il reste d'un bloc : `fiche()` sert les noms sur
+tous les écrans, alors le découper reviendrait à faire attendre chacun d'eux
+pour économiser un téléchargement qui n'a lieu qu'une fois.
+
+Contrôlé sur les neuf écrans, à 375 et à 402 pt, marges d'iPhone simulées :
+aucun texte sous 4,5:1, aucune cible tactile sous 44 pt, aucun débordement
+latéral, aucun libellé tronqué à l'exception des sous-titres anglais du
+sélecteur — coupés exprès, ils ne servent qu'à lever un doute.
+
 ## Déploiement
 
 Pousser sur `main` déclenche `.github/workflows/pages.yml`, qui construit et

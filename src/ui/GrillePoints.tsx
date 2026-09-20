@@ -32,6 +32,25 @@ export function GrilleMois({ cases, onJour, compact }: Props) {
           const libelle = `${c.date.getDate()} — ${
             fait ? c.seances.map((s) => s.nom).join(', ') : 'repos'
           }`;
+
+          // En compact, une case fait 15 × 18 px : trop petite pour être visée
+          // au pouce. Le bandeau est une vue de densité, pas une liste de
+          // liens ; on ouvre une séance depuis la liste juste en dessous.
+          if (compact) {
+            return (
+              <span
+                key={c.date.getTime()}
+                class="grille__jour"
+                data-fait={fait}
+                data-hors={c.horsMois}
+                data-aujourdhui={c.aujourdhui}
+                title={libelle}
+              >
+                <span class="grille__point" />
+              </span>
+            );
+          }
+
           return (
             <button
               key={c.date.getTime()}
@@ -46,7 +65,7 @@ export function GrilleMois({ cases, onJour, compact }: Props) {
               title={libelle}
             >
               <span class="grille__point" />
-              {!compact && <span class="grille__numero donnee">{c.date.getDate()}</span>}
+              <span class="grille__numero donnee">{c.date.getDate()}</span>
             </button>
           );
         })}

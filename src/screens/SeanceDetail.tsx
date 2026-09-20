@@ -1,4 +1,4 @@
-import { formatCharge, formatNombre, produitTonnage } from '../data/metriques';
+import { comparer, formatCharge, formatNombre, pluriel, produitTonnage } from '../data/metriques';
 import { fiche, type Modele, type SeanceFaite } from '../data/modele';
 import { derniereDe, ilYA, nombreDe, serieTonnage, tonnageSeance } from '../data/selection';
 import { Courbe } from '../charts/Courbe';
@@ -31,6 +31,12 @@ export function SeanceDetail({ modele, historique, onRetour, onFavorite, onModif
     (t, l) => t + (produitTonnage(fiche(l.slug).type) ? l.series * l.reps[1] * l.charge : 0),
     0,
   );
+
+  // La même mise en garde que dans l'éditeur : une séance dont le programme
+  // est passé sous la dernière exécution doit se voir ici aussi, sinon on la
+  // lance sans savoir qu'on part perdant.
+  const reference = derniere ? tonnageSeance(derniere) : 0;
+  const comparaison = comparer(tonnageVise, reference);
 
   const dureeMoy = fois
     ? Math.round(
@@ -70,7 +76,7 @@ export function SeanceDetail({ modele, historique, onRetour, onFavorite, onModif
       <ul class="stats">
         <li class="stats__case">
           <span class="stats__valeur donnee">{fois}</span>
-          <span class="stats__nom">fois réalisée</span>
+          <span class="stats__nom">{pluriel(fois, 'fois réalisée', 'fois réalisées')}</span>
         </li>
         <li class="stats__case">
           <span class="stats__valeur donnee">{derniere ? formatNombre(tonnageSeance(derniere)) : '—'}</span>
@@ -84,9 +90,21 @@ export function SeanceDetail({ modele, historique, onRetour, onFavorite, onModif
 
       {derniere && <p class="detail__quand">Dernière exécution {ilYA(derniere.date)}</p>}
 
+      {comparaison.etat === 'derriere' && (
+        <p class="detail__manque">
+          Le programme vise {formatNombre(Math.abs(comparaison.ecart))} kg sous la dernière
+          exécution ({formatNombre(reference)} kg). Monte une charge ou ajoute une série avant de
+          partir.
+        </p>
+      )}
+
       <Section
-        titre={`${modele.lignes.length} exercices`}
-        suffixe={<span class="section__compte donnee">{formatNombre(tonnageVise)} kg visés</span>}
+        titre={`${modele.lignes.length} ${pluriel(modele.lignes.length, 'exercice')}`}
+        suffixe={
+          <span class="section__compte donnee" data-etat={comparaison.etat}>
+            {formatNombre(tonnageVise)} kg visés
+          </span>
+        }
       >
         <ol class="exos">
           {modele.lignes.map((l, i) => {
@@ -119,7 +137,7 @@ export function SeanceDetail({ modele, historique, onRetour, onFavorite, onModif
         <Section titre="Évolution du tonnage">
           <div class="carte">
             <Courbe
-              titre={`${fois} exécutions`}
+              titre={`${fois} ${pluriel(fois, 'exécution')}`}
               points={tonnages.map((v, i) => ({ etiquette: `${i + 1}`, valeur: v }))}
               tendance={moyenneMobile(tonnages, 3)}
             />

@@ -12,7 +12,7 @@
 }
 
 .segmente__option {
-  min-height: 38px;
+  min-height: var(--cible);
   border-radius: 9px;
   font-size: var(--t-menu);
   font-weight: 500;

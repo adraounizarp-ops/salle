@@ -33,6 +33,23 @@
   color: var(--gris);
 }
 
+/* L'avertissement de tonnage, au même endroit et dans la même langue que dans
+   l'éditeur : le corail ne dit jamais qu'une chose, « en dessous ». */
+.detail__manque {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: var(--r-s);
+  background: var(--corail-voile);
+  border: 1px solid color-mix(in srgb, var(--corail) 36%, transparent);
+  font-size: var(--t-menu);
+  line-height: 1.45;
+  color: var(--blanc);
+}
+
+.section__compte[data-etat='derriere'] {
+  color: var(--corail);
+}
+
 .detail__actions {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -79,13 +96,17 @@
   display: grid;
 }
 
+/* Deux lignes au plus : « Développé épaules à la machine » tient, et rien
+   n'est coupé au milieu d'un mot. */
 .exo__nom {
   font-size: var(--t-corps);
   font-weight: 600;
+  line-height: 1.25;
   color: var(--blanc);
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .exo__sous {

@@ -2,10 +2,14 @@
 
 /* --- Carte compacte, defilement horizontal --------------------------------- */
 
+/* `scroll-padding` accorde l'accrochage a la gouttiere : sans lui, le
+   navigateur aligne la premiere carte sur le bord du conteneur des le
+   chargement et mange les 20 px de marge laterale. */
 .favorites {
   display: flex;
   gap: 10px;
   padding-inline: var(--gouttiere);
+  scroll-padding-inline: var(--gouttiere);
   scroll-snap-type: x proximity;
 }
 

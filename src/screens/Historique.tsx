@@ -1,4 +1,5 @@
-import { formatNombre } from '../data/metriques';
+import { useLayoutEffect, useRef } from 'preact/hooks';
+import { formatNombre, pluriel } from '../data/metriques';
 import type { SeanceFaite } from '../data/modele';
 import {
   grilleDuMois,
@@ -64,6 +65,13 @@ export function Historique({ historique, onOuvrir, onDemarrer }: Props) {
   // Les quatre derniers mois en bandeau, du plus ancien au plus récent.
   const bandeau = groupes.slice(0, 4).reverse();
 
+  // Le mois courant est au bout à droite : c'est lui qu'on vient regarder, pas
+  // celui d'il y a trois mois. On ouvre donc la bande sur sa fin.
+  const bande = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    if (bande.current) bande.current.scrollLeft = bande.current.scrollWidth;
+  }, [bandeau.length]);
+
   const total = historique.reduce((t, s) => t + tonnageSeance(s), 0);
 
   return (
@@ -72,15 +80,11 @@ export function Historique({ historique, onOuvrir, onDemarrer }: Props) {
       sous={`${historique.length} séances · ${formatNombre(total)} kg au total`}
     >
       <Section plein>
-        <div class="bandeau-mois bande-h">
+        <div class="bandeau-mois bande-h" ref={bande}>
           {bandeau.map((g) => (
             <div key={`${g.annee}-${g.mois}`} class="bandeau-mois__case">
               <p class="etiquette">{nomMois(g.mois).slice(0, 4)}</p>
-              <GrilleMois
-                compact
-                cases={grilleDuMois(historique, g.annee, g.mois)}
-                onJour={(j) => onOuvrir(j.seances[0])}
-              />
+              <GrilleMois compact cases={grilleDuMois(historique, g.annee, g.mois)} />
               <p class="bandeau-mois__compte donnee">{g.seances.length}</p>
             </div>
           ))}
@@ -114,7 +118,8 @@ export function Historique({ historique, onOuvrir, onDemarrer }: Props) {
                       <span class="hist-ligne__nommage">
                         <span class="hist-ligne__nom">{s.nom}</span>
                         <span class="hist-ligne__meta">
-                          {Math.round(s.dureeSec / 60)} min · {seriesSeance(s)} séries
+                          {Math.round(s.dureeSec / 60)} min · {seriesSeance(s)}{' '}
+                          {pluriel(seriesSeance(s), 'série')}
                         </span>
                       </span>
 

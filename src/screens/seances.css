@@ -6,25 +6,6 @@
   margin-bottom: 18px;
 }
 
-.filtre {
-  min-height: 36px;
-  padding-inline: 16px;
-  border-radius: var(--r-plein);
-  background: var(--carte);
-  border: 1px solid var(--trait);
-  font-size: var(--t-menu);
-  font-weight: 500;
-  color: var(--gris);
-  transition: background var(--tres-court) linear, color var(--tres-court) linear;
-}
-
-.filtre[data-actif='true'] {
-  background: var(--vert);
-  border-color: var(--vert);
-  color: var(--sur-vert);
-  font-weight: 600;
-}
-
 .ajouter {
   display: flex;
   align-items: center;

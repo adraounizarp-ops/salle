@@ -144,10 +144,12 @@ select {
   color: inherit;
 }
 
+/* Pas de `border-radius` ici : le contour suit déjà celui de l'élément, et
+   l'imposer transformait chaque pastille ronde — le ＋ central, les jetons de
+   filtre, l'engrenage — en carré arrondi le temps du focus. */
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
   outline: 2px solid var(--vert);
   outline-offset: 2px;
-  border-radius: var(--r-s);
 }
 
 /* ============================================================================
@@ -186,6 +188,28 @@ select {
 /* ============================================================================
    Utilitaires partagés
    ========================================================================== */
+
+/* Jeton de filtre. Partagé par quatre écrans — les onglets de Séances, les
+   puces de Progrès, les disques des Réglages, le matériel du sélecteur — donc
+   il vit ici et non dans la feuille de l'un d'eux. */
+.filtre {
+  min-height: var(--cible);
+  padding-inline: 16px;
+  border-radius: var(--r-plein);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  font-size: var(--t-menu);
+  font-weight: 500;
+  color: var(--gris);
+  transition: background var(--tres-court) linear, color var(--tres-court) linear;
+}
+
+.filtre[data-actif='true'] {
+  background: var(--vert);
+  border-color: var(--vert);
+  color: var(--sur-vert);
+  font-weight: 600;
+}
 
 /* Bande à défilement horizontal.
    Sans `overflow-y: hidden`, le navigateur promeut l'axe vertical en `auto`

@@ -7,6 +7,7 @@ import {
   formatCharge,
   formatDuree,
   formatNombre,
+  pluriel,
   pourEgaler,
   produitTonnage,
   tonnageExercice,
@@ -154,6 +155,13 @@ export function Execution({
   const finExo = iSerie === -1;
   const dernierExo = iExo === seance.exercices.length - 1;
   const toutFini = seance.exercices.every((e) => e.series.every((s) => s.faite));
+
+  // Le nombre compte : « 2 séries » se laisse tomber sans réfléchir, « 17 »
+  // veut dire qu'on s'apprête à jeter la moitié de la séance.
+  const enAttente = seance.exercices.reduce(
+    (n, e) => n + e.series.filter((s) => !s.faite).length,
+    0,
+  );
 
   return (
     <div class="exec">
@@ -362,7 +370,8 @@ export function Execution({
           <div class="fin">
             {!toutFini && (
               <p class="fin__avertissement">
-                Les séries non validées ne seront pas enregistrées.
+                {enAttente} {pluriel(enAttente, 'série non validée', 'séries non validées')} ne
+                {enAttente >= 2 ? ' seront' : ' sera'} pas {pluriel(enAttente, 'enregistrée')}.
               </p>
             )}
 

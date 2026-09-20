@@ -89,12 +89,14 @@
   border-radius: var(--r-s);
   background: var(--carte);
   border: 1px solid var(--trait);
-  color: var(--gris-sourd);
+  color: var(--gris);
   transition: border-color var(--tres-court) linear, color var(--tres-court) linear;
 }
 
+/* Un exercice fait peut s'effacer : sa coche verte le dit déjà. Ce sont ceux
+   qui restent qu'on doit reconnaître d'un coup d'œil. */
 .rail__pastille[data-fini='true'] {
-  color: var(--gris);
+  color: var(--gris-sourd);
 }
 
 /* L'exercice en cours : le seul de la rangée à être vert. */

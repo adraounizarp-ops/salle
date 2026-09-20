@@ -24,7 +24,8 @@
   justify-items: center;
   align-content: center;
   gap: 4px;
-  height: 38px;
+  /* La case entiere est la cible : un point de 11 px ne se vise pas au pouce. */
+  height: var(--cible);
   border-radius: var(--r-s);
 }
 

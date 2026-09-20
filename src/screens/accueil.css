@@ -21,10 +21,14 @@
   display: inline-flex;
   align-items: center;
   gap: 2px;
+  min-height: var(--cible);
+  /* La marge negative rend au titre de section la hauteur que la cible
+     tactile lui prenait : la surface fait 44 px, la rangee n'en fait pas 44. */
+  margin-block: -8px;
+  padding: 6px 0 6px 8px;
   font-size: var(--t-menu);
   font-weight: 500;
   color: var(--gris);
-  padding: 6px 0 6px 8px;
 }
 
 .lien:active {
@@ -165,12 +169,16 @@
   color: var(--vert);
 }
 
+/* Deux lignes plutot qu'une coupure : « Developpe epaules a la machine » ne
+   se devine pas depuis « Developpe epaules a la m... ». */
 .records__nom {
   flex: 1;
   min-width: 0;
-  white-space: nowrap;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .records__valeur {

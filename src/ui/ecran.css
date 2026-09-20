@@ -75,6 +75,13 @@
   border-top: 1px solid var(--trait);
 }
 
+/* Sans barre d'onglets sous lui — l'editeur de seance — le pied devient la
+   derniere rangee de l'ecran : c'est a lui de degager la barre d'accueil de
+   l'iPhone, sinon « Enregistrer » se retrouve sous le trait blanc. */
+.shell[data-plein='true'] .ecran__pied {
+  padding-bottom: calc(14px + var(--bas-sur));
+}
+
 /* --- Sections -------------------------------------------------------------- */
 
 .section {

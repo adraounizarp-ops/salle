@@ -96,12 +96,21 @@ export function baisseInstallee(tonnagesRecents: readonly number[]): boolean {
 
 /**
  * Séparateur de milliers : espace insécable. L'espace fine (U+202F) serait plus
- * juste typographiquement mais manque à Instrument Sans, où elle disparaît.
+ * juste typographiquement mais manque au sous-ensemble latin de Geist, où elle
+ * disparaît purement et simplement.
  */
 export const formatNombre = (n: number): string =>
   Math.round(n)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
+/**
+ * Accord au pluriel. « 1 minutes » et « 1 exercices » sont les deux fautes que
+ * produit mécaniquement un carnet qui compte, et elles sautent aux yeux sur la
+ * toute première séance — celle où il n'y a justement qu'un exercice.
+ */
+export const pluriel = (n: number, mot: string, forme = `${mot}s`): string =>
+  Math.abs(n) >= 2 ? forme : mot;
 
 export const formatCharge = (n: number): string =>
   (Math.round(n * 100) / 100).toString().replace('.', ',');

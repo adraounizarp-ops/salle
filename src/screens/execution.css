@@ -89,19 +89,29 @@
   border-radius: var(--r-s);
   background: var(--carte);
   border: 1px solid var(--trait);
-  color: var(--gris);
-  transition: border-color var(--tres-court) linear, color var(--tres-court) linear;
+  transition: border-color var(--tres-court) linear, background var(--tres-court) linear;
+}
+
+/* Les dessins sont verts partout dans l'app : le rail ne peut donc plus
+   désigner l'exercice courant par la couleur seule. Il le désigne par sa
+   bordure et son fond, et retient les autres d'un palier de la rampe. */
+.rail__pastille .illu {
+  color: var(--vert-3);
+  transition: color var(--tres-court) linear;
 }
 
 /* Un exercice fait peut s'effacer : sa coche verte le dit déjà. Ce sont ceux
    qui restent qu'on doit reconnaître d'un coup d'œil. */
-.rail__pastille[data-fini='true'] {
-  color: var(--gris-sourd);
+.rail__pastille[data-fini='true'] .illu {
+  color: var(--vert-5);
 }
 
-/* L'exercice en cours : le seul de la rangée à être vert. */
 .rail__pastille[data-actif='true'] {
   border-color: var(--vert);
+  background: var(--vert-voile);
+}
+
+.rail__pastille[data-actif='true'] .illu {
   color: var(--vert);
 }
 
@@ -144,9 +154,10 @@
   margin-bottom: 12px;
 }
 
-/* L'exercice actif est le seul dessin teinté de l'écran. */
+/* Le dessin de l'exercice en cours est déjà vert par défaut ; on lui donne
+   seulement sa taille de bloc. */
 .bloc-exo__illu {
-  color: var(--vert);
+  flex: none;
 }
 
 .bloc-exo__nommage {

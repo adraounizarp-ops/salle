@@ -19,6 +19,14 @@
   gap: 2px;
 }
 
+/* Sous 390 pt, les six gouttières coûtent les deux pixels qui manquaient à la
+   cible tactile : on les rend à la case. */
+@media (max-width: 389px) {
+  .grille__jours {
+    gap: 0;
+  }
+}
+
 .grille__jour {
   display: grid;
   justify-items: center;

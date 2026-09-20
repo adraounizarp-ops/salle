@@ -1,6 +1,7 @@
 import { useRef, useState } from 'preact/hooks';
 import type { Reglages as Jeu } from '../data/base';
 import { DISQUES_PAR_DEFAUT, resumerChargement } from '../data/disques';
+import { pluriel } from '../data/metriques';
 import { Ecran, Section } from '../ui/Ecran';
 import { Icone } from '../ui/Icone';
 import { Reglette } from '../ui/Reglette';
@@ -11,7 +12,7 @@ interface Props {
   nombreSeances: number;
   onModifier: (modif: Partial<Jeu>) => Promise<void>;
   onExporter: () => Promise<Blob>;
-  onImporter: (texte: string) => Promise<{ modeles: number; seances: number }>;
+  onImporter: (texte: string) => Promise<{ modeles: number; seances: number; mesures: number }>;
   onDemonstration: () => Promise<void>;
   onRemiseAZero: () => Promise<void>;
   onRetour: () => void;
@@ -68,10 +69,14 @@ export function Reglages({
     if (!f) return;
     try {
       const bilan = await onImporter(await f.text());
-      setMessage({
-        ton: 'ok',
-        texte: `${bilan.seances} séances et ${bilan.modeles} modèles restaurés.`,
-      });
+      const morceaux = [
+        `${bilan.seances} ${pluriel(bilan.seances, 'séance')}`,
+        `${bilan.modeles} ${pluriel(bilan.modeles, 'modèle')}`,
+      ];
+      if (bilan.mesures > 0) {
+        morceaux.push(`${bilan.mesures} ${pluriel(bilan.mesures, 'relevé')}`);
+      }
+      setMessage({ ton: 'ok', texte: `${morceaux.join(', ')} — restaurés.` });
     } catch (erreur) {
       setMessage({ ton: 'erreur', texte: (erreur as Error).message });
     }
@@ -207,6 +212,10 @@ export function Reglages({
           <p class="prose prose--note">
             L'import remplace tout le contenu. Fusionner deux historiques inventerait des séances en
             double, ce qui fausserait chaque comparaison de tonnage.
+          </p>
+          <p class="prose prose--note">
+            Les photos de suivi voyagent dans le fichier, réduites : compte une centaine de
+            kilo-octets par relevé qui en porte une.
           </p>
 
           {message && (

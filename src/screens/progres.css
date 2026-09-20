@@ -61,11 +61,15 @@
   border-top: 1px solid var(--trait);
 }
 
+/* Deux lignes, comme partout ailleurs : le nom de l'exercice est la clé de
+   lecture de la rangée, pas un détail qu'on peut élider. */
 .rec__nom {
   min-width: 0;
-  white-space: nowrap;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .rec__perf {
@@ -165,4 +169,114 @@
   font-size: 10px;
   font-variant-numeric: tabular-nums;
   color: var(--gris-sourd);
+}
+
+/* --- Le corps ---------------------------------------------------------------- */
+
+.corps__ecart {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--trait);
+  font-size: var(--t-appui);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ni le vert ni le corail : un poids qui monte n'est ni un progrès ni un échec,
+   ça dépend de ce qu'on cherche. Le chiffre est blanc, le sens t'appartient. */
+.corps__ecart[data-sens] {
+  color: var(--blanc);
+}
+
+.corps__depuis {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--t-menu);
+  font-weight: 400;
+  color: var(--gris);
+}
+
+.releves {
+  display: grid;
+  gap: 8px;
+}
+
+.releve {
+  display: flex;
+  align-items: stretch;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.releve__zone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  min-height: 64px;
+  padding: 10px 4px 10px 10px;
+  text-align: left;
+  color: var(--gris-sourd);
+}
+
+.releve__photo {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-s);
+  object-fit: cover;
+  background: var(--carte-haute);
+}
+
+.releve__photo--vide {
+  display: block;
+}
+
+.releve__nommage {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.releve__date {
+  font-size: var(--t-corps);
+  font-weight: 600;
+  color: var(--blanc);
+}
+
+.releve__chiffres {
+  font-size: var(--t-etiquette);
+  color: var(--gris);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Cible séparée : un tap sur la corbeille n'ouvre pas le relevé, et inversement. */
+.releve__supprimer {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--cible);
+  color: var(--gris-sourd);
+  border-start-end-radius: var(--r-m);
+  border-end-end-radius: var(--r-m);
+}
+
+.releve__supprimer:active {
+  color: var(--corail);
+}
+
+.corps__ajouter {
+  margin-top: 12px;
+}
+
+/* Seule dans sa carte, la note n'a rien à séparer d'un trait. */
+.carte__note--seule {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }

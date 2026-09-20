@@ -68,6 +68,36 @@ export interface SeanceFaite {
   exercices: ExerciceFait[];
 }
 
+/**
+ * Un relevé du corps. Tous les champs sont indépendants et aucun n'est requis :
+ * on pèse souvent, on mesure rarement, et un relevé où seul le poids est rempli
+ * vaut mieux qu'un relevé qu'on a renoncé à saisir.
+ */
+export interface Mesure {
+  id: string;
+  date: number;
+  /** Kilogrammes. */
+  poids?: number;
+  /** Tour de taille, en centimètres. */
+  taille?: number;
+  /** Tour de bras contracté, en centimètres. */
+  bras?: number;
+  /** Tour de cuisse, en centimètres. */
+  cuisse?: number;
+  /** Photo de suivi, déjà réduite, en data URL JPEG. */
+  photo?: string;
+}
+
+/** Les champs chiffrés d'un relevé, dans l'ordre où on les saisit. */
+export const CHAMPS_MESURE = [
+  { cle: 'poids', nom: 'Poids', unite: 'kg', pas: 0.1 },
+  { cle: 'taille', nom: 'Tour de taille', unite: 'cm', pas: 0.5 },
+  { cle: 'bras', nom: 'Tour de bras', unite: 'cm', pas: 0.5 },
+  { cle: 'cuisse', nom: 'Tour de cuisse', unite: 'cm', pas: 0.5 },
+] as const;
+
+export type CleMesure = (typeof CHAMPS_MESURE)[number]['cle'];
+
 /** Une séance en cours de saisie : un modèle déplié, plus l'heure de départ. */
 export interface SeanceEnCours {
   modeleId: string | null;

@@ -88,6 +88,17 @@
   align-content: start;
 }
 
+/* L'intertitre qui sépare le répertoire personnel du catalogue entier. Il colle
+   au haut de la liste pendant qu'on la parcourt : sans cela, on ne sait plus
+   dans laquelle des deux on se trouve. */
+.choix__rubrique {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 10px 8px 6px;
+  background: var(--noir);
+}
+
 .choix__item {
   display: flex;
   align-items: center;

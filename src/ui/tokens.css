@@ -189,6 +189,36 @@ select {
    Utilitaires partagés
    ========================================================================== */
 
+/* Champ de saisie. Partagé par l'éditeur, les réglages, la note de fin de
+   séance et les relevés du corps — d'où sa place ici.
+
+   `min-width: 0` et `width: 100%` sont indispensables : un `input` porte une
+   largeur intrinsèque d'une vingtaine de caractères, et dans une grille, dont
+   les éléments valent `min-width: auto` par défaut, cette largeur l'emporte et
+   fait sortir la colonne de l'écran. */
+.champ {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.champ__saisie {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--cible);
+  padding: 0 14px;
+  border-radius: var(--r-s);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  color: var(--blanc);
+  font-size: var(--t-appui);
+  font-weight: 500;
+}
+
+.champ__saisie::placeholder {
+  color: var(--gris-sourd);
+}
+
 /* Jeton de filtre. Partagé par quatre écrans — les onglets de Séances, les
    puces de Progrès, les disques des Réglages, le matériel du sélecteur — donc
    il vit ici et non dans la feuille de l'un d'eux. */
@@ -227,6 +257,36 @@ select {
 
 .bande-h::-webkit-scrollbar {
   display: none;
+}
+
+/* Le dégradé de bord : la seule chose qui dise qu'il reste du contenu de ce
+   côté-là. `data-bord` est posé par le composant `BandeH`, qui remesure à
+   chaque défilement et à chaque changement de contenu. */
+.bande-h[data-bord='droite'] {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+}
+
+.bande-h[data-bord='gauche'] {
+  -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 40px), transparent);
+  mask-image: linear-gradient(to left, #000 calc(100% - 40px), transparent);
+}
+
+.bande-h[data-bord='deux'] {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 40px,
+    #000 calc(100% - 40px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 40px,
+    #000 calc(100% - 40px),
+    transparent
+  );
 }
 
 /* Symétrique : une colonne qui défile verticalement ne doit pas capter le

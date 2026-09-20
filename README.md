@@ -14,7 +14,7 @@ Cible : **iPhone 17 / 17 Pro** (402 × 874 pt), thème sombre uniquement.
 | **Séances** | Gérer ses modèles : créer, composer, réordonner, mettre en favorite |
 | **＋** | Feuille « Démarrer » : reprendre, une favorite, une autre séance, ou une séance libre |
 | **Historique** | Bandeau de régularité sur quatre mois, séances par mois, détail série par série |
-| **Progrès** | Courbe de tonnage par séance, 1RM estimé par exercice, séries dures par muscle contre la fourchette 10–20 |
+| **Progrès** | Quatre vues : tonnage par séance, 1RM estimé par exercice, séries dures par muscle contre la fourchette 10–20, et le **corps** — poids, tours de taille, de bras et de cuisse, avec photo de suivi |
 
 Les **réglages** (barre, disques, règles de calcul, crédits) s'ouvrent depuis
 l'engrenage de l'accueil.
@@ -28,6 +28,11 @@ Deux couleurs portent tout le sens. Le **vert fluo** dit « action » et
 « au-dessus », le **corail** dit « en dessous ». Tout le reste est noir, blanc et
 gris — y compris dans les graphiques, où l'identité d'une série vient toujours
 de son étiquette, jamais d'une teinte.
+
+Les illustrations d'exercices sont **vertes** partout : sur le noir, le trait
+gris se devinait plus qu'il ne se lisait. Le rail de l'écran de séance fait
+exception et retient les siennes d'un palier de la rampe, pour que l'exercice
+en cours reste le seul franchement vert.
 
 Tous les jetons sont dans [`src/ui/tokens.css`](src/ui/tokens.css). Typographie :
 **Geist** pour l'interface et les grands chiffres, **Geist Mono** pour les
@@ -69,15 +74,16 @@ séances fictives à la demande.
 [`magasin.ts`](src/data/magasin.ts) est le seul module qui parle à la base ; les
 écrans lisent des signaux.
 
-Le bundle pèse **262 ko de JavaScript, 71 ko compressés**, dont 94 ko pour le
+Le bundle pèse **272 ko de JavaScript, 75 ko compressés**, dont 94 ko pour le
 seul catalogue d'exercices. Il reste d'un bloc : `fiche()` sert les noms sur
 tous les écrans, alors le découper reviendrait à faire attendre chacun d'eux
 pour économiser un téléchargement qui n'a lieu qu'une fois.
 
-Contrôlé sur les neuf écrans, à 375 et à 402 pt, marges d'iPhone simulées :
-aucun texte sous 4,5:1, aucune cible tactile sous 44 pt, aucun débordement
-latéral, aucun libellé tronqué à l'exception des sous-titres anglais du
-sélecteur — coupés exprès, ils ne servent qu'à lever un doute.
+Contrôlé sur tous les écrans — les quatre vues de Progrès, le sélecteur, la
+saisie d'un relevé, l'écran de séance — à 375 et à 402 pt, marges d'iPhone
+simulées : aucun texte sous 4,5:1, aucune cible tactile sous 44 pt, aucun
+débordement latéral, aucun libellé tronqué à l'exception des sous-titres
+anglais du sélecteur — coupés exprès, ils ne servent qu'à lever un doute.
 
 ## Déploiement
 
@@ -117,6 +123,29 @@ modèle, et au départ d'une séance — pendant qu'il y a encore du réseau.
 > refuse d'enregistrer un service worker. Le test se fait sur l'iPhone, en mode
 > avion, après une première visite en ligne.
 
+## Le suivi du corps
+
+Quatre chiffres et une photo, tous indépendants : **poids**, **tour de taille**,
+**tour de bras**, **tour de cuisse**. Aucun n'est obligatoire — un relevé où
+seul le poids est rempli vaut mieux qu'un relevé qu'on a renoncé à saisir.
+
+Le tonnage seul ment un peu : il monte aussi quand le poids de corps monte. La
+vue **Corps** est là pour trancher.
+
+Les photos passent par un canvas avant d'être gardées — 1080 px sur le grand
+côté, JPEG 0,7, soit une centaine de kilo-octets au lieu de quatre mégas. Elles
+voyagent dans le fichier de sauvegarde, qui grossit en conséquence.
+
+## Les bandes qui défilent
+
+Une bande horizontale répond au doigt sans qu'on ait rien à faire, mais à rien
+d'autre : une molette verticale posée dessus ne produit aucun effet, et un
+glissement pressé-tiré ne fait défiler aucun conteneur. Le composant
+[`BandeH`](src/ui/BandeH.tsx) branche ces deux gestes, laisse le tactile au
+navigateur, et pose le `data-bord` dont la feuille de style tire le dégradé qui
+annonce qu'il reste du contenu. Un glissement de plus de six pixels avale le
+clic qui le suit : tirer une carte favorite ne démarre pas la séance.
+
 ## Comment se calcule le tonnage
 
 `Σ(répétitions × charge)` sur les **séries de travail** :
@@ -143,6 +172,7 @@ src/data/
   metriques.ts      tonnage, 1RM Epley, comparaisons, alertes
   selection.ts      les questions que les écrans posent aux données
   disques.ts        calculateur de chargement de barre
+  photo.ts          réduit une photo de suivi avant de la garder
   precache.ts       tire les illustrations pendant qu'il y a du réseau
   demarrage.ts      modèles semés + jeu d'essai engendré
 scripts/            catalogue d'exercices, polices, icônes

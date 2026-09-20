@@ -23,7 +23,9 @@ export type NomIcone =
   | 'fleche-haut'
   | 'poignee'
   | 'corbeille'
-  | 'recherche';
+  | 'recherche'
+  | 'appareil'
+  | 'corps';
 
 /** Tracés à 24 × 24, trait uniquement, extrémités et jointures arrondies. */
 const TRACES: Record<NomIcone, string> = {
@@ -47,6 +49,9 @@ const TRACES: Record<NomIcone, string> = {
   poignee: 'M4 8h16M4 16h16',
   corbeille: 'M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5',
   recherche: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3',
+  appareil:
+    'M14.5 4l1.5 2.5h3A1.5 1.5 0 0 1 20.5 8v10a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 18V8A1.5 1.5 0 0 1 5 6.5h3L9.5 4zM12 16.5a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
+  corps: 'M9.5 21v-6l-2-1.5V9a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v4.5L14.5 15v6M12 5.5a1.75 1.75 0 1 0 0-3.5 1.75 1.75 0 0 0 0 3.5z',
 };
 
 /** L'étoile pleine sert à l'état « favorite ». */

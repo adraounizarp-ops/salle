@@ -6,12 +6,14 @@ import {
   grilleDuMois,
   ilYA,
   nomMois,
+  nombreDe,
   recordsRecents,
   seancesDuMois,
   tonnageFenetre,
   tonnageSeance,
   volumeParGroupe,
 } from '../data/selection';
+import { BandeH } from '../ui/BandeH';
 import { BarreChargee } from '../ui/BarreChargee';
 import { CarteFavorite } from '../ui/CarteSeance';
 import { Chiffre } from '../ui/Chiffre';
@@ -64,7 +66,14 @@ export function Accueil({
   const cases = grilleDuMois(historique, maintenant.getFullYear(), maintenant.getMonth());
   const duMois = seancesDuMois(historique, maintenant.getFullYear(), maintenant.getMonth());
 
-  const favorites = modeles.filter((m) => m.favorite);
+  // La rangée de raccourcis ne disparaît jamais : sans favorite épinglée elle
+  // montre les séances les plus faites, parce qu'un accueil sans raccourci vers
+  // une séance n'est plus un accueil.
+  const epinglees = modeles.filter((m) => m.favorite);
+  const parDefaut = [...modeles]
+    .sort((a, b) => nombreDe(historique, b.id) - nombreDe(historique, a.id))
+    .slice(0, 4);
+  const raccourcis = epinglees.length > 0 ? epinglees : parDefaut;
   const recents = recordsRecents(historique, 45).slice(0, 3);
   const volume = volumeParGroupe(historique, 7).slice(0, 4);
   const maxSeries = Math.max(1, ...volume.map((v) => v.series));
@@ -142,9 +151,9 @@ export function Accueil({
         </>
       )}
 
-      {favorites.length > 0 && (
+      {raccourcis.length > 0 && (
         <Section
-          titre="Séances favorites"
+          titre={epinglees.length > 0 ? 'Séances favorites' : 'Tes séances'}
           plein
           suffixe={
             <button type="button" class="lien" onClick={onToutesLesSeances}>
@@ -153,8 +162,8 @@ export function Accueil({
             </button>
           }
         >
-          <div class="favorites bande-h">
-            {favorites.map((m) => {
+          <BandeH class="favorites">
+            {raccourcis.map((m) => {
               const derniere = derniereDe(historique, m.id);
               return (
                 <CarteFavorite
@@ -166,7 +175,13 @@ export function Accueil({
                 />
               );
             })}
-          </div>
+          </BandeH>
+
+          {epinglees.length === 0 && (
+            <p class="favorites__note">
+              Touche l'étoile d'une séance pour l'épingler ici.
+            </p>
+          )}
         </Section>
       )}
 

@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks';
-import { formatNombre } from '../data/metriques';
+import { formatCharge, formatNombre } from '../data/metriques';
 import './courbe.css';
 
 export interface Point {
@@ -13,6 +13,15 @@ interface Props {
   /** Moyenne mobile, tracée en retrait : la tendance sous le bruit. */
   tendance?: number[];
   unite?: string;
+  /** Ce que la courbe mesure, pour la légende. */
+  serie?: string;
+  /** Ce sur quoi porte la moyenne mobile : « séances », « relevés »… */
+  pas?: string;
+  /**
+   * Garder la décimale. Un tonnage s'arrondit au kilo sans rien perdre ; un
+   * poids de corps arrondi à 78 kg efface précisément ce qu'on vient regarder.
+   */
+  decimale?: boolean;
 }
 
 const L = 320;
@@ -24,8 +33,17 @@ const MARGE = { haut: 14, bas: 22, gauche: 6, droite: 58 };
  * même graphique. Le dernier point est étiqueté directement : c'est le chiffre
  * qu'on vient chercher, il ne doit pas demander un survol.
  */
-export function Courbe({ titre, points, tendance, unite = 'kg' }: Props) {
+export function Courbe({
+  titre,
+  points,
+  tendance,
+  unite = 'kg',
+  serie = 'Tonnage',
+  pas = 'séances',
+  decimale = false,
+}: Props) {
   const [survol, setSurvol] = useState<number | null>(null);
+  const ecrire = decimale ? formatCharge : formatNombre;
 
   const valeurs = points.map((p) => p.valeur);
   const bas = Math.min(...valeurs) * 0.94;
@@ -46,11 +64,11 @@ export function Courbe({ titre, points, tendance, unite = 'kg' }: Props) {
         <h3 class="courbe__titre">{titre}</h3>
         <ul class="courbe__legende">
           <li>
-            <span class="courbe__puce" style={{ background: 'var(--serie-1)' }} /> Tonnage
+            <span class="courbe__puce" style={{ background: 'var(--serie-1)' }} /> {serie}
           </li>
           {tendance && (
             <li>
-              <span class="courbe__puce courbe__puce--tendance" /> Moyenne 3 séances
+              <span class="courbe__puce courbe__puce--tendance" /> Moyenne 3 {pas}
             </li>
           )}
         </ul>
@@ -60,7 +78,7 @@ export function Courbe({ titre, points, tendance, unite = 'kg' }: Props) {
         viewBox={`0 0 ${L} ${H}`}
         class="courbe__toile"
         role="img"
-        aria-label={`${titre} : de ${formatNombre(valeurs[0])} à ${formatNombre(valeurs[dernier])} ${unite}`}
+        aria-label={`${titre} : de ${ecrire(valeurs[0])} à ${ecrire(valeurs[dernier])} ${unite}`}
         onPointerLeave={() => setSurvol(null)}
         onPointerMove={(e) => {
           const r = (e.currentTarget as SVGSVGElement).getBoundingClientRect();
@@ -81,8 +99,16 @@ export function Courbe({ titre, points, tendance, unite = 'kg' }: Props) {
         <circle class="courbe__point" cx={x(actif)} cy={y(valeurs[actif])} r="5" />
 
         <text class="courbe__valeur donnee" x={L - MARGE.droite + 8} y={y(valeurs[actif]) + 4}>
-          {formatNombre(valeurs[actif])}
+          {ecrire(valeurs[actif])}
         </text>
+
+        {/* La première étiquette reste visible : sans elle, on lit « où j'en
+            suis » sans savoir « depuis quand ». */}
+        {actif !== 0 && (
+          <text class="courbe__abscisse courbe__abscisse--depart" x={MARGE.gauche} y={H - 6}>
+            {points[0].etiquette}
+          </text>
+        )}
         <text class="courbe__abscisse" x={x(actif)} y={H - 6} text-anchor="middle">
           {points[actif].etiquette}
         </text>

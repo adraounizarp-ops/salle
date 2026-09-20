@@ -15,6 +15,7 @@ import {
   type Serie,
 } from '../data/metriques';
 import { fiche, type ExerciceFait, type SeanceEnCours } from '../data/modele';
+import { BandeH } from '../ui/BandeH';
 import { BarreChargee } from '../ui/BarreChargee';
 import { Icone } from '../ui/Icone';
 import { Illustration } from '../ui/Illustration';
@@ -195,7 +196,7 @@ export function Execution({
       </header>
 
       {/* Le rail d'exercices : on saute d'un exercice à l'autre sans revenir en arrière. */}
-      <nav class="rail bande-h" aria-label="Exercices de la séance">
+      <BandeH class="rail" etiquette="Exercices de la séance">
         {seance.exercices.map((e, i) => {
           const fini = e.series.every((s) => s.faite);
           return (
@@ -219,7 +220,7 @@ export function Execution({
             </button>
           );
         })}
-      </nav>
+      </BandeH>
 
       <main class="exec__corps">
         <section class="bloc-exo">

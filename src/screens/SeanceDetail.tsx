@@ -14,6 +14,7 @@ interface Props {
   onFavorite: () => void;
   onModifier: () => void;
   onDemarrer: () => void;
+  onSupprimer: () => void;
 }
 
 const moyenneMobile = (v: number[], n: number) =>
@@ -22,7 +23,15 @@ const moyenneMobile = (v: number[], n: number) =>
     return t.reduce((s, x) => s + x, 0) / t.length;
   });
 
-export function SeanceDetail({ modele, historique, onRetour, onFavorite, onModifier, onDemarrer }: Props) {
+export function SeanceDetail({
+  modele,
+  historique,
+  onRetour,
+  onFavorite,
+  onModifier,
+  onDemarrer,
+  onSupprimer,
+}: Props) {
   const derniere = derniereDe(historique, modele.id);
   const fois = nombreDe(historique, modele.id);
   const tonnages = serieTonnage(historique, modele.id);
@@ -144,6 +153,22 @@ export function SeanceDetail({ modele, historique, onRetour, onFavorite, onModif
           </div>
         </Section>
       )}
+
+      {/* Même place et même formulation qu'au détail d'une séance passée : la
+          suppression n'a pas à se chercher dans l'éditeur. */}
+      <Section>
+        <button
+          type="button"
+          class="bouton bouton--corail bouton--plein"
+          onClick={() => {
+            const texte = `Supprimer « ${modele.nom} » ? L'historique des séances déjà faites est conservé.`;
+            if (confirm(texte)) onSupprimer();
+          }}
+        >
+          <Icone nom="corbeille" taille={16} />
+          Supprimer cette séance
+        </button>
+      </Section>
     </Ecran>
   );
 }

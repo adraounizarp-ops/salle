@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 import * as magasin from '../data/magasin';
-import { enCours, historique, modeles, pret, reglages } from '../data/magasin';
+import { enCours, historique, mesures, modeles, pret, reglages } from '../data/magasin';
 import type { Modele } from '../data/modele';
 import { Ecran } from '../ui/Ecran';
 import { FeuilleDepart } from '../ui/FeuilleDepart';
@@ -113,6 +113,7 @@ export function Shell() {
         <SeanceEditeur
           modele={{ id: `m${Date.now()}`, nom: '', favorite: false, lignes: [] }}
           historique={historique.value}
+          modeles={modeles.value}
           nouvelle
           onAnnuler={retour}
           onEnregistrer={async (m) => {
@@ -131,6 +132,7 @@ export function Shell() {
         <SeanceEditeur
           modele={m}
           historique={historique.value}
+          modeles={modeles.value}
           onAnnuler={retour}
           onEnregistrer={async (suivant) => {
             await magasin.enregistrerModele(suivant);
@@ -156,6 +158,10 @@ export function Shell() {
           onFavorite={() => void magasin.basculerFavorite(m.id)}
           onModifier={() => aller(`/seances/${m.id}/modifier`)}
           onDemarrer={() => demarrer(m)}
+          onSupprimer={async () => {
+            await magasin.supprimerModele(m.id);
+            allerOnglet('/seances');
+          }}
         />
       );
     }
@@ -209,7 +215,17 @@ export function Shell() {
       );
     }
 
-    if (apparier('/progres')) return <Progres modeles={modeles.value} historique={historique.value} />;
+    if (apparier('/progres')) {
+      return (
+        <Progres
+          modeles={modeles.value}
+          historique={historique.value}
+          mesures={mesures.value}
+          onMesure={magasin.enregistrerMesure}
+          onSupprimerMesure={magasin.supprimerMesure}
+        />
+      );
+    }
 
     if (apparier('/reglages')) {
       return (

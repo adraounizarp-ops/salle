@@ -1,34 +1,37 @@
-/* Le petit visuel demonstratif. */
+/* Le petit visuel démonstratif.
+
+   Ce fichier était le seul que la refonte « Noir & Fluo » n'avait pas touché :
+   il appelait encore quatre jetons de la direction abandonnée — `--magnesie`,
+   `--duree-courte`, `--rayon-s`, `--fonte-700` — qui n'existent plus. Les trois
+   déclarations concernées étaient donc invalides : la couleur retombait sur
+   l'héritage, d'où le gris terne partout, le fondu d'apparition ne se jouait
+   jamais, et le carré d'attente était transparent. */
 
 .illu {
   position: relative;
   width: var(--cote);
   height: var(--cote);
   flex: none;
-  color: var(--magnesie);
+  /* Le trait est vert par défaut : sur le noir, c'est ce qui se voit. Les rares
+     endroits qui doivent le retenir — le rail de séance — le redéfinissent. */
+  color: var(--vert);
 }
 
 .illu__image {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity var(--duree-courte) linear;
+  transition: opacity var(--court) linear;
 }
 
 .illu__image[data-visible='true'] {
   opacity: 1;
 }
 
-.illu__image svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Reserve la place pendant le chargement, sans faire sauter la mise en page. */
+/* Réserve la place pendant le chargement, sans faire sauter la mise en page. */
 .illu__attente {
   position: absolute;
   inset: 12%;
-  border-radius: var(--rayon-s);
-  background: var(--fonte-700);
+  border-radius: var(--r-s);
+  background: var(--carte-haute);
 }

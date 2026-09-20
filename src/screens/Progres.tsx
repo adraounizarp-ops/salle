@@ -1,17 +1,38 @@
 import { useState } from 'preact/hooks';
 import { Courbe } from '../charts/Courbe';
-import { formatNombre, pluriel, unRmEpley } from '../data/metriques';
-import { fiche, nomGroupe, type Modele, type SeanceFaite } from '../data/modele';
-import { ilYA, nombreDe, records, serieTonnage, volumeParGroupe } from '../data/selection';
+import { formatCharge, formatNombre, pluriel, unRmEpley } from '../data/metriques';
+import {
+  CHAMPS_MESURE,
+  fiche,
+  nomGroupe,
+  type CleMesure,
+  type Mesure,
+  type Modele,
+  type SeanceFaite,
+} from '../data/modele';
+import {
+  ilYA,
+  nomMoisCourt,
+  nombreDe,
+  records,
+  serieTonnage,
+  volumeParGroupe,
+} from '../data/selection';
+import { BandeH } from '../ui/BandeH';
 import { Ecran, Section } from '../ui/Ecran';
+import { FeuilleMesure } from '../ui/FeuilleMesure';
+import { Icone } from '../ui/Icone';
 import { Segmente } from '../ui/Segmente';
 import './progres.css';
 
-type Vue = 'seance' | 'exercice' | 'muscle';
+type Vue = 'seance' | 'exercice' | 'muscle' | 'corps';
 
 interface Props {
   modeles: Modele[];
   historique: SeanceFaite[];
+  mesures: Mesure[];
+  onMesure: (m: Mesure) => void;
+  onSupprimerMesure: (id: string) => void;
 }
 
 const moyenneMobile = (v: number[], n: number) =>
@@ -23,8 +44,11 @@ const moyenneMobile = (v: number[], n: number) =>
 /** Repères d'hypertrophie : sous 10 séries on est léger, au-delà de 20 on sature. */
 const ZONE = [10, 20] as const;
 
-export function Progres({ modeles, historique }: Props) {
+export function Progres({ modeles, historique, mesures, onMesure, onSupprimerMesure }: Props) {
   const [vue, setVue] = useState<Vue>('seance');
+  // `null` : la feuille est fermée. Un objet vide : on crée. Un relevé : on le
+  // reprend.
+  const [saisie, setSaisie] = useState<Mesure | 'nouveau' | null>(null);
 
   return (
     <Ecran titre="Progrès" sous="13 dernières semaines">
@@ -36,19 +60,40 @@ export function Progres({ modeles, historique }: Props) {
           { id: 'seance', nom: 'Séance' },
           { id: 'exercice', nom: 'Exercice' },
           { id: 'muscle', nom: 'Muscle' },
+          { id: 'corps', nom: 'Corps' },
         ]}
       />
 
       {vue === 'seance' && <ParSeance modeles={modeles} historique={historique} />}
       {vue === 'exercice' && <ParExercice historique={historique} />}
       {vue === 'muscle' && <ParMuscle historique={historique} />}
+      {vue === 'corps' && (
+        <ParCorps
+          mesures={mesures}
+          onAjouter={() => setSaisie('nouveau')}
+          onModifier={setSaisie}
+          onSupprimer={(m) => onSupprimerMesure(m.id)}
+        />
+      )}
+
+      {saisie && (
+        <FeuilleMesure
+          mesure={saisie === 'nouveau' ? undefined : saisie}
+          precedent={mesures[mesures.length - 1]}
+          onEnregistrer={(m) => {
+            onMesure(m);
+            setSaisie(null);
+          }}
+          onFermer={() => setSaisie(null)}
+        />
+      )}
     </Ecran>
   );
 }
 
 // --- Par séance ---------------------------------------------------------------
 
-function ParSeance({ modeles, historique }: Props) {
+function ParSeance({ modeles, historique }: { modeles: Modele[]; historique: SeanceFaite[] }) {
   const faits = modeles.filter((m) => nombreDe(historique, m.id) >= 3);
   const [id, setId] = useState(faits[0]?.id ?? '');
   const choisi = faits.find((m) => m.id === id) ?? faits[0];
@@ -70,7 +115,7 @@ function ParSeance({ modeles, historique }: Props) {
 
   return (
     <>
-      <div class="puces bande-h">
+      <BandeH class="puces">
         {faits.map((m) => (
           <button
             key={m.id}
@@ -83,7 +128,7 @@ function ParSeance({ modeles, historique }: Props) {
             {m.nom}
           </button>
         ))}
-      </div>
+      </BandeH>
 
       <Section titre="Tonnage par exécution">
         <div class="carte">
@@ -145,7 +190,7 @@ function ParExercice({ historique }: { historique: SeanceFaite[] }) {
 
   return (
     <>
-      <div class="puces bande-h">
+      <BandeH class="puces">
         {meilleurs.slice(0, 8).map((r) => (
           <button
             key={r.slug}
@@ -158,7 +203,7 @@ function ParExercice({ historique }: { historique: SeanceFaite[] }) {
             {fiche(r.slug).nomFr}
           </button>
         ))}
-      </div>
+      </BandeH>
 
       {suite.length >= 3 && (
         <Section titre="1RM estimé (Epley)">
@@ -249,5 +294,164 @@ function ParMuscle({ historique }: { historique: SeanceFaite[] }) {
         </p>
       </div>
     </Section>
+  );
+}
+
+// --- Le corps -----------------------------------------------------------------
+
+const dateCourte = (t: number) =>
+  `${new Date(t).getDate()} ${nomMoisCourt(new Date(t).getMonth())}`;
+
+/**
+ * Le poids et les tours de bras.
+ *
+ * Le carnet ne suivait que ce qui se soulève. Or un tonnage qui monte pendant
+ * que le poids de corps monte plus vite ne raconte pas la même histoire qu'un
+ * tonnage qui monte à poids constant — et c'est exactement ce qu'on vient
+ * vérifier ici.
+ */
+function ParCorps({
+  mesures,
+  onAjouter,
+  onModifier,
+  onSupprimer,
+}: {
+  mesures: Mesure[];
+  onAjouter: () => void;
+  onModifier: (m: Mesure) => void;
+  onSupprimer: (m: Mesure) => void;
+}) {
+  const [cle, setCle] = useState<CleMesure>('poids');
+
+  const champ = CHAMPS_MESURE.find((c) => c.cle === cle) ?? CHAMPS_MESURE[0];
+  const renseignes = mesures.filter((m) => m[cle] !== undefined);
+  const recents = [...mesures].reverse();
+
+  if (mesures.length === 0) {
+    return (
+      <>
+        <Section>
+          <div class="vide">
+            <p class="vide__titre">Rien de relevé</p>
+            <p class="vide__texte">
+              Le poids et les tours complètent le tonnage : ils disent si le volume qui monte
+              construit du muscle ou seulement des chiffres.
+            </p>
+          </div>
+        </Section>
+        <Section>
+          <button type="button" class="bouton bouton--vert bouton--plein" onClick={onAjouter}>
+            <Icone nom="plus" taille={16} />
+            Premier relevé
+          </button>
+        </Section>
+      </>
+    );
+  }
+
+  const premier = renseignes[0]?.[cle];
+  const dernier = renseignes[renseignes.length - 1]?.[cle];
+  const ecart = premier !== undefined && dernier !== undefined ? dernier - premier : 0;
+
+  return (
+    <>
+      <BandeH class="puces">
+        {CHAMPS_MESURE.map((c) => (
+          <button
+            key={c.cle}
+            type="button"
+            class="filtre"
+            data-actif={c.cle === cle}
+            aria-pressed={c.cle === cle}
+            onClick={() => setCle(c.cle)}
+          >
+            {c.nom}
+          </button>
+        ))}
+      </BandeH>
+
+      <Section titre={champ.nom}>
+        <div class="carte">
+          {renseignes.length >= 2 ? (
+            <>
+              <Courbe
+                titre={`${formatCharge(dernier as number)} ${champ.unite}`}
+                unite={champ.unite}
+                serie={champ.nom}
+                pas="relevés"
+                decimale
+                points={renseignes.map((m) => ({
+                  etiquette: dateCourte(m.date),
+                  valeur: m[cle] as number,
+                }))}
+                tendance={moyenneMobile(
+                  renseignes.map((m) => m[cle] as number),
+                  3,
+                )}
+              />
+              <p class="corps__ecart" data-sens={ecart >= 0 ? 'haut' : 'bas'}>
+                {ecart >= 0 ? '+' : '−'}
+                {formatCharge(Math.abs(ecart))} {champ.unite}
+                <span class="corps__depuis">
+                  depuis le {dateCourte(renseignes[0].date)}, sur{' '}
+                  {renseignes.length} {pluriel(renseignes.length, 'relevé')}
+                </span>
+              </p>
+            </>
+          ) : (
+            <p class="carte__note carte__note--seule">
+              Un deuxième relevé et la courbe se dessine. Pour l'instant :{' '}
+              {dernier === undefined
+                ? 'rien de noté pour cette mesure.'
+                : `${formatCharge(dernier)} ${champ.unite}.`}
+            </p>
+          )}
+        </div>
+      </Section>
+
+      <Section titre="Relevés">
+        <ul class="releves">
+          {recents.map((m) => (
+            <li key={m.id} class="releve">
+              <button type="button" class="releve__zone" onClick={() => onModifier(m)}>
+                {m.photo ? (
+                  <img class="releve__photo" src={m.photo} alt="" />
+                ) : (
+                  <span class="releve__photo releve__photo--vide" aria-hidden="true" />
+                )}
+                <span class="releve__nommage">
+                  <span class="releve__date">{dateCourte(m.date)}</span>
+                  <span class="releve__chiffres donnee">
+                    {CHAMPS_MESURE.filter((c) => m[c.cle] !== undefined)
+                      .map((c) => `${formatCharge(m[c.cle] as number)} ${c.unite}`)
+                      .join(' · ') || 'photo seule'}
+                  </span>
+                </span>
+                <Icone nom="chevron-droit" taille={16} />
+              </button>
+              <button
+                type="button"
+                class="releve__supprimer"
+                aria-label={`Supprimer le relevé du ${dateCourte(m.date)}`}
+                onClick={() => {
+                  if (confirm(`Supprimer le relevé du ${dateCourte(m.date)} ?`)) onSupprimer(m);
+                }}
+              >
+                <Icone nom="corbeille" taille={16} />
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        <button
+          type="button"
+          class="bouton bouton--fantome bouton--plein corps__ajouter"
+          onClick={onAjouter}
+        >
+          <Icone nom="plus" taille={16} />
+          Ajouter un relevé
+        </button>
+      </Section>
+    </>
   );
 }

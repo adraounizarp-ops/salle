@@ -35,6 +35,14 @@
   opacity: 0.6;
 }
 
+/* Le mot qui explique la rangée quand rien n'est encore épinglé. Il vit sous la
+   bande, donc il reprend la gouttière que la section « pleine » a retirée. */
+.favorites__note {
+  margin: 10px var(--gouttiere) 0;
+  font-size: var(--t-menu);
+  color: var(--gris-sourd);
+}
+
 .section__compte {
   font-size: var(--t-etiquette);
   font-weight: 600;

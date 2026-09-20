@@ -1,5 +1,5 @@
 import { seriesDures, tonnageExercice, unRmEpley } from './metriques';
-import { fiche, type ExerciceFait, type SeanceFaite } from './modele';
+import { fiche, type ExerciceFait, type Modele, type SeanceFaite } from './modele';
 
 /**
  * Les questions que les écrans posent aux données.
@@ -182,6 +182,42 @@ export function volumeParGroupe(
   }
 
   return [...par.values()].sort((a, b) => b.series - a.series);
+}
+
+// --- Le répertoire personnel -------------------------------------------------
+
+/**
+ * Les exercices que l'on pratique déjà, du plus récemment fait au plus ancien,
+ * puis ceux qui n'existent que sur le papier — présents dans un modèle mais
+ * jamais encore exécutés.
+ *
+ * Le catalogue en compte 302 par ordre alphabétique ; dans les faits on en
+ * refait toujours la même douzaine. C'est elle qu'il faut trouver en premier.
+ */
+export function exercicesConnus(
+  historique: readonly SeanceFaite[],
+  modeles: readonly Modele[],
+): string[] {
+  const vus: string[] = [];
+  const dedans = new Set<string>();
+
+  for (let i = historique.length - 1; i >= 0; i--) {
+    for (const e of historique[i].exercices) {
+      if (dedans.has(e.slug)) continue;
+      dedans.add(e.slug);
+      vus.push(e.slug);
+    }
+  }
+
+  for (const m of modeles) {
+    for (const l of m.lignes) {
+      if (dedans.has(l.slug)) continue;
+      dedans.add(l.slug);
+      vus.push(l.slug);
+    }
+  }
+
+  return vus;
 }
 
 // --- Mise en forme du temps --------------------------------------------------

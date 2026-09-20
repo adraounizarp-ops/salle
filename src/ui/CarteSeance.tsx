@@ -12,9 +12,12 @@ function groupesDe(m: Modele): string[] {
     const g = fiche(l.slug).groupe;
     compte.set(g, (compte.get(g) ?? 0) + l.series);
   }
+  // Deux groupes, pas trois : à 375 pt la troisième étiquette sort de la
+  // rangée et se fait couper au milieu d'un mot. Les deux qui portent le plus
+  // de séries disent déjà ce qu'est la séance.
   return [...compte.entries()]
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
+    .slice(0, 2)
     .map(([g]) => nomGroupe(g));
 }
 

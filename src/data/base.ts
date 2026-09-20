@@ -1,5 +1,5 @@
 import Dexie, { type EntityTable } from 'dexie';
-import type { Modele, SeanceEnCours, SeanceFaite } from './modele';
+import type { Mesure, Modele, SeanceEnCours, SeanceFaite } from './modele';
 
 /**
  * La base locale. Tout vit dans l'iPhone : aucun compte, aucun serveur, aucune
@@ -42,6 +42,7 @@ interface Entree {
 const base = new Dexie('salle') as Dexie & {
   modeles: EntityTable<Modele, 'id'>;
   seances: EntityTable<SeanceFaite, 'id'>;
+  mesures: EntityTable<Mesure, 'id'>;
   entrees: EntityTable<Entree, 'cle'>;
 };
 
@@ -51,6 +52,12 @@ base.version(1).stores({
   modeles: 'id, nom, favorite',
   seances: 'id, date, modeleId',
   entrees: 'cle',
+});
+
+// Les relevés du corps. Une version ajoutée ne touche pas aux tables
+// existantes : l'historique déjà saisi traverse la migration intact.
+base.version(2).stores({
+  mesures: 'id, date',
 });
 
 export { base };
@@ -67,6 +74,12 @@ export const effacerModele = (id: string) => base.modeles.delete(id);
 
 export const ecrireSeance = (s: SeanceFaite) => base.seances.put(s);
 export const effacerSeance = (id: string) => base.seances.delete(id);
+
+/** Les relevés du plus ancien au plus récent : l'ordre que la courbe attend. */
+export const lireMesures = () => base.mesures.orderBy('date').toArray();
+
+export const ecrireMesure = (m: Mesure) => base.mesures.put(m);
+export const effacerMesure = (id: string) => base.mesures.delete(id);
 
 async function lireEntree<T>(cle: string, defaut: T): Promise<T> {
   const e = await base.entrees.get(cle);
@@ -91,9 +104,10 @@ export async function baseVierge(): Promise<boolean> {
 }
 
 export async function toutEffacer(): Promise<void> {
-  await base.transaction('rw', base.modeles, base.seances, base.entrees, async () => {
+  await base.transaction('rw', base.modeles, base.seances, base.mesures, base.entrees, async () => {
     await base.modeles.clear();
     await base.seances.clear();
+    await base.mesures.clear();
     await base.entrees.clear();
   });
 }
@@ -102,20 +116,23 @@ export async function toutEffacer(): Promise<void> {
 
 export interface Sauvegarde {
   format: 'salle';
-  version: 1;
+  /** 1 : sans relevés du corps. 2 : avec. Les deux se relisent. */
+  version: 1 | 2;
   exporteLe: number;
   modeles: Modele[];
   seances: SeanceFaite[];
+  mesures?: Mesure[];
   reglages: Reglages;
 }
 
 export async function exporter(): Promise<Sauvegarde> {
   return {
     format: 'salle',
-    version: 1,
+    version: 2,
     exporteLe: Date.now(),
     modeles: await lireModeles(),
     seances: await lireHistorique(),
+    mesures: await lireMesures(),
     reglages: await lireReglages(),
   };
 }
@@ -125,21 +142,29 @@ export async function exporter(): Promise<Sauvegarde> {
  * fusionne : fusionner deux historiques sans clé stable inventerait des
  * séances en double, ce qui fausserait chaque comparaison de tonnage.
  */
-export async function importer(brut: unknown): Promise<{ modeles: number; seances: number }> {
+export async function importer(
+  brut: unknown,
+): Promise<{ modeles: number; seances: number; mesures: number }> {
   const s = brut as Partial<Sauvegarde>;
   if (!s || s.format !== 'salle' || !Array.isArray(s.modeles) || !Array.isArray(s.seances)) {
     throw new Error("Ce fichier n'est pas une sauvegarde de Salle.");
   }
 
-  await base.transaction('rw', base.modeles, base.seances, base.entrees, async () => {
+  // Une sauvegarde de version 1 n'a pas de relevés : son absence n'est pas une
+  // erreur, c'est une sauvegarde d'avant.
+  const mesures = Array.isArray(s.mesures) ? (s.mesures as Mesure[]) : [];
+
+  await base.transaction('rw', base.modeles, base.seances, base.mesures, base.entrees, async () => {
     await base.modeles.clear();
     await base.seances.clear();
+    await base.mesures.clear();
     await base.modeles.bulkPut(s.modeles as Modele[]);
     await base.seances.bulkPut(s.seances as SeanceFaite[]);
+    await base.mesures.bulkPut(mesures);
     if (s.reglages) await ecrireEntree('reglages', { ...REGLAGES_PAR_DEFAUT, ...s.reglages });
   });
 
-  return { modeles: s.modeles.length, seances: s.seances.length };
+  return { modeles: s.modeles.length, seances: s.seances.length, mesures: mesures.length };
 }
 
 /**

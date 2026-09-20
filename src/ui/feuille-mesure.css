@@ -1,0 +1,71 @@
+/* La saisie d'un relevé du corps. */
+
+.mesure {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.mesure > * {
+  min-width: 0;
+}
+
+/* Deux colonnes : les quatre champs tiennent sans faire défiler la feuille, et
+   le pouce reste au-dessus du clavier. */
+.mesure__grille {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mesure__photo {
+  display: grid;
+}
+
+.mesure__fichier {
+  display: none;
+}
+
+.mesure__vignette {
+  position: relative;
+  margin: 0;
+  border-radius: var(--r-s);
+  overflow: hidden;
+  background: var(--carte-haute);
+}
+
+.mesure__vignette img {
+  display: block;
+  width: 100%;
+  max-height: 210px;
+  object-fit: cover;
+}
+
+.mesure__poids {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  padding: 3px 8px;
+  border-radius: var(--r-plein);
+  background: #0b0b0ccc;
+  font-size: var(--t-etiquette);
+  color: var(--blanc);
+}
+
+.mesure__retirer {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: var(--cible);
+  height: var(--cible);
+  border-radius: var(--r-plein);
+  background: #0b0b0ccc;
+  color: var(--blanc);
+}
+
+.mesure__erreur {
+  font-size: var(--t-menu);
+  color: var(--corail);
+}

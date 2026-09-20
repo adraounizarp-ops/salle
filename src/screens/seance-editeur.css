@@ -1,25 +1,5 @@
 /* Composer une seance. */
 
-.champ {
-  display: grid;
-  gap: 6px;
-}
-
-.champ__saisie {
-  min-height: var(--cible);
-  padding: 0 14px;
-  border-radius: var(--r-s);
-  background: var(--carte);
-  border: 1px solid var(--trait);
-  color: var(--blanc);
-  font-size: var(--t-appui);
-  font-weight: 500;
-}
-
-.champ__saisie::placeholder {
-  color: var(--gris-sourd);
-}
-
 .edit-liste {
   display: grid;
   gap: 6px;
@@ -52,13 +32,16 @@
   display: grid;
 }
 
+/* Deux lignes plutôt qu'une coupure : c'est le nom de l'exercice qu'on règle. */
 .edit-ligne__nom {
   font-size: var(--t-corps);
   font-weight: 600;
+  line-height: 1.25;
   color: var(--blanc);
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .edit-ligne__sous {

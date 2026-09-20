@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 import { comparer, formatCharge, formatNombre, produitTonnage } from '../data/metriques';
 import { fiche, type FicheExercice, type LigneModele, type Modele, type SeanceFaite } from '../data/modele';
-import { derniereDe, tonnageSeance } from '../data/selection';
+import { derniereDe, exercicesConnus, tonnageSeance } from '../data/selection';
 import { ChoixExercice } from '../ui/ChoixExercice';
 import { Ecran, Section } from '../ui/Ecran';
 import { Feuille } from '../ui/Feuille';
@@ -13,6 +13,8 @@ import './seance-editeur.css';
 interface Props {
   modele: Modele;
   historique: SeanceFaite[];
+  /** Tous les modèles : le sélecteur y puise le répertoire déjà pratiqué. */
+  modeles: Modele[];
   /** true quand on part d'une séance vide. */
   nouvelle?: boolean;
   onAnnuler: () => void;
@@ -31,6 +33,7 @@ const tonnagePrevu = (lignes: LigneModele[]) =>
 export function SeanceEditeur({
   modele,
   historique,
+  modeles,
   nouvelle,
   onAnnuler,
   onEnregistrer,
@@ -175,7 +178,12 @@ export function SeanceEditeur({
       </Ecran>
 
       {choix && (
-        <ChoixExercice dejaLa={lignes.map((l) => l.slug)} onChoisir={ajouter} onFermer={() => setChoix(false)} />
+        <ChoixExercice
+          dejaLa={lignes.map((l) => l.slug)}
+          connus={exercicesConnus(historique, modeles)}
+          onChoisir={ajouter}
+          onFermer={() => setChoix(false)}
+        />
       )}
 
       {regle !== null && lignes[regle] && (

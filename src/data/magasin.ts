@@ -2,7 +2,7 @@ import { signal } from '@preact/signals';
 import * as db from './base';
 import { REGLAGES_PAR_DEFAUT, type Reglages } from './base';
 import { MODELES_DE_DEPART, historiqueDeDemonstration } from './demarrage';
-import type { Modele, SeanceEnCours, SeanceFaite } from './modele';
+import type { Mesure, Modele, SeanceEnCours, SeanceFaite } from './modele';
 import { prechargerIllustrations } from './precache';
 import { tonnageExerciceFait, tonnageSeance } from './selection';
 
@@ -14,6 +14,7 @@ import { tonnageExerciceFait, tonnageSeance } from './selection';
 
 export const modeles = signal<Modele[]>([]);
 export const historique = signal<SeanceFaite[]>([]);
+export const mesures = signal<Mesure[]>([]);
 export const enCours = signal<SeanceEnCours | null>(null);
 export const reglages = signal<Reglages>(REGLAGES_PAR_DEFAUT);
 export const pret = signal(false);
@@ -27,13 +28,17 @@ async function relireHistorique() {
   historique.value = await db.lireHistorique();
 }
 
+async function relireMesures() {
+  mesures.value = await db.lireMesures();
+}
+
 /** Au démarrage : on charge tout, et on sème les trois modèles au premier lancement. */
 export async function demarrer(): Promise<void> {
   if (await db.baseVierge()) {
     for (const m of MODELES_DE_DEPART) await db.ecrireModele(m);
   }
 
-  await Promise.all([relireModeles(), relireHistorique()]);
+  await Promise.all([relireModeles(), relireHistorique(), relireMesures()]);
   reglages.value = await db.lireReglages();
   enCours.value = await db.lireEnCours();
   pret.value = true;
@@ -155,6 +160,18 @@ export async function supprimerSeance(id: string): Promise<void> {
   await relireHistorique();
 }
 
+// --- Le corps ----------------------------------------------------------------
+
+export async function enregistrerMesure(m: Mesure): Promise<void> {
+  await db.ecrireMesure(m);
+  await relireMesures();
+}
+
+export async function supprimerMesure(id: string): Promise<void> {
+  await db.effacerMesure(id);
+  await relireMesures();
+}
+
 // --- Réglages ----------------------------------------------------------------
 
 export async function majReglages(modif: Partial<Reglages>): Promise<void> {
@@ -177,7 +194,7 @@ export async function remiseAZero(): Promise<void> {
   for (const m of MODELES_DE_DEPART) await db.ecrireModele(m);
   enCours.value = null;
   reglages.value = REGLAGES_PAR_DEFAUT;
-  await Promise.all([relireModeles(), relireHistorique()]);
+  await Promise.all([relireModeles(), relireHistorique(), relireMesures()]);
 }
 
 // --- Sauvegarde ---------------------------------------------------------------
@@ -188,7 +205,9 @@ export async function exporter(): Promise<Blob> {
   return new Blob([JSON.stringify(donnees, null, 1)], { type: 'application/json' });
 }
 
-export async function importer(texte: string): Promise<{ modeles: number; seances: number }> {
+export async function importer(
+  texte: string,
+): Promise<{ modeles: number; seances: number; mesures: number }> {
   let brut: unknown;
   try {
     brut = JSON.parse(texte);
@@ -197,7 +216,7 @@ export async function importer(texte: string): Promise<{ modeles: number; seance
   }
 
   const bilan = await db.importer(brut);
-  await Promise.all([relireModeles(), relireHistorique()]);
+  await Promise.all([relireModeles(), relireHistorique(), relireMesures()]);
   reglages.value = await db.lireReglages();
   return bilan;
 }

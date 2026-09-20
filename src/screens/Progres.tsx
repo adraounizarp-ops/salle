@@ -19,6 +19,7 @@ import {
   volumeParGroupe,
 } from '../data/selection';
 import { BandeH } from '../ui/BandeH';
+import { Confirmation } from '../ui/Confirmation';
 import { Ecran, Section } from '../ui/Ecran';
 import { FeuilleMesure } from '../ui/FeuilleMesure';
 import { Icone } from '../ui/Icone';
@@ -322,6 +323,7 @@ function ParCorps({
   onSupprimer: (m: Mesure) => void;
 }) {
   const [cle, setCle] = useState<CleMesure>('poids');
+  const [aEffacer, setAEffacer] = useState<Mesure | null>(null);
 
   const champ = CHAMPS_MESURE.find((c) => c.cle === cle) ?? CHAMPS_MESURE[0];
   const renseignes = mesures.filter((m) => m[cle] !== undefined);
@@ -433,9 +435,7 @@ function ParCorps({
                 type="button"
                 class="releve__supprimer"
                 aria-label={`Supprimer le relevé du ${dateCourte(m.date)}`}
-                onClick={() => {
-                  if (confirm(`Supprimer le relevé du ${dateCourte(m.date)} ?`)) onSupprimer(m);
-                }}
+                onClick={() => setAEffacer(m)}
               >
                 <Icone nom="corbeille" taille={16} />
               </button>
@@ -452,6 +452,20 @@ function ParCorps({
           Ajouter un relevé
         </button>
       </Section>
+
+      {aEffacer && (
+        <Confirmation
+          titre={`Supprimer le relevé du ${dateCourte(aEffacer.date)} ?`}
+          texte="Les courbes se redessinent sans lui. La photo qui l'accompagne part avec."
+          action="Supprimer le relevé"
+          icone="corbeille"
+          onConfirmer={() => {
+            onSupprimer(aEffacer);
+            setAEffacer(null);
+          }}
+          onFermer={() => setAEffacer(null)}
+        />
+      )}
     </>
   );
 }

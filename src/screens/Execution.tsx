@@ -16,6 +16,7 @@ import {
 } from '../data/metriques';
 import { fiche, type ExerciceFait, type SeanceEnCours } from '../data/modele';
 import { BandeH } from '../ui/BandeH';
+import { Confirmation } from '../ui/Confirmation';
 import { BarreChargee } from '../ui/BarreChargee';
 import { Icone } from '../ui/Icone';
 import { Illustration } from '../ui/Illustration';
@@ -53,6 +54,7 @@ export function Execution({
   const [brouillon, setBrouillon] = useState<string | null>(null);
   const [repos, setRepos] = useState<number | null>(null);
   const [bilan, setBilan] = useState(false);
+  const [aAbandonner, setAAbandonner] = useState(false);
   const [note, setNote] = useState('');
   const [chrono, setChrono] = useState(() => Math.floor((Date.now() - seance.debut) / 1000));
 
@@ -163,6 +165,8 @@ export function Execution({
     (n, e) => n + e.series.filter((s) => !s.faite).length,
     0,
   );
+
+  const faites = seance.exercices.reduce((n, e) => n + e.series.filter((s) => s.faite).length, 0);
 
   return (
     <div class="exec">
@@ -398,14 +402,28 @@ export function Execution({
             <button
               type="button"
               class="bouton bouton--corail bouton--plein"
-              onClick={() => {
-                if (confirm('Abandonner cette séance ? Rien ne sera enregistré.')) onAbandonner();
-              }}
+              onClick={() => setAAbandonner(true)}
             >
               Abandonner sans enregistrer
             </button>
           </div>
         </Feuille>
+      )}
+
+      {aAbandonner && (
+        <Confirmation
+          titre="Abandonner cette séance ?"
+          texte={
+            faites === 0
+              ? "Rien n'a encore été validé : il n'y a rien à perdre, et rien ne rejoindra l'historique."
+              : faites === 1
+                ? "La série déjà validée sera perdue, et la séance ne rejoindra pas l'historique."
+                : `Les ${faites} séries déjà validées seront perdues, et la séance ne rejoindra pas l'historique.`
+          }
+          action="Abandonner la séance"
+          onConfirmer={onAbandonner}
+          onFermer={() => setAAbandonner(false)}
+        />
       )}
 
       {repos !== null && (

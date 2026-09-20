@@ -2,6 +2,7 @@ import { useRef, useState } from 'preact/hooks';
 import type { Reglages as Jeu } from '../data/base';
 import { DISQUES_PAR_DEFAUT, resumerChargement } from '../data/disques';
 import { pluriel } from '../data/metriques';
+import { Confirmation } from '../ui/Confirmation';
 import { Ecran, Section } from '../ui/Ecran';
 import { Icone } from '../ui/Icone';
 import { Reglette } from '../ui/Reglette';
@@ -34,6 +35,7 @@ export function Reglages({
   onRetour,
 }: Props) {
   const [message, setMessage] = useState<{ ton: 'ok' | 'erreur'; texte: string } | null>(null);
+  const [aEffacer, setAEffacer] = useState(false);
   const fichier = useRef<HTMLInputElement>(null);
 
   const disques = reglages.disques.length ? reglages.disques : [...DISQUES_PAR_DEFAUT];
@@ -263,19 +265,31 @@ export function Reglages({
           <button
             type="button"
             class="bouton bouton--corail bouton--plein reglages__espace"
-            onClick={() => {
-              const texte =
-                nombreSeances > 0
-                  ? `Effacer ${nombreSeances} séances et revenir aux trois modèles de départ ? Exporte d'abord si tu veux les garder.`
-                  : 'Revenir aux trois modèles de départ ?';
-              if (confirm(texte)) void onRemiseAZero();
-            }}
+            onClick={() => setAEffacer(true)}
           >
             <Icone nom="corbeille" taille={16} />
             Tout effacer
           </button>
         </div>
       </Section>
+
+      {aEffacer && (
+        <Confirmation
+          titre="Tout effacer ?"
+          texte={
+            nombreSeances > 0
+              ? `${nombreSeances} ${pluriel(nombreSeances, 'séance')}, tes relevés du corps et tes modèles disparaissent, et l'app revient aux trois séances de départ. Exporte d'abord si tu veux les garder.`
+              : "L'app revient aux trois séances de départ."
+          }
+          action="Tout effacer"
+          icone="corbeille"
+          onConfirmer={() => {
+            setAEffacer(false);
+            void onRemiseAZero();
+          }}
+          onFermer={() => setAEffacer(false)}
+        />
+      )}
 
       <Section titre="Crédits">
         <div class="carte">

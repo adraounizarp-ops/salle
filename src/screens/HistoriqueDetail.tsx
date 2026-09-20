@@ -1,3 +1,4 @@
+import { useState } from 'preact/hooks';
 import {
   formatCharge,
   formatNombre,
@@ -15,6 +16,7 @@ import {
 } from '../data/selection';
 import { BarreChargee } from '../ui/BarreChargee';
 import { Chiffre } from '../ui/Chiffre';
+import { Confirmation } from '../ui/Confirmation';
 import { Ecran, Section } from '../ui/Ecran';
 import { Icone } from '../ui/Icone';
 import { Illustration } from '../ui/Illustration';
@@ -29,6 +31,8 @@ interface Props {
 }
 
 export function HistoriqueDetail({ seance, historique, onRetour, onRefaire, onSupprimer }: Props) {
+  const [aConfirmer, setAConfirmer] = useState(false);
+
   const tonnage = tonnageSeance(seance);
 
   // La même séance, la fois d'avant.
@@ -142,16 +146,23 @@ export function HistoriqueDetail({ seance, historique, onRetour, onRefaire, onSu
         <button
           type="button"
           class="bouton bouton--corail bouton--plein"
-          onClick={() => {
-            const texte =
-              "Supprimer cette séance de l'historique ? Les comparaisons de tonnage en tiendront compte.";
-            if (confirm(texte)) onSupprimer();
-          }}
+          onClick={() => setAConfirmer(true)}
         >
           <Icone nom="corbeille" taille={16} />
           Supprimer cette séance
         </button>
       </Section>
+
+      {aConfirmer && (
+        <Confirmation
+          titre="Supprimer cette séance ?"
+          texte="Elle quitte l'historique, et les comparaisons de tonnage se recalculent sans elle."
+          action="Supprimer de l'historique"
+          icone="corbeille"
+          onConfirmer={onSupprimer}
+          onFermer={() => setAConfirmer(false)}
+        />
+      )}
     </Ecran>
   );
 }

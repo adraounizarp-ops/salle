@@ -1,7 +1,9 @@
+import { useState } from 'preact/hooks';
 import { comparer, formatCharge, formatNombre, pluriel, produitTonnage } from '../data/metriques';
 import { fiche, type Modele, type SeanceFaite } from '../data/modele';
 import { derniereDe, ilYA, nombreDe, serieTonnage, tonnageSeance } from '../data/selection';
 import { Courbe } from '../charts/Courbe';
+import { Confirmation } from '../ui/Confirmation';
 import { Ecran, Section } from '../ui/Ecran';
 import { Icone } from '../ui/Icone';
 import { Illustration } from '../ui/Illustration';
@@ -32,6 +34,8 @@ export function SeanceDetail({
   onDemarrer,
   onSupprimer,
 }: Props) {
+  const [aConfirmer, setAConfirmer] = useState(false);
+
   const derniere = derniereDe(historique, modele.id);
   const fois = nombreDe(historique, modele.id);
   const tonnages = serieTonnage(historique, modele.id);
@@ -160,15 +164,23 @@ export function SeanceDetail({
         <button
           type="button"
           class="bouton bouton--corail bouton--plein"
-          onClick={() => {
-            const texte = `Supprimer « ${modele.nom} » ? L'historique des séances déjà faites est conservé.`;
-            if (confirm(texte)) onSupprimer();
-          }}
+          onClick={() => setAConfirmer(true)}
         >
           <Icone nom="corbeille" taille={16} />
           Supprimer cette séance
         </button>
       </Section>
+
+      {aConfirmer && (
+        <Confirmation
+          titre={`Supprimer « ${modele.nom} » ?`}
+          texte="Le modèle disparaît de tes séances. L'historique des exécutions déjà faites est conservé."
+          action="Supprimer la séance"
+          icone="corbeille"
+          onConfirmer={onSupprimer}
+          onFermer={() => setAConfirmer(false)}
+        />
+      )}
     </Ecran>
   );
 }

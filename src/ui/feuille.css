@@ -8,6 +8,12 @@
   align-items: end;
 }
 
+/* Une confirmation s'ouvre parfois par-dessus une feuille — abandonner une
+   séance depuis le bilan de fin. Elle doit passer devant, voile compris. */
+.feuille[data-haute='true'] {
+  z-index: 60;
+}
+
 .feuille__voile {
   position: absolute;
   inset: 0;

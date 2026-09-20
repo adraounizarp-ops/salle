@@ -6,6 +6,8 @@ import './feuille.css';
 interface Props {
   titre: string;
   sous?: string;
+  /** Au-dessus d'une feuille déjà ouverte. */
+  haute?: boolean;
   onFermer: () => void;
   children: ComponentChildren;
 }
@@ -15,7 +17,7 @@ interface Props {
  * démarrer une séance, régler un exercice. On la ferme par le bouton, par le
  * voile, ou par Échap.
  */
-export function Feuille({ titre, sous, onFermer, children }: Props) {
+export function Feuille({ titre, sous, haute, onFermer, children }: Props) {
   useEffect(() => {
     const touche = (e: KeyboardEvent) => e.key === 'Escape' && onFermer();
     addEventListener('keydown', touche);
@@ -23,7 +25,13 @@ export function Feuille({ titre, sous, onFermer, children }: Props) {
   }, [onFermer]);
 
   return (
-    <div class="feuille" role="dialog" aria-modal="true" aria-label={titre}>
+    <div
+      class="feuille"
+      data-haute={haute ? 'true' : undefined}
+      role="dialog"
+      aria-modal="true"
+      aria-label={titre}
+    >
       <button type="button" class="feuille__voile" onClick={onFermer} aria-label="Fermer" />
 
       <div class="feuille__panneau">

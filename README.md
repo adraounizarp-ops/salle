@@ -136,6 +136,14 @@ Les photos passent par un canvas avant d'être gardées — 1080 px sur le grand
 côté, JPEG 0,7, soit une centaine de kilo-octets au lieu de quatre mégas. Elles
 voyagent dans le fichier de sauvegarde, qui grossit en conséquence.
 
+## Les confirmations
+
+Aucun appel à `window.confirm` : certains navigateurs embarqués suppriment les
+boîtes natives et renvoient `false` sans rien afficher — l'appui tombait dans
+le vide, et plus rien ne se supprimait. Les six gestes irréversibles passent
+par [`Confirmation`](src/ui/Confirmation.tsx), une feuille de l'app dont le
+bouton nomme ce qu'il fait au lieu de dire « OK ».
+
 ## Les bandes qui défilent
 
 Une bande horizontale répond au doigt sans qu'on ait rien à faire, mais à rien

@@ -3,6 +3,7 @@ import { comparer, formatCharge, formatNombre, produitTonnage } from '../data/me
 import { fiche, type FicheExercice, type LigneModele, type Modele, type SeanceFaite } from '../data/modele';
 import { derniereDe, exercicesConnus, tonnageSeance } from '../data/selection';
 import { ChoixExercice } from '../ui/ChoixExercice';
+import { Confirmation } from '../ui/Confirmation';
 import { Ecran, Section } from '../ui/Ecran';
 import { Feuille } from '../ui/Feuille';
 import { Icone } from '../ui/Icone';
@@ -42,6 +43,7 @@ export function SeanceEditeur({
   const [nom, setNom] = useState(modele.nom);
   const [lignes, setLignes] = useState<LigneModele[]>(modele.lignes.map((l) => ({ ...l })));
   const [choix, setChoix] = useState(false);
+  const [aSupprimer, setASupprimer] = useState(false);
   const [regle, setRegle] = useState<number | null>(null);
 
   const derniere = derniereDe(historique, modele.id);
@@ -165,10 +167,7 @@ export function SeanceEditeur({
             <button
               type="button"
               class="bouton bouton--corail bouton--plein"
-              onClick={() => {
-                if (confirm(`Supprimer « ${modele.nom} » ? L'historique des séances déjà faites est conservé.`))
-                  onSupprimer();
-              }}
+              onClick={() => setASupprimer(true)}
             >
               <Icone nom="corbeille" taille={16} />
               Supprimer la séance
@@ -176,6 +175,17 @@ export function SeanceEditeur({
           </Section>
         )}
       </Ecran>
+
+      {aSupprimer && onSupprimer && (
+        <Confirmation
+          titre={`Supprimer « ${modele.nom} » ?`}
+          texte="Le modèle disparaît de tes séances. L'historique des exécutions déjà faites est conservé."
+          action="Supprimer la séance"
+          icone="corbeille"
+          onConfirmer={onSupprimer}
+          onFermer={() => setASupprimer(false)}
+        />
+      )}
 
       {choix && (
         <ChoixExercice

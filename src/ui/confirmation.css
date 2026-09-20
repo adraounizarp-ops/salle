@@ -1,0 +1,13 @@
+/* La demande de confirmation. */
+
+.confirmation {
+  display: grid;
+  gap: 10px;
+}
+
+.confirmation__texte {
+  margin-bottom: 4px;
+  font-size: var(--t-corps);
+  line-height: 1.5;
+  color: var(--gris);
+}

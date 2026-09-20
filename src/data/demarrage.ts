@@ -1,18 +1,19 @@
 import type { Serie } from './metriques';
-import { fiche, type ExerciceFait, type Modele, type SeanceEnCours, type SeanceFaite } from './modele';
+import { fiche, type ExerciceFait, type Modele, type SeanceFaite } from './modele';
 
 /**
- * Jeu de démonstration — lot visuel.
+ * Ce que contient une base neuve, et ce qu'on peut y verser pour essayer.
  *
- * Trois modèles et un trimestre de séances, engendrés par un générateur
- * déterministe : les chiffres se tiennent entre eux (progression, semaine de
- * décharge, un peu de bruit) au lieu d'être vingt tableaux écrits à la main.
- * Tout ceci disparaît quand IndexedDB prend le relais.
+ * Les trois modèles sont semés au premier lancement : une app de suivi vide au
+ * premier écran ne se laisse pas essayer. L'historique, lui, n'est jamais semé
+ * — de fausses séances fausseraient toutes les comparaisons de tonnage. Il
+ * s'engendre uniquement à la demande, depuis les réglages.
  */
 
-export const MODELES: Modele[] = [
+export const MODELES_DE_DEPART: Modele[] = [
   {
     id: 'push',
+    ordre: 0,
     nom: 'Push A',
     favorite: true,
     lignes: [
@@ -25,6 +26,7 @@ export const MODELES: Modele[] = [
   },
   {
     id: 'pull',
+    ordre: 1,
     nom: 'Pull B',
     favorite: true,
     lignes: [
@@ -38,6 +40,7 @@ export const MODELES: Modele[] = [
   },
   {
     id: 'jambes',
+    ordre: 2,
     nom: 'Jambes',
     favorite: true,
     lignes: [
@@ -50,9 +53,9 @@ export const MODELES: Modele[] = [
   },
 ];
 
-export const modele = (id: string) => MODELES.find((m) => m.id === id);
+const modele = (id: string) => MODELES_DE_DEPART.find((m) => m.id === id);
 
-// --- Engendrement de l'historique --------------------------------------------
+// --- Engendrement d'un historique d'essai ------------------------------------
 
 /** Générateur déterministe : le jeu de démo est le même à chaque rechargement. */
 function alea(graine: number) {
@@ -69,7 +72,12 @@ const arrondi2_5 = (n: number) => Math.round(n / 2.5) * 2.5;
 /** Les jours d'entraînement : lundi, mercredi, vendredi (parfois samedi). */
 const ROTATION = ['push', 'pull', 'jambes'];
 
-function engendrerHistorique(): SeanceFaite[] {
+/**
+ * Un trimestre de séances plausibles : progression d'environ 1,2 % par semaine,
+ * une semaine de décharge, un peu de bruit. Le générateur est déterministe,
+ * donc deux chargements donnent le même jeu.
+ */
+export function historiqueDeDemonstration(): SeanceFaite[] {
   const r = alea(20_260_920);
   const seances: SeanceFaite[] = [];
 
@@ -134,84 +142,6 @@ function engendrerHistorique(): SeanceFaite[] {
   return seances.sort((a, b) => a.date - b.date);
 }
 
-export const HISTORIQUE: SeanceFaite[] = engendrerHistorique();
-
-// --- Une séance en cours, pour l'écran d'exécution ----------------------------
-
-const serie = (reps: number, charge: number, faite: boolean, echauffement = false, rpe?: number): Serie => ({
-  reps,
-  charge,
-  echauffement,
-  faite,
-  rpe,
-});
-
-/** « Push A » entamée : deux exercices bouclés, le troisième en cours. */
-export function seanceEnCoursDemo(): SeanceEnCours {
-  const m = modele('push')!;
-  const derniere = [...HISTORIQUE].reverse().find((s) => s.modeleId === 'push');
-
-  const referenceExercice: Record<string, number> = {};
-  let referenceSeance = 0;
-  for (const e of derniere?.exercices ?? []) {
-    const t = e.series
-      .filter((s) => !s.echauffement)
-      .reduce((somme, s) => somme + s.reps * s.charge, 0);
-    referenceExercice[e.slug] = t;
-    referenceSeance += t;
-  }
-
-  const exercices: ExerciceFait[] = m.lignes.map((l, i) => {
-    const charge = referenceExercice[l.slug] ? l.charge : l.charge;
-    const cible = l.reps[1];
-    if (i === 0) {
-      return {
-        slug: l.slug,
-        series: [
-          serie(12, charge / 2, true, true),
-          serie(cible, charge, true, false, 7),
-          serie(cible, charge, true, false, 8),
-          serie(cible, charge, true, false, 9),
-          serie(cible - 2, charge, false),
-        ],
-      };
-    }
-    if (i === 1) {
-      return {
-        slug: l.slug,
-        series: [
-          serie(cible, charge, true, false, 8),
-          serie(cible - 1, charge, true, false, 9),
-          serie(cible - 2, charge, true, false, 9),
-        ],
-      };
-    }
-    if (i === 2) {
-      return {
-        slug: l.slug,
-        series: [serie(cible, charge, true, false, 8), serie(cible - 2, charge, false), serie(cible - 2, charge, false)],
-      };
-    }
-    return {
-      slug: l.slug,
-      series: Array.from({ length: l.series }, () => serie(cible, charge, false)),
-    };
-  });
-
-  return {
-    modeleId: m.id,
-    nom: m.nom,
-    debut: Date.now() - 42 * 60_000 - 17_000,
-    exercices,
-    referenceExercice,
-    referenceSeance,
-    reposParExercice: Object.fromEntries(m.lignes.map((l) => [l.slug, l.reposSec])),
-  };
-}
-
-/** Le nom du pratiquant, en attendant les réglages. */
-export const PRENOM = 'Nizar';
-
 // Garde-fou : une faute de frappe dans un slug ne doit pas passer inaperçue
 // jusqu'à l'écran.
-for (const m of MODELES) for (const l of m.lignes) fiche(l.slug);
+for (const m of MODELES_DE_DEPART) for (const l of m.lignes) fiche(l.slug);

@@ -15,6 +15,7 @@ import { fiche, type ExerciceFait, type SeanceEnCours } from '../data/modele';
 import { BarreChargee } from '../ui/BarreChargee';
 import { Icone } from '../ui/Icone';
 import { Illustration } from '../ui/Illustration';
+import { Feuille } from '../ui/Feuille';
 import { Pave } from '../ui/Pave';
 import { Repos } from '../ui/Repos';
 import './execution.css';
@@ -24,11 +25,14 @@ type Champ = 'reps' | 'charge';
 interface Props {
   seance: SeanceEnCours;
   onChangement: (s: SeanceEnCours) => void;
+  /** Sortie sans clore : la séance reste reprenable depuis l'accueil. */
   onQuitter: () => void;
-  onTerminer: () => void;
+  /** Abandon franc : la séance en cours est jetée. */
+  onAbandonner: () => void;
+  onTerminer: (note?: string) => void;
 }
 
-export function Execution({ seance, onChangement, onQuitter, onTerminer }: Props) {
+export function Execution({ seance, onChangement, onQuitter, onAbandonner, onTerminer }: Props) {
   const [iExo, setIExo] = useState(() => {
     const i = seance.exercices.findIndex((e) => e.series.some((s) => !s.faite));
     return i === -1 ? 0 : i;
@@ -36,6 +40,8 @@ export function Execution({ seance, onChangement, onQuitter, onTerminer }: Props
   const [champ, setChamp] = useState<Champ>('reps');
   const [brouillon, setBrouillon] = useState<string | null>(null);
   const [repos, setRepos] = useState<number | null>(null);
+  const [bilan, setBilan] = useState(false);
+  const [note, setNote] = useState('');
   const [chrono, setChrono] = useState(() => Math.floor((Date.now() - seance.debut) / 1000));
 
   useEffect(() => {
@@ -137,7 +143,13 @@ export function Execution({ seance, onChangement, onQuitter, onTerminer }: Props
     <div class="exec">
       <header class="exec__entete">
         <div class="exec__barre">
-          <button type="button" class="exec__quitter pressable" onClick={onQuitter} aria-label="Quitter la séance">
+          <button
+            type="button"
+            class="exec__quitter pressable"
+            onClick={onQuitter}
+            aria-label="Mettre la séance de côté"
+            title="La séance reste reprenable depuis l'accueil"
+          >
             <Icone nom="chevron-gauche" taille={22} />
           </button>
           <h1 class="exec__nom">{seance.nom}</h1>
@@ -306,11 +318,13 @@ export function Execution({ seance, onChangement, onQuitter, onTerminer }: Props
           </button>
         )}
 
-        {toutFini && (
-          <button type="button" class="bouton bouton--vert bouton--plein" onClick={onTerminer}>
-            Terminer la séance
-          </button>
-        )}
+        <button
+          type="button"
+          class={`bouton bouton--plein ${toutFini ? 'bouton--vert' : 'bouton--fantome'}`}
+          onClick={() => setBilan(true)}
+        >
+          {toutFini ? 'Terminer la séance' : 'Terminer maintenant'}
+        </button>
       </main>
 
       {serieActive && (
@@ -321,6 +335,51 @@ export function Execution({ seance, onChangement, onQuitter, onTerminer }: Props
           onValider={valider}
           libelleValider={`Valider · ${formatNombre(tonnageSerie(serieActive, f.type))} kg`}
         />
+      )}
+
+      {bilan && (
+        <Feuille
+          titre="Fin de séance"
+          sous={`${formatNombre(tonnageSeance)} kg en ${formatDuree(chrono)}`}
+          onFermer={() => setBilan(false)}
+        >
+          <div class="fin">
+            {!toutFini && (
+              <p class="fin__avertissement">
+                Les séries non validées ne seront pas enregistrées.
+              </p>
+            )}
+
+            <label class="champ">
+              <span class="etiquette">Note (facultatif)</span>
+              <textarea
+                class="champ__saisie champ__saisie--texte"
+                rows={3}
+                placeholder="Mal dormi, dos sensible, dernière série à l'échec…"
+                value={note}
+                onInput={(e) => setNote((e.target as HTMLTextAreaElement).value)}
+              />
+            </label>
+
+            <button
+              type="button"
+              class="bouton bouton--vert bouton--plein"
+              onClick={() => onTerminer(note)}
+            >
+              Enregistrer la séance
+            </button>
+
+            <button
+              type="button"
+              class="bouton bouton--corail bouton--plein"
+              onClick={() => {
+                if (confirm('Abandonner cette séance ? Rien ne sera enregistré.')) onAbandonner();
+              }}
+            >
+              Abandonner sans enregistrer
+            </button>
+          </div>
+        </Feuille>
       )}
 
       {repos !== null && (

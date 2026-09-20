@@ -184,3 +184,68 @@
   min-width: 56px;
   text-align: right;
 }
+
+/* --- Premier lancement ----------------------------------------------------- */
+
+.bienvenue {
+  padding: 22px 20px 20px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+}
+
+.bienvenue__titre {
+  font-size: var(--t-titre);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.bienvenue__texte {
+  margin: 8px 0 18px;
+  font-size: var(--t-menu);
+  color: var(--gris);
+  line-height: 1.55;
+}
+
+/* --- Rappel d'export -------------------------------------------------------- */
+
+.rappel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 26px;
+  padding: 14px;
+  border-radius: var(--r-m);
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  text-align: left;
+  color: var(--gris-sourd);
+}
+
+.rappel__pastille {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--corail);
+}
+
+.rappel__texte {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.rappel__titre {
+  font-size: var(--t-corps);
+  font-weight: 600;
+  color: var(--blanc);
+}
+
+.rappel__detail {
+  font-size: var(--t-etiquette);
+  color: var(--gris);
+  line-height: 1.4;
+}

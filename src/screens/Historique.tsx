@@ -15,6 +15,7 @@ import './historique.css';
 interface Props {
   historique: SeanceFaite[];
   onOuvrir: (s: SeanceFaite) => void;
+  onDemarrer: () => void;
 }
 
 /** Les séances groupées par mois, du plus récent au plus ancien. */
@@ -40,7 +41,25 @@ function ecartAvecPrecedente(historique: readonly SeanceFaite[], s: SeanceFaite)
   return tonnageSeance(s) - tonnageSeance(memes[0]);
 }
 
-export function Historique({ historique, onOuvrir }: Props) {
+export function Historique({ historique, onOuvrir, onDemarrer }: Props) {
+  if (historique.length === 0) {
+    return (
+      <Ecran titre="Historique">
+        <div class="vide">
+          <p class="vide__titre">Aucune séance enregistrée</p>
+          <p class="vide__texte">
+            Tout ce que tu termines atterrit ici, série par série, et sert de référence à la fois
+            suivante.
+          </p>
+          <button type="button" class="bouton bouton--vert" onClick={onDemarrer}>
+            <Icone nom="lecture" taille={16} pleine />
+            Démarrer une séance
+          </button>
+        </div>
+      </Ecran>
+    );
+  }
+
   const groupes = parMois(historique);
   // Les quatre derniers mois en bandeau, du plus ancien au plus récent.
   const bandeau = groupes.slice(0, 4).reverse();

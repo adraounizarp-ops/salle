@@ -350,3 +350,28 @@
   grid-column: 2;
   color: var(--gris-sourd);
 }
+
+/* --- Feuille de fin de seance ---------------------------------------------- */
+
+.fin {
+  display: grid;
+  gap: 12px;
+}
+
+.fin__avertissement {
+  padding: 10px 12px;
+  border-radius: var(--r-s);
+  background: var(--corail-voile);
+  border: 1px solid var(--corail-trait);
+  font-size: var(--t-menu);
+  color: var(--blanc);
+}
+
+.champ__saisie--texte {
+  min-height: 84px;
+  padding: 12px 14px;
+  font-size: var(--t-corps);
+  font-weight: 400;
+  line-height: 1.5;
+  resize: none;
+}

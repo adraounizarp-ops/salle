@@ -94,3 +94,31 @@
   gap: 8px;
   margin-top: 14px;
 }
+
+.reglages__fichier {
+  display: none;
+}
+
+.reglages__espace + .reglages__espace,
+.reglages__espace {
+  margin-top: 12px;
+}
+
+.reglages__message {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: var(--r-s);
+  font-size: var(--t-menu);
+}
+
+.reglages__message[data-ton='ok'] {
+  background: var(--vert-voile);
+  border: 1px solid var(--vert-trait);
+  color: var(--blanc);
+}
+
+.reglages__message[data-ton='erreur'] {
+  background: var(--corail-voile);
+  border: 1px solid var(--corail-trait);
+  color: var(--blanc);
+}

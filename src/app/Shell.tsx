@@ -1,9 +1,10 @@
-import { useState } from 'preact/hooks';
-import { HISTORIQUE, MODELES, seanceEnCoursDemo } from '../data/demo';
-import type { Modele, SeanceEnCours, SeanceFaite } from '../data/modele';
+import { useEffect, useState } from 'preact/hooks';
+import * as magasin from '../data/magasin';
+import { enCours, historique, modeles, pret, reglages } from '../data/magasin';
+import type { Modele } from '../data/modele';
 import { Ecran } from '../ui/Ecran';
-import { Onglets } from '../ui/Onglets';
 import { FeuilleDepart } from '../ui/FeuilleDepart';
+import { Onglets } from '../ui/Onglets';
 import { Accueil } from '../screens/Accueil';
 import { Execution } from '../screens/Execution';
 import { Historique } from '../screens/Historique';
@@ -13,25 +14,29 @@ import { Reglages } from '../screens/Reglages';
 import { Seances } from '../screens/Seances';
 import { SeanceDetail } from '../screens/SeanceDetail';
 import { SeanceEditeur } from '../screens/SeanceEditeur';
-import { BARRE_PAR_DEFAUT, DISQUES_PAR_DEFAUT } from '../data/disques';
-import { derniereDe, tonnageExerciceFait, tonnageSeance } from '../data/selection';
-import { aller, allerOnglet, apparier, chemin, ongletDe, retour } from './routeur';
+import { aller, allerOnglet, apparier, chemin, ongletDe, remplacer, retour } from './routeur';
 import './shell.css';
 
 /**
- * La coquille : elle tient l'état de l'application et choisit l'écran.
+ * La coquille : elle choisit l'écran et relaie les actions vers le magasin.
  *
- * L'état vit ici plutôt que dans un magasin global : tant que les données sont
- * de démonstration, `useState` suffit, et le jour où IndexedDB arrive c'est le
- * seul endroit à brancher.
+ * Elle ne tient plus d'état métier — tout vient des signaux de `magasin.ts`,
+ * seul module à parler à la base.
  */
 export function Shell() {
-  const [historique] = useState<SeanceFaite[]>(HISTORIQUE);
-  const [modeles, setModeles] = useState<Modele[]>(MODELES);
-  const [enCours, setEnCours] = useState<SeanceEnCours | null>(() => seanceEnCoursDemo());
   const [depart, setDepart] = useState(false);
-  const [barre, setBarre] = useState(BARRE_PAR_DEFAUT);
-  const [disques, setDisques] = useState<number[]>([...DISQUES_PAR_DEFAUT]);
+
+  useEffect(() => {
+    void magasin.demarrer();
+
+    // Si l'app passe en arrière-plan en pleine série, on écrit sans attendre le
+    // délai : iOS peut la suspendre à tout moment.
+    const sortie = () => {
+      if (document.visibilityState === 'hidden') void magasin.viderLeDiffere();
+    };
+    document.addEventListener('visibilitychange', sortie);
+    return () => document.removeEventListener('visibilitychange', sortie);
+  }, []);
 
   const route = chemin.value;
 
@@ -39,58 +44,48 @@ export function Shell() {
   // concentré, et ces 58 px reviennent au pavé de saisie.
   const pleinEcran = Boolean(apparier('/execution'));
 
-  const modeleDe = (id: string) => modeles.find((m) => m.id === id);
-
-  const basculerFavorite = (m: Modele) =>
-    setModeles((ms) => ms.map((x) => (x.id === m.id ? { ...x, favorite: !x.favorite } : x)));
-
-  const enregistrer = (m: Modele) => {
-    setModeles((ms) => (ms.some((x) => x.id === m.id) ? ms.map((x) => (x.id === m.id ? m : x)) : [...ms, m]));
-    retour();
-  };
-
-  /** Déplie un modèle en séance saisissable, avec ses références de tonnage. */
   const demarrer = (m: Modele) => {
     setDepart(false);
-
-    const derniere = derniereDe(historique, m.id);
-    const referenceExercice: Record<string, number> = {};
-    for (const e of derniere?.exercices ?? []) referenceExercice[e.slug] = tonnageExerciceFait(e);
-
-    setEnCours({
-      modeleId: m.id,
-      nom: m.nom,
-      debut: Date.now(),
-      exercices: m.lignes.map((l) => ({
-        slug: l.slug,
-        // Préremplies au haut de la fourchette et à la charge du modèle : un
-        // tap sur « Valider » suffit quand la séance se passe comme prévu.
-        series: Array.from({ length: l.series }, () => ({
-          reps: l.reps[1],
-          charge: l.charge,
-          echauffement: false,
-          faite: false,
-        })),
-      })),
-      referenceExercice,
-      referenceSeance: derniere ? tonnageSeance(derniere) : 0,
-      reposParExercice: Object.fromEntries(m.lignes.map((l) => [l.slug, l.reposSec])),
-    });
+    magasin.majEnCours(magasin.preparer(m));
     aller('/execution');
   };
+
+  const terminer = async (note?: string) => {
+    const faite = await magasin.terminer(note);
+    // On atterrit sur le bilan de la séance qu'on vient de faire, pas sur une
+    // liste où il faudrait la retrouver.
+    if (faite) remplacer(`/historique/${faite.id}`);
+    else allerOnglet('/');
+  };
+
+  if (!pret.value) {
+    return (
+      <div class="shell">
+        <div class="shell__ecran">
+          <Ecran titre="Salle">
+            <p class="chantier">Ouverture du carnet…</p>
+          </Ecran>
+        </div>
+      </div>
+    );
+  }
 
   const ecran = () => {
     if (apparier('/')) {
       return (
         <Accueil
-          historique={historique}
-          enCours={enCours}
+          prenom={reglages.value.prenom}
+          modeles={modeles.value}
+          historique={historique.value}
+          enCours={enCours.value}
+          rappelExport={magasin.exportDepasse()}
           onReglages={() => aller('/reglages')}
           onReprendre={() => aller('/execution')}
           onDemarrer={demarrer}
           onSeance={(s) => aller(`/historique/${s.id}`)}
           onToutesLesSeances={() => allerOnglet('/seances')}
           onHistorique={() => allerOnglet('/historique')}
+          onNouvelle={() => aller('/seances/nouvelle')}
         />
       );
     }
@@ -98,10 +93,10 @@ export function Shell() {
     if (apparier('/seances')) {
       return (
         <Seances
-          modeles={modeles}
-          historique={historique}
+          modeles={modeles.value}
+          historique={historique.value}
           onOuvrir={(m) => aller(`/seances/${m.id}`)}
-          onFavorite={basculerFavorite}
+          onFavorite={(m) => void magasin.basculerFavorite(m.id)}
           onNouvelle={() => aller('/seances/nouvelle')}
         />
       );
@@ -111,33 +106,48 @@ export function Shell() {
       return (
         <SeanceEditeur
           modele={{ id: `m${Date.now()}`, nom: '', favorite: false, lignes: [] }}
-          historique={historique}
+          historique={historique.value}
           nouvelle
           onAnnuler={retour}
-          onEnregistrer={enregistrer}
+          onEnregistrer={async (m) => {
+            await magasin.enregistrerModele(m);
+            remplacer(`/seances/${m.id}`);
+          }}
         />
       );
     }
 
     const edition = apparier('/seances/:id/modifier');
     if (edition) {
-      const m = modeleDe(edition.id);
+      const m = modeles.value.find((x) => x.id === edition.id);
       if (!m) return <Introuvable />;
       return (
-        <SeanceEditeur modele={m} historique={historique} onAnnuler={retour} onEnregistrer={enregistrer} />
+        <SeanceEditeur
+          modele={m}
+          historique={historique.value}
+          onAnnuler={retour}
+          onEnregistrer={async (suivant) => {
+            await magasin.enregistrerModele(suivant);
+            retour();
+          }}
+          onSupprimer={async () => {
+            await magasin.supprimerModele(m.id);
+            allerOnglet('/seances');
+          }}
+        />
       );
     }
 
     const detail = apparier('/seances/:id');
     if (detail) {
-      const m = modeleDe(detail.id);
+      const m = modeles.value.find((x) => x.id === detail.id);
       if (!m) return <Introuvable />;
       return (
         <SeanceDetail
           modele={m}
-          historique={historique}
+          historique={historique.value}
           onRetour={retour}
-          onFavorite={() => basculerFavorite(m)}
+          onFavorite={() => void magasin.basculerFavorite(m.id)}
           onModifier={() => aller(`/seances/${m.id}/modifier`)}
           onDemarrer={() => demarrer(m)}
         />
@@ -145,53 +155,65 @@ export function Shell() {
     }
 
     if (apparier('/execution')) {
-      if (!enCours) return <Introuvable />;
+      const s = enCours.value;
+      if (!s) return <Introuvable />;
       return (
         <Execution
-          seance={enCours}
-          onChangement={setEnCours}
+          seance={s}
+          onChangement={magasin.majEnCours}
           onQuitter={() => allerOnglet('/')}
-          onTerminer={() => {
-            // L'enregistrement dans l'historique arrive avec IndexedDB.
-            setEnCours(null);
-            allerOnglet('/historique');
+          onAbandonner={async () => {
+            await magasin.abandonner();
+            allerOnglet('/');
           }}
+          onTerminer={terminer}
         />
       );
     }
 
     const passee = apparier('/historique/:id');
     if (passee) {
-      const s = historique.find((x) => x.id === passee.id);
+      const s = historique.value.find((x) => x.id === passee.id);
       if (!s) return <Introuvable />;
       return (
         <HistoriqueDetail
           seance={s}
-          historique={historique}
-          onRetour={retour}
+          historique={historique.value}
+          onRetour={() => allerOnglet('/historique')}
           onRefaire={() => {
-            const m = s.modeleId ? modeleDe(s.modeleId) : undefined;
+            const m = s.modeleId ? modeles.value.find((x) => x.id === s.modeleId) : undefined;
             if (m) demarrer(m);
+          }}
+          onSupprimer={async () => {
+            await magasin.supprimerSeance(s.id);
+            allerOnglet('/historique');
           }}
         />
       );
     }
 
     if (apparier('/historique')) {
-      return <Historique historique={historique} onOuvrir={(s) => aller(`/historique/${s.id}`)} />;
+      return (
+        <Historique
+          historique={historique.value}
+          onOuvrir={(s) => aller(`/historique/${s.id}`)}
+          onDemarrer={() => setDepart(true)}
+        />
+      );
     }
 
-    if (apparier('/progres')) return <Progres modeles={modeles} historique={historique} />;
+    if (apparier('/progres')) return <Progres modeles={modeles.value} historique={historique.value} />;
 
     if (apparier('/reglages')) {
       return (
         <Reglages
-          barre={barre}
-          disques={disques}
-          onBarre={setBarre}
-          onDisque={(d) =>
-            setDisques((ds) => (ds.includes(d) ? ds.filter((x) => x !== d) : [...ds, d].sort((a, b) => b - a)))
-          }
+          reglages={reglages.value}
+          nombreSeances={historique.value.length}
+          onModifier={magasin.majReglages}
+          onExporter={magasin.exporter}
+          onImporter={magasin.importer}
+          onDemonstration={magasin.chargerDemonstration}
+          onRemiseAZero={magasin.remiseAZero}
           onRetour={retour}
         />
       );
@@ -210,9 +232,9 @@ export function Shell() {
 
       {depart && (
         <FeuilleDepart
-          modeles={modeles}
-          historique={historique}
-          enCours={enCours}
+          modeles={modeles.value}
+          historique={historique.value}
+          enCours={enCours.value}
           onReprendre={() => {
             setDepart(false);
             aller('/execution');

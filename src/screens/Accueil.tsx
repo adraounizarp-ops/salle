@@ -1,6 +1,5 @@
 import { formatDuree, formatNombre } from '../data/metriques';
-import { MODELES, PRENOM } from '../data/demo';
-import { fiche, type Modele, type SeanceEnCours, type SeanceFaite } from '../data/modele';
+import { fiche, nomGroupe, type Modele, type SeanceEnCours, type SeanceFaite } from '../data/modele';
 import {
   dateLongue,
   derniereDe,
@@ -22,43 +21,50 @@ import { Icone } from '../ui/Icone';
 import './accueil.css';
 
 interface Props {
+  prenom: string;
+  modeles: Modele[];
   historique: SeanceFaite[];
   enCours: SeanceEnCours | null;
+  /** Plus d'un mois sans export : on le signale une fois, sans bloquer. */
+  rappelExport: boolean;
   onReglages: () => void;
   onReprendre: () => void;
   onDemarrer: (m: Modele) => void;
   onSeance: (s: SeanceFaite) => void;
   onToutesLesSeances: () => void;
   onHistorique: () => void;
+  onNouvelle: () => void;
 }
 
 export function Accueil({
+  prenom,
+  modeles,
   historique,
   enCours,
+  rappelExport,
   onReglages,
   onReprendre,
   onDemarrer,
   onSeance,
   onToutesLesSeances,
   onHistorique,
+  onNouvelle,
 }: Props) {
   const maintenant = new Date();
+  const vierge = historique.length === 0;
 
-  // --- Tonnage des 7 derniers jours, contre les 7 jours d'avant
   const semaine = tonnageFenetre(historique, 7, 0);
   const semainePrecedente = tonnageFenetre(historique, 7, 1);
 
   // Un tronçon par séance de la semaine : on voit d'où vient le volume.
   const troncons = historique
     .filter((s) => s.date > Date.now() - 7 * 86_400_000)
-    .sort((a, b) => a.date - b.date)
     .map((s) => ({ id: s.id, libelle: s.nom, tonnage: tonnageSeance(s) }));
 
-  // --- Le mois en cours
   const cases = grilleDuMois(historique, maintenant.getFullYear(), maintenant.getMonth());
   const duMois = seancesDuMois(historique, maintenant.getFullYear(), maintenant.getMonth());
 
-  const favorites = MODELES.filter((m) => m.favorite);
+  const favorites = modeles.filter((m) => m.favorite);
   const recents = recordsRecents(historique, 45).slice(0, 3);
   const volume = volumeParGroupe(historique, 7).slice(0, 4);
   const maxSeries = Math.max(1, ...volume.map((v) => v.series));
@@ -66,7 +72,7 @@ export function Accueil({
   return (
     <Ecran
       surtitre={dateLongue(maintenant)}
-      titre={`Bonjour, ${PRENOM}`}
+      titre={prenom ? `Bonjour, ${prenom}` : 'Bonjour'}
       action={
         <button type="button" class="bouton-rond" onClick={onReglages} aria-label="Réglages">
           <Icone nom="reglages" taille={20} />
@@ -88,77 +94,99 @@ export function Accueil({
         </button>
       )}
 
-      <Section titre="Tonnage · 7 derniers jours">
-        <div class="carte carte--hero">
-          <Chiffre
-            valeur={semaine}
-            ecart={semaine - semainePrecedente}
-            reference="vs 7 jours avant"
-          />
-          <div class="carte__barre">
-            <BarreChargee
-              troncons={troncons}
-              reference={semainePrecedente}
-              libelleReference="semaine précédente"
-            />
-          </div>
-        </div>
-      </Section>
-
-      <Section
-        titre={nomMois(maintenant.getMonth())}
-        suffixe={
-          <span class="section__compte donnee">
-            {duMois.length} séance{duMois.length > 1 ? 's' : ''}
-          </span>
-        }
-      >
-        <div class="carte">
-          <GrilleMois cases={cases} onJour={(j) => onSeance(j.seances[0])} />
-        </div>
-      </Section>
-
-      <Section
-        titre="Séances favorites"
-        plein
-        suffixe={
-          <button type="button" class="lien" onClick={onToutesLesSeances}>
-            Toutes
-            <Icone nom="chevron-droit" taille={14} />
+      {vierge ? (
+        <section class="bienvenue">
+          <h2 class="bienvenue__titre">Ton carnet est vide</h2>
+          <p class="bienvenue__texte">
+            Trois séances sont déjà prêtes — Push, Pull, Jambes. Lance-en une, ajuste les charges en
+            route : le tonnage commencera à se comparer dès la deuxième fois.
+          </p>
+          <button type="button" class="bouton bouton--fantome bouton--plein" onClick={onNouvelle}>
+            <Icone nom="plus" taille={16} />
+            Composer ma propre séance
           </button>
-        }
-      >
-        <div class="favorites bande-h">
-          {favorites.map((m) => {
-            const derniere = derniereDe(historique, m.id);
-            return (
-              <CarteFavorite
-                key={m.id}
-                modele={m}
-                dernierTonnage={derniere && tonnageSeance(derniere)}
-                derniereDate={derniere?.date}
-                onOuvrir={() => onDemarrer(m)}
+        </section>
+      ) : (
+        <>
+          <Section titre="Tonnage · 7 derniers jours">
+            <div class="carte carte--hero">
+              <Chiffre
+                valeur={semaine}
+                ecart={semainePrecedente ? semaine - semainePrecedente : undefined}
+                reference="vs 7 jours avant"
               />
-            );
-          })}
-        </div>
-      </Section>
+              {troncons.length > 0 && (
+                <div class="carte__barre">
+                  <BarreChargee
+                    troncons={troncons}
+                    reference={semainePrecedente}
+                    libelleReference={semainePrecedente ? 'semaine précédente' : undefined}
+                  />
+                </div>
+              )}
+            </div>
+          </Section>
 
-      <Section titre="Volume par groupe · 7 jours">
-        <div class="carte">
-          <ul class="volume">
-            {volume.map((v) => (
-              <li key={v.groupe} class="volume__ligne">
-                <span class="volume__nom">{v.nom || v.groupe}</span>
-                <span class="volume__piste">
-                  <span class="volume__barre" style={{ width: `${(v.series / maxSeries) * 100}%` }} />
-                </span>
-                <span class="volume__valeur donnee">{v.series} séries</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Section>
+          <Section
+            titre={nomMois(maintenant.getMonth())}
+            suffixe={
+              <span class="section__compte donnee">
+                {duMois.length} séance{duMois.length > 1 ? 's' : ''}
+              </span>
+            }
+          >
+            <div class="carte">
+              <GrilleMois cases={cases} onJour={(j) => onSeance(j.seances[0])} />
+            </div>
+          </Section>
+        </>
+      )}
+
+      {favorites.length > 0 && (
+        <Section
+          titre="Séances favorites"
+          plein
+          suffixe={
+            <button type="button" class="lien" onClick={onToutesLesSeances}>
+              Toutes
+              <Icone nom="chevron-droit" taille={14} />
+            </button>
+          }
+        >
+          <div class="favorites bande-h">
+            {favorites.map((m) => {
+              const derniere = derniereDe(historique, m.id);
+              return (
+                <CarteFavorite
+                  key={m.id}
+                  modele={m}
+                  dernierTonnage={derniere && tonnageSeance(derniere)}
+                  derniereDate={derniere?.date}
+                  onOuvrir={() => onDemarrer(m)}
+                />
+              );
+            })}
+          </div>
+        </Section>
+      )}
+
+      {volume.length > 0 && (
+        <Section titre="Volume par groupe · 7 jours">
+          <div class="carte">
+            <ul class="volume">
+              {volume.map((v) => (
+                <li key={v.groupe} class="volume__ligne">
+                  <span class="volume__nom">{nomGroupe(v.groupe)}</span>
+                  <span class="volume__piste">
+                    <span class="volume__barre" style={{ width: `${(v.series / maxSeries) * 100}%` }} />
+                  </span>
+                  <span class="volume__valeur donnee">{v.series} séries</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      )}
 
       {recents.length > 0 && (
         <Section
@@ -185,6 +213,19 @@ export function Accueil({
             ))}
           </ul>
         </Section>
+      )}
+
+      {rappelExport && (
+        <button type="button" class="rappel" onClick={onReglages}>
+          <span class="rappel__pastille" aria-hidden="true" />
+          <span class="rappel__texte">
+            <span class="rappel__titre">Pense à exporter</span>
+            <span class="rappel__detail">
+              Un mois sans sauvegarde. Supprimer l'icône de l'écran d'accueil effacerait tout.
+            </span>
+          </span>
+          <Icone nom="chevron-droit" taille={18} />
+        </button>
       )}
     </Ecran>
   );

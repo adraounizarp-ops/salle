@@ -47,6 +47,8 @@ export interface Modele {
   nom: string;
   favorite: boolean;
   lignes: LigneModele[];
+  /** Rang d'affichage dans la liste des séances. */
+  ordre?: number;
 }
 
 /** Un exercice tel qu'il a été fait, séries comprises. */

@@ -17,6 +17,8 @@ interface Props {
   nouvelle?: boolean;
   onAnnuler: () => void;
   onEnregistrer: (m: Modele) => void;
+  /** Absent sur une séance qu'on vient de créer : il n'y a rien à supprimer. */
+  onSupprimer?: () => void;
 }
 
 /** Le tonnage visé : les séries prévues au haut de la fourchette de répétitions. */
@@ -26,7 +28,14 @@ const tonnagePrevu = (lignes: LigneModele[]) =>
     0,
   );
 
-export function SeanceEditeur({ modele, historique, nouvelle, onAnnuler, onEnregistrer }: Props) {
+export function SeanceEditeur({
+  modele,
+  historique,
+  nouvelle,
+  onAnnuler,
+  onEnregistrer,
+  onSupprimer,
+}: Props) {
   const [nom, setNom] = useState(modele.nom);
   const [lignes, setLignes] = useState<LigneModele[]>(modele.lignes.map((l) => ({ ...l })));
   const [choix, setChoix] = useState(false);
@@ -147,6 +156,22 @@ export function SeanceEditeur({ modele, historique, nouvelle, onAnnuler, onEnreg
             Ajouter un exercice
           </button>
         </Section>
+
+        {onSupprimer && (
+          <Section>
+            <button
+              type="button"
+              class="bouton bouton--corail bouton--plein"
+              onClick={() => {
+                if (confirm(`Supprimer « ${modele.nom} » ? L'historique des séances déjà faites est conservé.`))
+                  onSupprimer();
+              }}
+            >
+              <Icone nom="corbeille" taille={16} />
+              Supprimer la séance
+            </button>
+          </Section>
+        )}
       </Ecran>
 
       {choix && (

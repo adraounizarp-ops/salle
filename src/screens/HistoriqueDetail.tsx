@@ -19,9 +19,10 @@ interface Props {
   historique: SeanceFaite[];
   onRetour: () => void;
   onRefaire: () => void;
+  onSupprimer: () => void;
 }
 
-export function HistoriqueDetail({ seance, historique, onRetour, onRefaire }: Props) {
+export function HistoriqueDetail({ seance, historique, onRetour, onRefaire, onSupprimer }: Props) {
   const tonnage = tonnageSeance(seance);
 
   // La même séance, la fois d'avant.
@@ -126,6 +127,21 @@ export function HistoriqueDetail({ seance, historique, onRetour, onRefaire }: Pr
             );
           })}
         </ul>
+      </Section>
+
+      <Section>
+        <button
+          type="button"
+          class="bouton bouton--corail bouton--plein"
+          onClick={() => {
+            const texte =
+              "Supprimer cette séance de l'historique ? Les comparaisons de tonnage en tiendront compte.";
+            if (confirm(texte)) onSupprimer();
+          }}
+        >
+          <Icone nom="corbeille" taille={16} />
+          Supprimer cette séance
+        </button>
       </Section>
     </Ecran>
   );

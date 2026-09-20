@@ -41,6 +41,17 @@ export function allerOnglet(vers: string) {
   scrollTo(0, 0);
 }
 
+/**
+ * Remplace l'écran courant dans la pile. Après avoir terminé une séance, le
+ * retour doit ramener à l'accueil, pas à l'écran de saisie d'une séance qui
+ * n'existe plus.
+ */
+export function remplacer(vers: string) {
+  history.replaceState(null, '', BASE + vers);
+  chemin.value = vers;
+  scrollTo(0, 0);
+}
+
 export function retour() {
   history.back();
 }

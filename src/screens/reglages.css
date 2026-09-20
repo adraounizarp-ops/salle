@@ -122,3 +122,79 @@
   border: 1px solid var(--corail-trait);
   color: var(--blanc);
 }
+
+/* --- Interrupteur ----------------------------------------------------------- */
+
+.bascule {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: var(--cible);
+  cursor: pointer;
+}
+
+.bascule__texte {
+  flex: 1;
+  display: grid;
+  gap: 2px;
+}
+
+.bascule__nom {
+  font-size: var(--t-corps);
+  font-weight: 500;
+}
+
+.bascule__note {
+  font-size: var(--t-etiquette);
+  color: var(--gris-sourd);
+  line-height: 1.4;
+}
+
+/* La case reste dans l'arbre d'accessibilite : c'est elle qui porte l'etat. */
+.bascule__case {
+  position: absolute;
+  opacity: 0;
+  width: 52px;
+  height: 32px;
+  right: 0;
+  margin: 0;
+}
+
+.bascule__piste {
+  flex: none;
+  position: relative;
+  width: 52px;
+  height: 32px;
+  border-radius: var(--r-plein);
+  background: var(--carte-haute);
+  border: 1px solid var(--trait);
+  transition: background var(--court) var(--courbe);
+}
+
+.bascule__piste::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gris);
+  transition: transform var(--court) var(--courbe), background var(--court) linear;
+}
+
+.bascule__case:checked ~ .bascule__piste {
+  background: var(--vert);
+  border-color: var(--vert);
+}
+
+.bascule__case:checked ~ .bascule__piste::after {
+  transform: translateX(20px);
+  background: var(--sur-vert);
+}
+
+.bascule__case:focus-visible ~ .bascule__piste {
+  outline: 2px solid var(--vert);
+  outline-offset: 2px;
+}

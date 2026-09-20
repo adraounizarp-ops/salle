@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
+import { useEcranAllume } from '../app/ecranAllume';
+import { reveillerLeSon } from '../app/son';
 import { resumerChargement } from '../data/disques';
 import {
   comparer,
@@ -30,9 +32,17 @@ interface Props {
   /** Abandon franc : la séance en cours est jetée. */
   onAbandonner: () => void;
   onTerminer: (note?: string) => void;
+  avecSon: boolean;
 }
 
-export function Execution({ seance, onChangement, onQuitter, onAbandonner, onTerminer }: Props) {
+export function Execution({
+  seance,
+  onChangement,
+  onQuitter,
+  onAbandonner,
+  onTerminer,
+  avecSon,
+}: Props) {
   const [iExo, setIExo] = useState(() => {
     const i = seance.exercices.findIndex((e) => e.series.some((s) => !s.faite));
     return i === -1 ? 0 : i;
@@ -43,6 +53,9 @@ export function Execution({ seance, onChangement, onQuitter, onAbandonner, onTer
   const [bilan, setBilan] = useState(false);
   const [note, setNote] = useState('');
   const [chrono, setChrono] = useState(() => Math.floor((Date.now() - seance.debut) / 1000));
+
+  // Tant qu'on est sur cet écran, l'iPhone ne s'endort pas.
+  useEcranAllume(true);
 
   useEffect(() => {
     const t = setInterval(() => setChrono(Math.floor((Date.now() - seance.debut) / 1000)), 1000);
@@ -129,6 +142,9 @@ export function Execution({ seance, onChangement, onQuitter, onAbandonner, onTer
 
   const valider = () => {
     if (!serieActive) return;
+    // Le contexte audio ne peut naître que d'un geste : celui-ci précède
+    // toujours le repos, c'est le bon moment.
+    if (avecSon) reveillerLeSon();
     majSerie({ faite: true });
     setBrouillon(null);
     setChamp('reps');
@@ -386,6 +402,7 @@ export function Execution({ seance, onChangement, onQuitter, onAbandonner, onTer
         <Repos
           total={repos}
           ecart={projete - reference}
+          avecSon={avecSon}
           prochaine={
             iSerie === -1
               ? null

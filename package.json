@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "catalog": "node scripts/build-catalog.mjs",
     "fonts": "node scripts/fetch-fonts.mjs",
-    "palette": "node scripts/validate-palette.mjs"
+    "palette": "node scripts/validate-palette.mjs",
+    "icones": "node scripts/build-icons.mjs"
   },
   "dependencies": {
     "@preact/signals": "^2.0.4",

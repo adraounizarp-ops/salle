@@ -144,6 +144,32 @@ export function Reglages({
         </div>
       </Section>
 
+      <Section titre="En séance">
+        <div class="carte">
+          <label class="bascule">
+            <span class="bascule__texte">
+              <span class="bascule__nom">Son en fin de repos</span>
+              <span class="bascule__note">
+                Coupé par le bouton silencieux de l'iPhone — iOS n'autorise pas la vibration.
+              </span>
+            </span>
+            <input
+              type="checkbox"
+              class="bascule__case"
+              checked={reglages.sonRepos}
+              onChange={(e) =>
+                void onModifier({ sonRepos: (e.target as HTMLInputElement).checked })
+              }
+            />
+            <span class="bascule__piste" aria-hidden="true" />
+          </label>
+
+          <p class="prose prose--note">
+            L'écran reste allumé pendant toute la séance : inutile de le rallumer entre deux séries.
+          </p>
+        </div>
+      </Section>
+
       <Section titre="Sauvegarde">
         <div class="carte">
           <p class="prose">

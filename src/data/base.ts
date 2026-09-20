@@ -16,6 +16,8 @@ export interface Reglages {
   barre: number;
   /** Disques disponibles dans la salle, du plus lourd au plus léger. */
   disques: number[];
+  /** Signal sonore à la fin du repos. */
+  sonRepos: boolean;
   /** Horodatage du dernier export, pour le rappel mensuel. */
   dernierExport: number | null;
 }
@@ -24,6 +26,7 @@ export const REGLAGES_PAR_DEFAUT: Reglages = {
   prenom: '',
   barre: 20,
   disques: [25, 20, 15, 10, 5, 2.5, 1.25],
+  sonRepos: true,
   dernierExport: null,
 };
 

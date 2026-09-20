@@ -167,6 +167,7 @@ export function Shell() {
             allerOnglet('/');
           }}
           onTerminer={terminer}
+          avecSon={reglages.value.sonRepos}
         />
       );
     }

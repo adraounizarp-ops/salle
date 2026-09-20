@@ -11,7 +11,8 @@ export default defineConfig({
     preact(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/*.png'],
+      // Pas d'`includeAssets` : les icônes sont déjà prises par globPatterns,
+      // et les déclarer deux fois les précacherait en double.
       manifest: {
         name: 'Salle — carnet de tonnage',
         short_name: 'Salle',
@@ -21,8 +22,8 @@ export default defineConfig({
         scope: base,
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#0F1114',
-        theme_color: '#0F1114',
+        background_color: '#0B0B0C',
+        theme_color: '#0B0B0C',
         icons: [
           { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' },

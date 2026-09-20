@@ -3,6 +3,7 @@ import * as db from './base';
 import { REGLAGES_PAR_DEFAUT, type Reglages } from './base';
 import { MODELES_DE_DEPART, historiqueDeDemonstration } from './demarrage';
 import type { Modele, SeanceEnCours, SeanceFaite } from './modele';
+import { prechargerIllustrations } from './precache';
 import { tonnageExerciceFait, tonnageSeance } from './selection';
 
 /**
@@ -39,6 +40,11 @@ export async function demarrer(): Promise<void> {
 
   // Sans attendre : l'app doit s'afficher, pas patienter sur une permission.
   void db.demanderPersistance();
+
+  // Les favorites sont ce qu'on lancera en salle, souvent sans réseau.
+  prechargerIllustrations(
+    modeles.value.filter((m) => m.favorite).flatMap((m) => m.lignes.map((l) => l.slug)),
+  );
 }
 
 // --- Modèles -----------------------------------------------------------------
@@ -47,6 +53,7 @@ export async function enregistrerModele(m: Modele): Promise<void> {
   const existe = modeles.value.some((x) => x.id === m.id);
   await db.ecrireModele({ ...m, ordre: m.ordre ?? (existe ? 0 : modeles.value.length) });
   await relireModeles();
+  prechargerIllustrations(m.lignes.map((l) => l.slug));
 }
 
 export async function supprimerModele(id: string): Promise<void> {
@@ -65,6 +72,7 @@ export async function basculerFavorite(id: string): Promise<void> {
 
 /** Déplie un modèle en séance saisissable, avec ses références de tonnage. */
 export function preparer(m: Modele): SeanceEnCours {
+  prechargerIllustrations(m.lignes.map((l) => l.slug));
   const derniere = [...historique.value].reverse().find((s) => s.modeleId === m.id);
 
   const referenceExercice: Record<string, number> = {};

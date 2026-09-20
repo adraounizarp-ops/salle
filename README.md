@@ -49,6 +49,7 @@ fonctionner hors-ligne en salle. Pour le régénérer :
 npm run catalog           # n'écrase pas l'existant
 npm run catalog -- --force
 npm run fonts             # re-télécharge et auto-héberge les polices
+npm run icones            # redessine les icônes de l'app
 ```
 
 > Sur cette machine, `node` n'est pas dans le `PATH` système, ce qui casse les
@@ -57,12 +58,16 @@ npm run fonts             # re-télécharge et auto-héberge les polices
 
 ## État
 
-Les cinq écrans tournent sur un **jeu de démonstration** engendré par
-[`src/data/demo.ts`](src/data/demo.ts) : trois modèles et un trimestre de
-séances, avec progression, bruit et semaine de décharge. Le parcours complet est
-navigable, mais rien n'est encore enregistré — **IndexedDB est le prochain lot**,
-et ne touchera que la coquille [`src/app/Shell.tsx`](src/app/Shell.tsx), qui tient
-tout l'état.
+Le parcours complet marche et **tout est enregistré** dans IndexedDB : composer
+une séance, la faire, la retrouver dans l'historique, exporter la sauvegarde.
+
+Au premier lancement, trois modèles sont semés — Push, Pull, Jambes — mais
+**aucun historique** : de fausses séances fausseraient toutes les comparaisons
+de tonnage. Pour voir les écrans remplis, les réglages versent un trimestre de
+séances fictives à la demande.
+
+[`magasin.ts`](src/data/magasin.ts) est le seul module qui parle à la base ; les
+écrans lisent des signaux.
 
 ## Déploiement
 
@@ -79,11 +84,28 @@ d'accueil**. L'app s'ouvre en plein écran et fonctionne sans réseau.
 Trois limites d'iOS, assumées :
 
 1. **Les données vivent dans l'app installée.** Supprimer l'icône efface
-   l'historique. D'où l'export `.json` prévu.
-2. **Pas de vibration** : Safari n'implémente pas la Vibration API. Le retour de
-   validation est visuel.
-3. **Le minuteur de repos n'est fiable qu'au premier plan.** Le temps restant est
-   recalculé depuis son horodatage au retour de l'arrière-plan.
+   l'historique. D'où l'export `.json`, et son rappel après un mois.
+2. **Pas de vibration** : Safari n'implémente pas la Vibration API. La fin du
+   repos se signale donc par un son — que le bouton silencieux de l'iPhone
+   coupe, puisque l'audio web passe par la voie sonnerie. L'anneau qui vire au
+   vert reste le signal de secours.
+3. **Le minuteur de repos n'est fiable qu'au premier plan.** Le temps restant
+   est recalculé depuis son horodatage au retour de l'arrière-plan.
+
+En séance, l'écran reste allumé (Screen Wake Lock), et le verrou est repris
+automatiquement au retour d'arrière-plan — iOS le relâche à chaque fois.
+
+### Hors-ligne
+
+La coquille de l'app (HTML, JS, CSS, les deux polices, les icônes) est
+préchargée à la première visite. Les 906 illustrations, elles, ne le sont pas :
+15 Mo d'un coup n'auraient aucun sens. Elles sont tirées à trois moments
+choisis — au démarrage pour les séances favorites, à l'enregistrement d'un
+modèle, et au départ d'une séance — pendant qu'il y a encore du réseau.
+
+> Le hors-ligne n'a **pas** été vérifié ici : le navigateur intégré de l'atelier
+> refuse d'enregistrer un service worker. Le test se fait sur l'iPhone, en mode
+> avion, après une première visite en ligne.
 
 ## Comment se calcule le tonnage
 
@@ -106,11 +128,14 @@ src/screens/        les neuf écrans
 src/charts/         graphiques faits main, sans librairie
 src/data/
   modele.ts         les formes de données
+  base.ts           IndexedDB (Dexie), export et import
+  magasin.ts        l'état de l'app — seul à écrire dans la base
   metriques.ts      tonnage, 1RM Epley, comparaisons, alertes
   selection.ts      les questions que les écrans posent aux données
   disques.ts        calculateur de chargement de barre
-  demo.ts           jeu de démonstration — à supprimer au lot suivant
-scripts/            catalogue d'exercices et auto-hébergement des polices
+  precache.ts       tire les illustrations pendant qu'il y a du réseau
+  demarrage.ts      modèles semés + jeu d'essai engendré
+scripts/            catalogue d'exercices, polices, icônes
 ```
 
 Attributions des illustrations, polices et icônes : [CREDITS.md](CREDITS.md).

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
+import { bipFinDeRepos } from '../app/son';
 import { formatCharge, formatDuree, formatNombre } from '../data/metriques';
 import './repos.css';
 
@@ -11,6 +12,8 @@ interface Props {
    */
   ecart: number;
   prochaine: { reps: number; charge: number; leste: boolean } | null;
+  /** Le son peut gêner en salle, ou faire doublon avec un casque. */
+  avecSon: boolean;
   onFini: () => void;
 }
 
@@ -22,9 +25,10 @@ const CIRCONFERENCE = 2 * Math.PI * RAYON;
  * Le temps restant vient d'un horodatage et non d'un compteur : si l'app passe
  * en arrière-plan, on retrouve le bon chiffre au retour.
  */
-export function Repos({ total, ecart, prochaine, onFini }: Props) {
+export function Repos({ total, ecart, prochaine, avecSon, onFini }: Props) {
   const [fin, setFin] = useState(() => Date.now() + total * 1000);
   const [restant, setRestant] = useState(total);
+  const sonne = useRef(false);
 
   useEffect(() => {
     const battre = () => setRestant(Math.max(0, Math.ceil((fin - Date.now()) / 1000)));
@@ -37,6 +41,15 @@ export function Repos({ total, ecart, prochaine, onFini }: Props) {
       document.removeEventListener('visibilitychange', auRetour);
     };
   }, [fin]);
+
+  // Une seule fois, au passage à zéro : le compteur bat quatre fois par seconde.
+  useEffect(() => {
+    if (restant === 0 && !sonne.current) {
+      sonne.current = true;
+      if (avecSon) bipFinDeRepos();
+    }
+    if (restant > 0) sonne.current = false;
+  }, [restant, avecSon]);
 
   const ecoule = 1 - restant / total;
   const fini = restant === 0;

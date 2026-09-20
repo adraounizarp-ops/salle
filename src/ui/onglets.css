@@ -1,6 +1,11 @@
 /* La barre du bas. Hauteur fixe + marge de securite iPhone. */
 
+/* `position` et `z-index` explicites : `backdrop-filter` crée déjà un contexte
+   d'empilement, et sans rang déclaré son ordre de peinture face aux feuilles
+   dépendait du navigateur. Les feuilles sont à 55, les confirmations à 60. */
 .onglets {
+  position: relative;
+  z-index: 40;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   align-items: center;

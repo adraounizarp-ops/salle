@@ -78,22 +78,38 @@ export interface Mesure {
   date: number;
   /** Kilogrammes. */
   poids?: number;
-  /** Tour de taille, en centimètres. */
-  taille?: number;
-  /** Tour de bras contracté, en centimètres. */
+  /** Les tours, en centimètres. */
+  poitrine?: number;
+  epaules?: number;
+  /** Bras contracté. */
   bras?: number;
-  /** Tour de cuisse, en centimètres. */
+  avantBras?: number;
+  /** Tour de taille. */
+  taille?: number;
+  hanches?: number;
   cuisse?: number;
+  mollet?: number;
+  cou?: number;
   /** Photo de suivi, déjà réduite, en data URL JPEG. */
   photo?: string;
 }
 
-/** Les champs chiffrés d'un relevé, dans l'ordre où on les saisit. */
+/**
+ * Les champs chiffrés d'un relevé, dans l'ordre où l'on se mesure : le poids
+ * d'abord, puis du haut vers le bas, et le cou en dernier parce qu'on y pense
+ * après. Aucun n'est requis — on remplit ce qu'on a mesuré ce jour-là.
+ */
 export const CHAMPS_MESURE = [
-  { cle: 'poids', nom: 'Poids', unite: 'kg', pas: 0.1 },
-  { cle: 'taille', nom: 'Tour de taille', unite: 'cm', pas: 0.5 },
-  { cle: 'bras', nom: 'Tour de bras', unite: 'cm', pas: 0.5 },
-  { cle: 'cuisse', nom: 'Tour de cuisse', unite: 'cm', pas: 0.5 },
+  { cle: 'poids', nom: 'Poids', unite: 'kg' },
+  { cle: 'poitrine', nom: 'Poitrine', unite: 'cm' },
+  { cle: 'epaules', nom: 'Épaules', unite: 'cm' },
+  { cle: 'bras', nom: 'Bras', unite: 'cm' },
+  { cle: 'avantBras', nom: 'Avant-bras', unite: 'cm' },
+  { cle: 'taille', nom: 'Taille', unite: 'cm' },
+  { cle: 'hanches', nom: 'Hanches', unite: 'cm' },
+  { cle: 'cuisse', nom: 'Cuisse', unite: 'cm' },
+  { cle: 'mollet', nom: 'Mollet', unite: 'cm' },
+  { cle: 'cou', nom: 'Cou', unite: 'cm' },
 ] as const;
 
 export type CleMesure = (typeof CHAMPS_MESURE)[number]['cle'];

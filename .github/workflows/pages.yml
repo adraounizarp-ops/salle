@@ -33,6 +33,18 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Le chemin de base suit le nom du depot : renommer le depot suffit.
+          # Sans cette ligne, vite.config.ts retombe sur « /salle/ » ecrit en
+          # dur, et un renommage donnerait une page blanche sans message.
+          SALLE_BASE: /${{ github.event.repository.name }}/
+
+      # Le routeur vit dans le navigateur ; GitHub Pages, lui, ne sert que des
+      # fichiers. Sans cette copie, recharger ou partager /salle/progres tombe
+      # sur la page 404 de GitHub. La page d'erreur sert donc la coquille, qui
+      # lit l'URL et affiche le bon ecran.
+      - name: Servir la coquille sur les liens profonds
+        run: cp dist/index.html dist/404.html
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

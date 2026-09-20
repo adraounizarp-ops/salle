@@ -304,6 +304,24 @@ const dateCourte = (t: number) =>
   `${new Date(t).getDate()} ${nomMoisCourt(new Date(t).getMonth())}`;
 
 /**
+ * Le résumé d'une ligne de relevé.
+ *
+ * Dix mesures alignées ne tiennent pas sur une rangée d'iPhone et finiraient
+ * élidées au milieu d'un chiffre. On montre donc le poids — le seul qu'on
+ * relève à chaque fois — et on compte les tours ; le détail s'ouvre d'un tap.
+ */
+function resumerMesure(m: Mesure): string {
+  const tours = CHAMPS_MESURE.filter((c) => c.cle !== 'poids' && m[c.cle] !== undefined).length;
+  const morceaux: string[] = [];
+
+  if (m.poids !== undefined) morceaux.push(`${formatCharge(m.poids)} kg`);
+  if (tours > 0) morceaux.push(`${tours} ${pluriel(tours, 'tour')}`);
+  if (morceaux.length === 0) return 'photo seule';
+
+  return morceaux.join(' · ');
+}
+
+/**
  * Le poids et les tours de bras.
  *
  * Le carnet ne suivait que ce qui se soulève. Or un tonnage qui monte pendant
@@ -392,8 +410,11 @@ function ParCorps({
                 )}
               />
               <p class="corps__ecart" data-sens={ecart >= 0 ? 'haut' : 'bas'}>
-                {ecart >= 0 ? '+' : '−'}
-                {formatCharge(Math.abs(ecart))} {champ.unite}
+                {/* « +0 cm » ne veut rien dire : au centimètre près, c'est
+                    stable, et c'est ce qu'il faut lire. */}
+                {Math.abs(ecart) < 0.05
+                  ? 'Stable'
+                  : `${ecart > 0 ? '+' : '−'}${formatCharge(Math.abs(ecart))} ${champ.unite}`}
                 <span class="corps__depuis">
                   depuis le {dateCourte(renseignes[0].date)}, sur{' '}
                   {renseignes.length} {pluriel(renseignes.length, 'relevé')}
@@ -423,11 +444,7 @@ function ParCorps({
                 )}
                 <span class="releve__nommage">
                   <span class="releve__date">{dateCourte(m.date)}</span>
-                  <span class="releve__chiffres donnee">
-                    {CHAMPS_MESURE.filter((c) => m[c.cle] !== undefined)
-                      .map((c) => `${formatCharge(m[c.cle] as number)} ${c.unite}`)
-                      .join(' · ') || 'photo seule'}
-                  </span>
+                  <span class="releve__chiffres donnee">{resumerMesure(m)}</span>
                 </span>
                 <Icone nom="chevron-droit" taille={16} />
               </button>

@@ -78,7 +78,10 @@
   color: var(--gris);
 }
 
+/* `flex: none` : élément d'un conteneur flex, la croix se laissait rétrécir
+   sous les 44 px de la cible tactile quand le titre était long. */
 .feuille__croix {
+  flex: none;
   display: grid;
   place-items: center;
   width: var(--cible);
@@ -92,4 +95,20 @@
   overflow-y: auto;
   overflow-x: hidden;
   min-height: 0;
+}
+
+/* Avec un pied, la marge basse lui revient : c'est lui qui touche le bord. */
+.feuille__panneau[data-avec-pied='true'] {
+  grid-template-rows: auto auto 1fr auto;
+  padding-bottom: 0;
+}
+
+/* Le pied ne défile pas. L'action principale reste sous le pouce, que le
+   formulaire fasse quatre champs ou dix. */
+.feuille__pied {
+  display: grid;
+  gap: 10px;
+  padding: 14px 0 calc(var(--bas-sur) + 18px);
+  border-top: 1px solid var(--trait);
+  background: var(--carte);
 }

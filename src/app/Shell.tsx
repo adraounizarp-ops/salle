@@ -3,6 +3,7 @@ import * as magasin from '../data/magasin';
 import { enCours, historique, mesures, modeles, pret, reglages } from '../data/magasin';
 import type { Modele } from '../data/modele';
 import { Ecran } from '../ui/Ecran';
+import { feuillesOuvertes } from '../ui/Feuille';
 import { FeuilleDepart } from '../ui/FeuilleDepart';
 import { Onglets } from '../ui/Onglets';
 import { Accueil } from '../screens/Accueil';
@@ -46,9 +47,15 @@ export function Shell() {
   // L'éditeur la perd pour une autre raison : il tient des modifications non
   // enregistrées, et un doigt qui touchait un onglet les jetait sans un mot.
   // On sort par « ‹ » ou par « Enregistrer », pas par accident.
+  //
+  // Une feuille ouverte la fait disparaître aussi : son bouton d'action tombe
+  // dans la même bande de pixels, et laisser les deux se superposer revient à
+  // parier sur l'ordre d'empilement du navigateur.
   const pleinEcran = Boolean(
     apparier('/execution') || apparier('/seances/nouvelle') || apparier('/seances/:id/modifier'),
   );
+
+  const sansOnglets = pleinEcran || feuillesOuvertes.value > 0;
 
   const demarrer = (m: Modele) => {
     setDepart(false);
@@ -249,7 +256,7 @@ export function Shell() {
     <div class="shell" data-plein={pleinEcran ? 'true' : undefined}>
       <div class="shell__ecran">{ecran()}</div>
 
-      {!pleinEcran && (
+      {!sansOnglets && (
         <Onglets actif={ongletDe(route)} onOnglet={allerOnglet} onDemarrer={() => setDepart(true)} />
       )}
 

@@ -125,9 +125,11 @@ modèle, et au départ d'une séance — pendant qu'il y a encore du réseau.
 
 ## Le suivi du corps
 
-Quatre chiffres et une photo, tous indépendants : **poids**, **tour de taille**,
-**tour de bras**, **tour de cuisse**. Aucun n'est obligatoire — un relevé où
-seul le poids est rempli vaut mieux qu'un relevé qu'on a renoncé à saisir.
+Dix chiffres et une photo, tous indépendants : **poids**, puis les tours de
+**poitrine**, **épaules**, **bras**, **avant-bras**, **taille**, **hanches**,
+**cuisse**, **mollet** et **cou**. Aucun n'est obligatoire — un relevé où seul
+le poids est rempli vaut mieux qu'un relevé qu'on a renoncé à saisir, et chaque
+mesure a sa propre courbe, qui ne compte que les relevés où elle figure.
 
 Le tonnage seul ment un peu : il monte aussi quand le poids de corps monte. La
 vue **Corps** est là pour trancher.
@@ -135,6 +137,18 @@ vue **Corps** est là pour trancher.
 Les photos passent par un canvas avant d'être gardées — 1080 px sur le grand
 côté, JPEG 0,7, soit une centaine de kilo-octets au lieu de quatre mégas. Elles
 voyagent dans le fichier de sauvegarde, qui grossit en conséquence.
+
+## Les feuilles
+
+Leur action principale vit dans un pied qui ne défile pas : à dix champs, un
+bouton posé en fin de contenu passe sous la ligne de flottaison et on cherche
+comment valider.
+
+Et tant qu'une feuille est ouverte, **la barre d'onglets n'est plus rendue**.
+Les deux se disputaient les mêmes pixels au bas de l'écran — le bouton
+« Enregistrer » tombait dans la bande de la barre — et `.onglets` porte un
+`backdrop-filter`, ce qui suffit à Safari pour la peindre par-dessus. Plutôt
+que de parier sur l'ordre d'empilement : ce qui n'est pas peint ne masque rien.
 
 ## Les confirmations
 

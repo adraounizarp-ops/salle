@@ -78,7 +78,20 @@ export function FeuilleMesure({ mesure, precedent, onEnregistrer, onFermer }: Pr
   };
 
   return (
-    <Feuille titre={mesure ? 'Modifier le relevé' : 'Nouveau relevé'} onFermer={onFermer}>
+    <Feuille
+      titre={mesure ? 'Modifier le relevé' : 'Nouveau relevé'}
+      onFermer={onFermer}
+      pied={
+        <button
+          type="button"
+          class="bouton bouton--vert bouton--plein"
+          disabled={!rempli}
+          onClick={enregistrer}
+        >
+          Enregistrer le relevé
+        </button>
+      }
+    >
       <div class="mesure">
         <label class="champ">
           <span class="etiquette">Date</span>
@@ -151,15 +164,6 @@ export function FeuilleMesure({ mesure, precedent, onEnregistrer, onFermer }: Pr
         </div>
 
         {erreur && <p class="mesure__erreur">{erreur}</p>}
-
-        <button
-          type="button"
-          class="bouton bouton--vert bouton--plein"
-          disabled={!rempli}
-          onClick={enregistrer}
-        >
-          Enregistrer le relevé
-        </button>
       </div>
     </Feuille>
   );

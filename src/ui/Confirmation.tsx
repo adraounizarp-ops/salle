@@ -26,18 +26,25 @@ interface Props {
  */
 export function Confirmation({ titre, texte, action, icone, onConfirmer, onFermer }: Props) {
   return (
-    <Feuille titre={titre} onFermer={onFermer} haute>
+    <Feuille
+      titre={titre}
+      onFermer={onFermer}
+      haute
+      pied={
+        <>
+          <button type="button" class="bouton bouton--corail bouton--plein" onClick={onConfirmer}>
+            {icone && <Icone nom={icone} taille={16} />}
+            {action}
+          </button>
+
+          <button type="button" class="bouton bouton--fantome bouton--plein" onClick={onFermer}>
+            Annuler
+          </button>
+        </>
+      }
+    >
       <div class="confirmation">
         <p class="confirmation__texte">{texte}</p>
-
-        <button type="button" class="bouton bouton--corail bouton--plein" onClick={onConfirmer}>
-          {icone && <Icone nom={icone} taille={16} />}
-          {action}
-        </button>
-
-        <button type="button" class="bouton bouton--fantome bouton--plein" onClick={onFermer}>
-          Annuler
-        </button>
       </div>
     </Feuille>
   );

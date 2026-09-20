@@ -1,8 +1,9 @@
-name: Déploiement GitHub Pages
+name: Deploy Vite site to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -10,41 +11,47 @@ permissions:
   pages: write
   id-token: write
 
-# Un seul déploiement à la fois ; on ne coupe pas celui qui est en cours.
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  construire:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           cache: npm
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Construire
-        # Le chemin de base suit le nom du dépôt : renommer le dépôt suffit.
+      - name: Build
         run: npm run build
-        env:
-          SALLE_BASE: /${{ github.event.repository.name }}/
 
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site files
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: ./dist
 
-  deployer:
-    needs: construire
-    runs-on: ubuntu-latest
+  deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deploiement.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
     steps:
-      - id: deploiement
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
